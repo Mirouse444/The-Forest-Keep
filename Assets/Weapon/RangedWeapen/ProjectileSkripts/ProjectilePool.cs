@@ -1,0 +1,50 @@
+using UnityEngine;
+using UnityEngine.Pool;
+
+internal class ProjectilePool : MonoBehaviour 
+{
+    [SerializeField] private Projectile _projectilePrefab;
+
+    private IObjectPool<Projectile> _projectilePool;
+
+    private void Awake()
+    {
+        _projectilePool = new ObjectPool<Projectile>(
+            createFunc: CreateProjectile,
+            actionOnGet: OnTakeProjectileFromPool,
+            actionOnRelease: OnReturnProjectileToPool,
+            actionOnDestroy: OnDestroyProjectile,
+            collectionCheck: false,
+            defaultCapacity: 10,
+            maxSize: 16
+        );
+    }
+
+    public Projectile GetProjectile()
+    {
+        return _projectilePool.Get();
+    }
+
+    private Projectile CreateProjectile()
+    {
+        Projectile projectile = Instantiate(_projectilePrefab, Vector3.zero, Quaternion.identity);
+        projectile.SetReleaseAction(_projectilePool.Release);
+
+        return projectile;
+    }
+
+    private void OnTakeProjectileFromPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(true);
+    }
+
+
+    private void OnReturnProjectileToPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(false);
+    }
+    private void OnDestroyProjectile(Projectile  projectile)
+    {
+        Destroy(projectile.gameObject);
+    }
+}

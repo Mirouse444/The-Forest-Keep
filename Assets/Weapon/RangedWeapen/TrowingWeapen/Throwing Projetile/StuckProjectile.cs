@@ -34,14 +34,6 @@ internal class StuckProjectile : MonoBehaviour
         transform.SetPositionAndRotation(pointOfImpact.position,pointOfImpact.rotation);
 
         transform.SetParent(carrier);
-
-        Vector3 parentScale = carrier.lossyScale;
-
-        transform.localScale = new Vector3(
-            _defaultScale.x / parentScale.x,
-            _defaultScale.y / parentScale.y,
-            _defaultScale.z / parentScale.z
-        );
     }
 
     private void Update()

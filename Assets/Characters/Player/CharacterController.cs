@@ -19,13 +19,17 @@ public class CharacterController : MonoBehaviour
     private float _currentBufferTime;
     private float _horizontalInput;
     private bool _isGrounded;
-    private float _knockbackTimer; 
+    private float _knockbackTimer;
+    private Vector3 _rightScale;
+    private Vector3 _leftScale;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerInput = new PlayerInput();
         _knockbackReceiver = GetComponent<KnockbackReceiver>();
+        _rightScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        _leftScale = transform.localScale;
     }
 
     private void OnEnable()
@@ -56,9 +60,9 @@ public class CharacterController : MonoBehaviour
         _horizontalInput = _playerInput.Player.Move.ReadValue<Vector2>().x;
 
         if (_horizontalInput > 0)
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = _leftScale;
         else if (_horizontalInput < 0)
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = _rightScale;
 
         if (_playerInput.Player.Jump.WasPressedThisFrame())
             _currentBufferTime = 0;

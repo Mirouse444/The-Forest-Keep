@@ -4,12 +4,10 @@ using System;
 [RequireComponent(typeof(HealthComponent))]
 public class EnemyCore : MonoBehaviour, ITarget
 {
-    [SerializeField] private NightTrigger _trigger;
-
     private Action<EnemyCore> _returnToPool;
     private HealthComponent _health;
 
-    public event Action<Vector3> OnDied;
+    public event Action<EnemyCore> OnDied;
 
     public Vector3 Position => transform.position;
 
@@ -35,8 +33,7 @@ public class EnemyCore : MonoBehaviour, ITarget
 
     private void Die()
     {
-        OnDied?.Invoke(transform.position);
-        _trigger.OnEnemyDie();
+        OnDied?.Invoke(this);
         _returnToPool?.Invoke(this);
     }
 }

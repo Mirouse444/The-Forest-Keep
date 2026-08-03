@@ -15,7 +15,10 @@ internal class SlimeMover : MonoBehaviour
     [SerializeField] private Vector2 _groundCheckOffset = new Vector2(0f, -0.5f);
     [SerializeField] private Vector2 _groundCheckSize;
     [SerializeField] private float _checkInterval = 0.1f;
-
+    
+    [Header("Main Target")]
+    [SerializeField] private Transform _mainTarget;
+    
     private Rigidbody2D _rigidbody;
     private TargetScanner _scanner;
     private WaitForSeconds _jumpWait;
@@ -42,10 +45,12 @@ internal class SlimeMover : MonoBehaviour
             {
                 yield return _jumpWait;
 
-                int directionX = 1;
+                int directionX;
 
                 if (_scanner.CurrentTarget != null)
                     directionX = (int)Mathf.Sign(_scanner.CurrentTarget.Position.x - transform.position.x);
+                else
+                    directionX = (int)Mathf.Sign(_mainTarget.position.x - transform.position.x);
 
                 _rigidbody.linearVelocity = new Vector2(directionX * _horizontalSpeed, _jumpForce);
             }

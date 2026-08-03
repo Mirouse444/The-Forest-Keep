@@ -22,13 +22,13 @@ public class EnemyHealthBarController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(_hPLine != null)
+        if(_hPLine)
             _hPLine.HPLineRectTransform.position = _mainCamera.WorldToScreenPoint(transform.position);
     }
 
     private void OnDisable()
     {
-        if (_hPLine != null)
+        if (_hPLine)
             _pool.ReleaseToPool(_hPLine);
     }
 }

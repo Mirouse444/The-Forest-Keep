@@ -81,11 +81,11 @@ public class DayNightSystem : MonoBehaviour
         {
             float progress = timer / time;
             
-            float positionX = Mathf.Lerp(startPositionX, endPositionX, progress);
-            float positionY = maxHeight * curve.Evaluate(progress);
+            float localX = Mathf.Lerp(startPositionX, endPositionX, progress);
+            float localY = maxHeight * curve.Evaluate(progress);
             
             _globalLight.color = gradient.Evaluate(progress);
-            celestialBody.position = new Vector3(positionX, positionY, celestialBody.position.z);
+            celestialBody.localPosition = new Vector3(localX, localY, celestialBody.position.z);
             timer +=  Time.deltaTime;
             
             yield return null;

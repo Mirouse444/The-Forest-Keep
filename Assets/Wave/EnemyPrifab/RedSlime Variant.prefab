@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &9214135146646457297
+--- !u!1001 &1056472053479832623
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -12,17 +12,13 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 176303023789764188, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1341599851337789701, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: _damage
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_Name
-      value: RedSlime Variant 1
+      value: RedSlime Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_IsActive
@@ -42,11 +38,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.079408
+      value: -65.54
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3304497
+      value: -3.615
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -103,18 +99,6 @@ PrefabInstance:
     - target: {fileID: 5546357326616476503, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: _groundCheckOffset.y
       value: 0.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950788206471362739, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-      propertyPath: _blindZoneWidth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950788206471362739, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-      propertyPath: _blindZoneHeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950788206471362739, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-      propertyPath: _blindZoneOffset.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7391572961583248817, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_Color.b

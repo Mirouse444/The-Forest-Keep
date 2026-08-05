@@ -8,7 +8,8 @@ internal class KnockbackReceiver : MonoBehaviour, IKnockbackable
     [SerializeField] private float _stunDuration = 0.25f; 
 
     private Rigidbody2D _rigidbody;
-    
+
+    // Событие для оповещения контроллера движений
     public event Action<float> KnockbackApplied;
 
     private void Awake()

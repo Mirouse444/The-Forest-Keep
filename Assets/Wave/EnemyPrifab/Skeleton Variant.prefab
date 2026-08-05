@@ -369,20 +369,8 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3791712272800441737, guid: 2b10f06c345781045be3e30828487fc2, type: 3}
-      propertyPath: _blindZoneWidth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3791712272800441737, guid: 2b10f06c345781045be3e30828487fc2, type: 3}
-      propertyPath: _blindZoneHeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3791712272800441737, guid: 2b10f06c345781045be3e30828487fc2, type: 3}
       propertyPath: _loseTargetRadius
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3791712272800441737, guid: 2b10f06c345781045be3e30828487fc2, type: 3}
-      propertyPath: _blindZoneOffset.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3791712272800441737, guid: 2b10f06c345781045be3e30828487fc2, type: 3}
       propertyPath: _targetLayer.m_Bits

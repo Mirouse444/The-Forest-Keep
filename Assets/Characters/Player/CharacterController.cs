@@ -1,9 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerInputController))]
-public class GroundMover : MonoBehaviour
-{ 
+public class CharacterController : MonoBehaviour
+{
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _actionBuffer;
@@ -12,39 +11,63 @@ public class GroundMover : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.5f, 0.1f);
-    
+
+    private PlayerInput _playerInput;
     private Rigidbody2D _rigidbody;
-    private PlayerInputController _controller;
+    private KnockbackReceiver _knockbackReceiver;
 
     private float _currentBufferTime;
+    private float _horizontalInput;
     private bool _isGrounded;
+    private float _knockbackTimer;
     private Vector3 _rightScale;
     private Vector3 _leftScale;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _controller = GetComponent<PlayerInputController>();
-        
+        _playerInput = new PlayerInput();
+        _knockbackReceiver = GetComponent<KnockbackReceiver>();
         _rightScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         _leftScale = transform.localScale;
+    }
+
+    private void OnEnable()
+    {
+        _playerInput.Enable();
+
+        if (_knockbackReceiver != null)
+            _knockbackReceiver.KnockbackApplied += OnKnockbackApplied;
+    }
+
+    private void OnDisable()
+    {
+        _playerInput.Disable();
+
+        if (_knockbackReceiver != null)
+            _knockbackReceiver.KnockbackApplied -= OnKnockbackApplied;
+    }
+
+    private void OnKnockbackApplied(float duration)
+    {
+        _knockbackTimer = duration;
     }
 
     private void Update()
     {
         _currentBufferTime += Time.deltaTime;
 
-        float horizontalInput = _controller.MoveHorizontal;
+        _horizontalInput = _playerInput.Player.Move.ReadValue<Vector2>().x;
 
-        if (horizontalInput > 0)
+        if (_horizontalInput > 0)
             transform.localScale = _leftScale;
-        else if (horizontalInput < 0)
+        else if (_horizontalInput < 0)
             transform.localScale = _rightScale;
 
-        if (_controller.JumpPressed)
+        if (_playerInput.Player.Jump.WasPressedThisFrame())
             _currentBufferTime = 0;
 
-        if (_controller.JumpReleased && _rigidbody.linearVelocity.y > 0f)
+        if (_playerInput.Player.Jump.WasReleasedThisFrame() && _rigidbody.linearVelocity.y > 0f)
             _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.y * 0.5f);
     }
 
@@ -52,12 +75,24 @@ public class GroundMover : MonoBehaviour
     {
         _isGrounded = Physics2D.OverlapBox(_groundCheck.position, _groundCheckSize, 0f, _groundLayer);
 
-        _rigidbody.linearVelocity = new Vector2(_controller.MoveHorizontal * _moveSpeed, _rigidbody.linearVelocity.y);
+        if (_knockbackTimer > 0)
+            _knockbackTimer -= Time.fixedDeltaTime;
+        else
+            _rigidbody.linearVelocity = new Vector2(_horizontalInput * _moveSpeed, _rigidbody.linearVelocity.y);
 
         if (_currentBufferTime < _actionBuffer && _isGrounded)
         {
             _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, _jumpForce);
             _currentBufferTime = _actionBuffer;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (_groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(_groundCheck.position, _groundCheckSize);
         }
     }
 }

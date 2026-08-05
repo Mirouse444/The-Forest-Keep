@@ -67,8 +67,3 @@ public class HPLine : MonoBehaviour
         }
     }
 }
-
-public class TowerHealthLine : MonoBehaviour
-{
-    [SerializeField] private GameObject _visualContainer; 
-}

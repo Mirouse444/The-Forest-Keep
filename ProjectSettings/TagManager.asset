@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - EnemyProjectile
   - Platform
   - PlayerClimbing
-  - 
-  - 
-  - 
+  - NPS
+  - Door
+  - PlayerOpen
   - 
   - 
   - 

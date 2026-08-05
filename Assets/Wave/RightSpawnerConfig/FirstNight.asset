@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FirstNight
   m_EditorClassIdentifier: Assembly-CSharp::NightConfig
   _waves:
-  - _enemyPrefab: {fileID: 1638810859826712978, guid: 4c3b2e4b4a7953c4eab774f4c01a4145, type: 3}
+  - _enemyPrefab: {fileID: 7478299128603158124, guid: 1c0fe518e6ce1aa46b6c2f18152a1612, type: 3}
     _count: 2
     _spawnInterval: 0.45

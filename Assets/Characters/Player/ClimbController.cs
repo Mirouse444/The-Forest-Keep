@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInputController))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(ClimbDetector))]
 public class ClimbController : MonoBehaviour
 {
     [SerializeField] private float _climbSpeed = 5f;
 
-    private ClimbDetector _detector;
+    public event Action OnClimbStarted;
+    public event Action OnClimbEnded;
+
+    private PlayerInputController _controller;
     private Rigidbody2D _rigidbody;
     
     private float _defaultGravity;
@@ -16,54 +20,45 @@ public class ClimbController : MonoBehaviour
 
     private void Awake()
     {
+        _controller = GetComponent<PlayerInputController>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _detector = GetComponent<ClimbDetector>();
         
         _defaultGravity = _rigidbody.gravityScale;
         _playerLayer = LayerMask.NameToLayer("Player");
         _climbingLayer = LayerMask.NameToLayer("PlayerClimbing");
     }
 
-    public void HandleClimbInput(Vector2 input)
+    private void Update()
     {
-        // Если мы рядом с лестницей и нажали Вверх/Вниз, а до этого не карабкались
-        if (_detector.IsNearLadder && Mathf.Abs(input.y) > 0.1f && !_isClimbing)
-        {
+        // Этот Update вызывается ТОЛЬКО у лестницы. 
+        // Мы ждем, когда игрок нажмет Вверх/Вниз, чтобы начать карабкаться по команде.
+        float verticalInput = _controller.MoveVertical;
+
+        if (!_isClimbing && Mathf.Abs(verticalInput) > 0.1f)
             StartClimbing();
-        }
 
-        // Если мы ушли с лестницы ИЛИ нажали прыжок
-        if (!_detector.IsNearLadder && _isClimbing)
-        {
-            StopClimbing();
-        }
-
-        // Сама логика движения, если мы в состоянии карабканья
         if (_isClimbing)
-        {
-            _rigidbody.linearVelocity = new Vector2(0, input.y * _climbSpeed);
-            
-            // Опционально: можно добавить центрирование по X, 
-            // чтобы игрок ровно висел на лестнице:
-            // transform.position = new Vector3(_detector.CurrentLadder.position.x, transform.position.y, transform.position.z);
-        }
+            _rigidbody.linearVelocity = new Vector2(0, verticalInput * _climbSpeed);
     }
 
     private void StartClimbing()
     {
         _isClimbing = true;
-        _rigidbody.gravityScale = 0f; // Выключаем гравитацию
-        _rigidbody.linearVelocity = Vector2.zero; // Сбрасываем текущую инерцию
-        
-        // Меняем слой, чтобы игрок начал проходить сквозь платформы (пол)
+        _rigidbody.gravityScale = 0f;
+        _rigidbody.linearVelocity = Vector2.zero;
         gameObject.layer = _climbingLayer; 
+        
+        OnClimbStarted?.Invoke(); // Сообщаем Мозгу, что мы полезли
     }
 
     public void StopClimbing()
     {
-        _isClimbing = false;
-        _rigidbody.gravityScale = _defaultGravity; // Возвращаем обычную гравитацию
+        if (!_isClimbing) return;
         
-        gameObject.layer = _playerLayer; // Снова сталкиваемся с полом
+        _isClimbing = false;
+        _rigidbody.gravityScale = _defaultGravity;
+        gameObject.layer = _playerLayer;
+        
+        OnClimbEnded?.Invoke(); // Сообщаем Мозгу, что мы слезли
     }
 }

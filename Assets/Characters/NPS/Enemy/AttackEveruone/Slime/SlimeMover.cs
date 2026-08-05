@@ -18,11 +18,15 @@ internal class SlimeMover : MonoBehaviour
     
     [Header("Main Target")]
     [SerializeField] private Transform _mainTarget;
-    
+
+    private Coroutine _slimeMove;
     private Rigidbody2D _rigidbody;
     private TargetScanner _scanner;
     private WaitForSeconds _jumpWait;
     private WaitForSeconds _fallCheckWait;
+    
+    private float _currentJumpForce;
+    private float _currentHorizontalSpeed;
 
     private void Awake()
     {
@@ -32,27 +36,28 @@ internal class SlimeMover : MonoBehaviour
         _fallCheckWait = new WaitForSeconds(_checkInterval);
     }
 
-    private void OnEnable() => StartCoroutine(SlimeMove());
+    private void OnEnable()
+    {
+        _slimeMove = StartCoroutine(SlimeMove());
+        _currentJumpForce = _jumpForce + Random.Range(-0.5f, 0.5f);
+        _currentHorizontalSpeed = _horizontalSpeed + Random.Range(-0.5f, 0.5f);
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(_slimeMove);
+    }
 
     private IEnumerator SlimeMove()
     { 
         while (true)
         {
-            Vector2 checkPosition = (Vector2)transform.position + _groundCheckOffset;
-            bool isGrounded = Physics2D.OverlapBox(checkPosition, _groundCheckSize, 0f, _groundLayer);
-
-            if(isGrounded)
+            if(IsGrounded())
             {
                 yield return _jumpWait;
-
-                int directionX;
-
-                if (_scanner.CurrentTarget != null)
-                    directionX = (int)Mathf.Sign(_scanner.CurrentTarget.Position.x - transform.position.x);
-                else
-                    directionX = (int)Mathf.Sign(_mainTarget.position.x - transform.position.x);
-
-                _rigidbody.linearVelocity = new Vector2(directionX * _horizontalSpeed, _jumpForce);
+                
+                if(IsGrounded())
+                    Jump();
             }
             else
             {
@@ -60,6 +65,25 @@ internal class SlimeMover : MonoBehaviour
             }
 
         }
+    }
+    
+    private bool IsGrounded()
+    {
+        Vector2 checkPosition = (Vector2)transform.position + _groundCheckOffset;
+
+        return Physics2D.OverlapBox(
+            checkPosition,
+            _groundCheckSize,
+            0f,
+            _groundLayer);
+    }
+    
+    private void Jump()
+    {
+        Vector2 targetPosition = _scanner.CurrentTarget?.Position ?? _mainTarget.position;
+        int directionX = targetPosition.x >= transform.position.x ? 1 : -1;
+
+        _rigidbody.linearVelocity = new Vector2(directionX * _currentHorizontalSpeed, _currentJumpForce);
     }
 
     private void OnDrawGizmos()

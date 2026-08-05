@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfe6d6971e6fe004ca5ba929b967a099
+guid: 46f5e443026c1d9419a7cf035ca53a43
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -125,9 +125,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: "\u0431\u0430\u0448\u043D\u044F"
+  - name: "\u044F\u0431\u043B\u043E\u043A\u043E \u0437\u0435\u043B\u0435\u043D\u043E\u0435"
     originalName: 
-    pivot: {x: 0.47959056, y: 0.036}
+    pivot: {x: 0.5112245, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -135,9 +135,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1087
-      height: 1446
-    spriteID: 05c0f8bab4912ed4f9bf55f0962715a8
+      width: 490
+      height: 525
+    spriteID: dad9e4cbd83a38e438bf6715c6559612
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -151,25 +151,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1525263035
+      value0: 2298476037
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: "\u0431\u0430\u0448\u043D\u044F"
+    name: "\u044F\u0431\u043B\u043E\u043A\u043E \u0437\u0435\u043B\u0435\u043D\u043E\u0435"
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\u0431\u0430\u0448\u043D\u044F"
+    - name: "\u044F\u0431\u043B\u043E\u043A\u043E \u0437\u0435\u043B\u0435\u043D\u043E\u0435"
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: -133
-        y: -51
-        width: 1087
-        height: 1446
-      spriteId: 05c0f8bab4912ed4f9bf55f0962715a8
+        x: 13
+        y: 0
+        width: 490
+        height: 525
+      spriteId: dad9e4cbd83a38e438bf6715c6559612
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -178,5 +178,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 2048, y: 2048}
-  canvasSize: {x: 779, y: 1322}
+  previousTextureSize: {x: 512, y: 1024}
+  canvasSize: {x: 527, y: 527}

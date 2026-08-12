@@ -1,18 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(IWeaponLauncher))]
+[RequireComponent(typeof(IGunLauncher))]
 public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
 {
     [SerializeField] private float _fireRate = 0.1f;
 
-    private IWeaponLauncher _launcher;
+    private IGunLauncher _launcher;
     private Coroutine _fireCoroutine;
     private WaitForSeconds _fireRateTime;
 
     private void Awake()
     {
-        _launcher = GetComponent<IWeaponLauncher>();
+        _launcher = GetComponent<IGunLauncher>();
         _fireRateTime = new WaitForSeconds(_fireRate);
     }
 

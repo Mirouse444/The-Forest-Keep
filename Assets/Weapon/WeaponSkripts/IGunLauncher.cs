@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IWeaponLauncher
+public interface IGunLauncher
 {
     Transform transform { get; }
     void Fire(Vector2 direction, float powerMultiplier = 1f);

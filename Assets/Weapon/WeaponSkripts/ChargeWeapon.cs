@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(IWeaponLauncher))]
+[RequireComponent(typeof(IGunLauncher))]
 public class ChargeWeapon : MonoBehaviour, IWeaponTrigger
 {
     [SerializeField] private float _maxChargeTime = 1.5f;
     [SerializeField] private float _minChargeTime = 0.5f;
 
-    private IWeaponLauncher _launcher;
+    private IGunLauncher _launcher;
     private float _chargeStartTime;
     private bool _isCharging;
 
     private void Awake()
     {
-        _launcher = GetComponent<IWeaponLauncher>();
+        _launcher = GetComponent<IGunLauncher>();
     }
 
     public void OnTriggerPressed(IAimProvider aimProvider)

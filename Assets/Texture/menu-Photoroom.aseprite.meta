@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 743b322f6ae183649b299c60636137a0
+guid: 0c3b82ea0786cb24f8530aa0ebc7ed5c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -125,9 +125,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Exit
+  - name: menu-Photoroom
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.50033134, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -135,9 +135,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 362
-      height: 362
-    spriteID: 58948ec1fdfd44b48aa561a0037fb1ce
+      width: 1509
+      height: 809
+    spriteID: 7cedaef7833bee04495d8fd32b8f3dad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -145,31 +145,31 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: -9, y: 4}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3558534422
+      value0: 4075072525
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Exit
+    name: menu-Photoroom
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Exit
+    - name: menu-Photoroom
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 362
-        height: 362
-      spriteId: 58948ec1fdfd44b48aa561a0037fb1ce
+        width: 1536
+        height: 813
+      spriteId: 7cedaef7833bee04495d8fd32b8f3dad
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -178,5 +178,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 512, y: 512}
-  canvasSize: {x: 362, y: 362}
+  previousTextureSize: {x: 2048, y: 1024}
+  canvasSize: {x: 1536, y: 813}

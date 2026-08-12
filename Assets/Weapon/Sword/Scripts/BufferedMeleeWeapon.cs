@@ -1,33 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(IWeaponLauncher))]
+[RequireComponent(typeof(IGunLauncher))]
 public class BufferedMeleeWeapon : MonoBehaviour, IWeaponTrigger
 {
     [SerializeField] private float _attackCooldown = 0.5f;
     [SerializeField] private float _inputBufferTime = 0.15f;
 
-    private IWeaponLauncher _launcher;
+    private IGunLauncher _launcher;
 
     private float _lastAttackTime;
     private Coroutine _bufferCoroutine;
 
     private void Awake()
     {
-        _launcher = GetComponent<IWeaponLauncher>();
+        _launcher = GetComponent<IGunLauncher>();
         _lastAttackTime = _inputBufferTime - _attackCooldown;
     }
 
     public void OnTriggerPressed(IAimProvider aimProvider)
     {
         if(Time.time - _lastAttackTime >= _attackCooldown - _inputBufferTime)
-        {
             if(_bufferCoroutine == null)
-            {
-                Vector2 diraction = aimProvider.GetAimDirection(_launcher.transform.position);
                 _bufferCoroutine = StartCoroutine(BufferRoutine(aimProvider));
-            }
-        }
     }
 
     public void OnTriggerReleased(IAimProvider aimProvider) { }

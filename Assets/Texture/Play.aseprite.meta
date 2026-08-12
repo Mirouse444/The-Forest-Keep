@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Play
     originalName: 
-    pivot: {x: 0.71538466, y: -1.9924242}
+    pivot: {x: 0.5013699, y: 0.005479452}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -135,8 +135,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 130
-      height: 132
+      width: 365
+      height: 365
     spriteID: c5ca5fe046f51eb4cb8ad47024a3cb5c
     spriteBone: []
     spriteOutline: []
@@ -165,10 +165,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 307
-        y: 263
-        width: 130
-        height: 132
+        x: -2
+        y: -2
+        width: 365
+        height: 365
       spriteId: c5ca5fe046f51eb4cb8ad47024a3cb5c
     linkedCells: []
     tileCells: []
@@ -178,5 +178,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 256, y: 256}
-  canvasSize: {x: 800, y: 700}
+  previousTextureSize: {x: 512, y: 512}
+  canvasSize: {x: 362, y: 362}

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MeleeLauncher : MonoBehaviour, IWeaponLauncher, IMeleeLauncher
+public class MeleeLauncher : MonoBehaviour, IGunLauncher, IMeleeLauncher
 {
     [Space, Header("Stats")]
     [SerializeField, Min(0)] private int _damage;

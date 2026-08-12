@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(PlayerInputReader))]
 [RequireComponent(typeof(PlayerAim))]
+[RequireComponent(typeof(PlayerInputReader))]
 public class PlayerWeaponController : MonoBehaviour
 {
-    [SerializeField] private GameObject _startingWeaponPrefab;
-
     private PlayerInputReader _inputReader;
-    private IAimProvider _aimProvider;
     private IWeaponTrigger _currentWeapon;
+    private IAimProvider _aimProvider;
 
     private void Awake()
     {
@@ -19,15 +17,8 @@ public class PlayerWeaponController : MonoBehaviour
         _inputReader.OnFireCanceled += FireReleased;
     }
 
-    private void Start() => EquipWeapon(_startingWeaponPrefab);
-
-    public void EquipWeapon(GameObject weaponObject)
-    {
-        if (weaponObject == null) return;
-        _currentWeapon = weaponObject.GetComponent<IWeaponTrigger>();
-    }
+    public void EquipWeapon(GameObject weaponObject) => _currentWeapon = weaponObject.GetComponent<IWeaponTrigger>();
 
     private void FirePressed() => _currentWeapon?.OnTriggerPressed(_aimProvider);
-
     private void FireReleased() => _currentWeapon?.OnTriggerReleased(_aimProvider);
 }

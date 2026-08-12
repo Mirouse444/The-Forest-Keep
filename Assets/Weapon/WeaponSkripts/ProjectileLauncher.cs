@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileLauncher : MonoBehaviour, IWeaponLauncher
+public class ProjectileLauncher : MonoBehaviour, IGunLauncher
 {
     [SerializeField] private ProjectilePool _pool;
     [SerializeField] private Transform _shootPlace;
@@ -9,7 +9,8 @@ public class ProjectileLauncher : MonoBehaviour, IWeaponLauncher
     [SerializeField, Range(0, 100)] private int _criticalChance;
     [SerializeField, Min(0)] private float _shootSpeed;
     [SerializeField, Min(0)] private float _knockbackForce;
-
+    
+    
     public float ShootSpeed => _shootSpeed;
 
     public void Fire(Vector2 direction, float powerMultiplier = 1)

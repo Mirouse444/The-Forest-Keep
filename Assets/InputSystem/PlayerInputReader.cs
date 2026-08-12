@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInputReader : MonoBehaviour
 {
@@ -8,16 +9,26 @@ public class PlayerInputReader : MonoBehaviour
     public event Action OnFireStarted;
     public event Action OnFireCanceled;
 
-    private void Awake()
-    {
-        _input = new PlayerInput();
+    private void Awake() => _input = new PlayerInput();
 
-        _input.Player.Fire.started += _ => OnFireStarted?.Invoke();
-        _input.Player.Fire.canceled += _ => OnFireCanceled?.Invoke();
+    private void OnEnable()
+    {
+        _input.Enable();
+
+        _input.Player.Fire.started += StartFire;
+        _input.Player.Fire.canceled += CancelFire;
     }
 
-    private void OnEnable() => _input.Enable();
-    private void OnDisable() => _input.Disable();
+    private void OnDisable()
+    {
+        _input.Disable();
+        
+        _input.Player.Fire.started -= StartFire;
+        _input.Player.Fire.canceled -= CancelFire;
+    }
 
     public Vector2 MouseScreenPosition => _input.Player.Aim.ReadValue<Vector2>();
+
+    private void StartFire(InputAction.CallbackContext ctx) => OnFireStarted?.Invoke();
+    private void CancelFire(InputAction.CallbackContext ctx) => OnFireCanceled?.Invoke();
 }

@@ -4,15 +4,19 @@ public class MoneyForDeath : MonoBehaviour
 {
     [SerializeField] private int _maxCoinForDied;
     [SerializeField] private int _minCoinForDied; 
-    [SerializeField] private  CoinCounter _coinCounter;
-
-    private HealthComponent _moneyTrigger;
-
-    private void Awake() => _moneyTrigger = GetComponent<HealthComponent>();
-
-    private void OnEnable() => _moneyTrigger.State.OnDeath += CoinForDie;
     
-    private void OnDisable() => _moneyTrigger.State.OnDeath -= CoinForDie;
+    private ICoinReceiver _coinReceiver;
+    private HealthComponent _health;
 
-    private void CoinForDie() => _coinCounter.addCoin(Random.Range(_minCoinForDied, _maxCoinForDied));
+    private void Awake() => _health = GetComponent<HealthComponent>();
+    private void OnDisable() => _health.State.OnDeath -= CoinForDie;
+    private void OnEnable() => _health.State.OnDeath += CoinForDie;
+    
+    public void Initialize(ICoinReceiver receiver) => _coinReceiver = receiver;
+    
+    private void CoinForDie()
+    {
+        int dropAmount = Random.Range(_minCoinForDied, _maxCoinForDied);
+        _coinReceiver?.AddCoins(dropAmount);
+    }
 }

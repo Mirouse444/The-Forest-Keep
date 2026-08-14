@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fca521792426c0e4aad2e86b858ec403
+guid: ef3687d25135a824da0e92180beb2ecf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7452060249203165287
-    second: InventoryUI_0
+      213: 3358191259481500691
+    second: Button-Photoroom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: InventoryUI_0
+      name: Button-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 352
-        width: 1385
-        height: 373
+        x: 12
+        y: 6
+        width: 694
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 768409e50590b6760800000000000000
-      internalID: 7452060249203165287
+      spriteID: 31c67357821ba9e20800000000000000
+      internalID: 3358191259481500691
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      InventoryUI_0: 7452060249203165287
+      Button-Photoroom_0: 3358191259481500691
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

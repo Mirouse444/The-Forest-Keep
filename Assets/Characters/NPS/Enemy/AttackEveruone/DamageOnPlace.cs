@@ -1,9 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-internal class DamageOnPlace : MonoBehaviour
+public class DamageOnPlace : MonoBehaviour
 {
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _knockbackForce = 5f;
@@ -17,7 +17,7 @@ internal class DamageOnPlace : MonoBehaviour
         public IKnockbackable Knockbackable;
     }
 
-    private readonly List<TargetInfo> _targets = new List<TargetInfo>();
+    private readonly List<TargetInfo> _targets = new();
 
     private Coroutine _attackCoroutine;
     private WaitForSeconds _cooldown;

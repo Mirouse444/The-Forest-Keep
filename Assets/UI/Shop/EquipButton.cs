@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EquipButton : MonoBehaviour
 {
     [SerializeField] private Transform _playerWeaponHolder;
-    [SerializeField] private Image[] _otherEquipButtons;
+    [SerializeField] private GameObject[] _otherEquipButtons;
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private WeaponDataUI _dataUI;
@@ -21,12 +21,13 @@ public class EquipButton : MonoBehaviour
     private void Equip()
     {
         foreach (var button in _otherEquipButtons)
-            button.enabled = true; 
+            button.SetActive(true); 
         
         _inventoryUI.UpdateWeaponIcon(_dataUI.UIIcon, _dataUI.Category);
 
         GameObject weapon = Instantiate(_dataUI.WeaponPrefab, _playerWeaponHolder);
-
+        weapon.transform.localPosition = Vector3.zero;
+        
         weapon.SetActive(false);
         _inventory.AddWeapon(weapon, _dataUI.Category);
         

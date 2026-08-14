@@ -17,10 +17,7 @@ public class BuyButton : MonoBehaviour
     
     private void TryToBuy()
     {
-        if (_coinCounter.CurrentCoin >= _price)
-        {
-            _coinCounter.SpendingCoin(_price);
+        if (_coinCounter.TrySpendingCoins(_price))
             Destroy(gameObject);
-        }
     }
 }

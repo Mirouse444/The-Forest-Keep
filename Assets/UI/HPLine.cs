@@ -1,21 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HPLine : MonoBehaviour
-{
+{ 
+    [SerializeField] private GameObject _ImageObject;
+    [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private Image _fillImage;
-    [SerializeField] private GameObject _visualContainer;
-    [SerializeField] private float _timeToOff;
-
-    private float _timer = 0f;
+    [SerializeField] private float _timeToOff = 5f;
+    
+    private Camera _mainCamera;
     private IHealthState _state;
+    
+    private float _timer;
 
-    public RectTransform HPLineRectTransform { get; private set; }
-
-    private void Awake()
-    {
-        HPLineRectTransform = GetComponent<RectTransform>();
-    }
+    private void Awake() => _mainCamera = Camera.main;
 
     public void ChangeState(IHealthState state)
     {
@@ -24,9 +23,24 @@ public class HPLine : MonoBehaviour
 
         _state = state;
         _state.OnHealthChanged += ChangeHp;
+    }
 
-        if (_visualContainer != null)
-            _visualContainer.SetActive(false);
+    public void SetScreenPosition(Vector3 worldPosition) => _rectTransform.position = _mainCamera.WorldToScreenPoint(worldPosition); 
+    
+    private void ChangeHp(int currentHealth, int maxHealth)
+    {
+        if (currentHealth <= 0)
+        {
+            _state.OnHealthChanged -= ChangeHp;
+            _ImageObject.SetActive(false);
+        }
+        else
+        {
+            _ImageObject.SetActive(true);
+
+            _timer = 0f;
+            _fillImage.fillAmount = (float)currentHealth / maxHealth;
+        }
     }
 
     private void Update()
@@ -34,41 +48,8 @@ public class HPLine : MonoBehaviour
         _timer += Time.deltaTime;
 
         if(_timeToOff <= _timer)
-        {
-            _visualContainer.SetActive(false);
-        }
+            _ImageObject.SetActive(false);
     }
 
-    private void ChangeHp(int currentHealth, int maxHealth)
-    {
-        if (currentHealth <= 0)
-        {
-            _state.OnHealthChanged -= ChangeHp;
-
-            if (_visualContainer != null)
-                _visualContainer.SetActive(false);
-        }
-        else
-        {
-            if (_visualContainer != null)
-                _visualContainer.SetActive(true);
-
-            _timer = 0f;
-            _fillImage.fillAmount = (float)currentHealth / maxHealth;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (_state != null)
-        {
-            _state.OnHealthChanged -= ChangeHp;
-            _state = null;
-        }
-    }
-}
-
-public class TowerHealthLine : MonoBehaviour
-{
-    [SerializeField] private GameObject _visualContainer; 
+    private void OnDisable() => _state.OnHealthChanged -= ChangeHp;
 }

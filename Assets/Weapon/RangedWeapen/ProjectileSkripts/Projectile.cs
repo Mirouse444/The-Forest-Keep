@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public partial class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     private Action<Projectile> _returnAction;
     private bool _isDespawned;

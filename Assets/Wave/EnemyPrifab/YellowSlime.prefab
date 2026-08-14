@@ -36,7 +36,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -62.23, y: -3.78, z: 0}
-  m_LocalScale: {x: 0.64, y: 0.7336585, z: 0.7336585}
+  m_LocalScale: {x: 0.94, y: 1.0775609, z: 1.0775609}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5376010798595035545}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomHealthSpawner
   _minHealth: 10
-  _maxHealth: 15
+  _maxHealth: 12
 --- !u!50 &176303023789764188
 Rigidbody2D:
   serializedVersion: 5
@@ -179,12 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d682ccb17c28c4446a2df54e0069996b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetScanner
-  _visionRadius: 5.87
-  _loseTargetRadius: 7.32
+  _visionRadius: 6.14
+  _loseTargetRadius: 9.43
+  _scanInterval: 0.25
   _targetLayer:
     serializedVersion: 2
     m_Bits: 384
-  _scanInterval: 0.25
   _blindZoneWidth: 0
   _blindZoneHeight: 0
   _blindZoneOffset: {x: 0, y: 0}
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865cb0a5753ec8e45ba3c488ff4a9b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnPlace
-  _damage: 5
+  _damage: 9
   _knockbackForce: 5
   _attackCooldown: 1
   _targetLayer:

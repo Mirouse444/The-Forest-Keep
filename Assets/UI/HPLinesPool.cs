@@ -11,31 +11,21 @@ public class HPLinesPool : MonoBehaviour
     public Action<HPLine> ReleaseToPool { get; private set; }
 
     private void Awake()
-    {
-        InitializePool();
-    }
-    private void InitializePool()
-    {
-        if (_pool != null) return;
-
+    {     
         _pool = new ObjectPool<HPLine>(
-              createFunc: CreateLine,
-              actionOnGet: OnTakeLineFromPool,
-              actionOnRelease: OnReturnLineToPool,
-              actionOnDestroy: OnDestroyLine,
-              collectionCheck: false,
-              defaultCapacity: 14,
-              maxSize: 30
+            createFunc: CreateLine,
+            actionOnGet: OnTakeLineFromPool,
+            actionOnRelease: OnReturnLineToPool,
+            actionOnDestroy: OnDestroyLine,
+            collectionCheck: false,
+            defaultCapacity: 14,
+            maxSize: 30
         );
-
+        
         ReleaseToPool = _pool.Release;
     }
 
-    public HPLine GetHPLine()
-    {
-        InitializePool();
-        return _pool.Get();
-    }
+    public HPLine GetHPLine => _pool.Get();
     private HPLine CreateLine() => Instantiate(_hpLinePrefab, transform);
     private void OnTakeLineFromPool(HPLine hpLine) => hpLine.gameObject.SetActive(true);
     private void OnReturnLineToPool(HPLine hpLine) => hpLine.gameObject.SetActive(false);

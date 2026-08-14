@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 internal class TargetScanner : MonoBehaviour
@@ -6,8 +5,8 @@ internal class TargetScanner : MonoBehaviour
     [Header("Vision Configuration")]
     [SerializeField, Min(0)] private float _visionRadius = 5f;
     [SerializeField, Min(0)] private float _loseTargetRadius = 7f;
-    [SerializeField, Min(0)] private LayerMask _targetLayer;
     [SerializeField, Min(0)] private float _scanInterval = 0.25f;
+    [SerializeField] private LayerMask _targetLayer;
     
     [Header("Blind Zone Settings")]
     [SerializeField, Min(0)] private float _blindZoneWidth = 0f;

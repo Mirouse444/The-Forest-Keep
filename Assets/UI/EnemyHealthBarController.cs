@@ -1,34 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyHealthBarController : MonoBehaviour
 {
-    [SerializeField] private HealthComponent _state;
-    [SerializeField] private HPLinesPool _pool;
+    [SerializeField] private Transform _HPLinePosition;
 
-    private Camera _mainCamera;
+    private Action<HPLine> _releaseAction;
+    private HealthComponent _state;
     private HPLine _hPLine;
 
-    private void Awake()
-    {
-        _mainCamera = Camera.main;
-    }
+    private void Awake() => _state = GetComponent<HealthComponent>();
 
-    private void OnEnable()
+    public void Initialize(HPLine line, Action<HPLine> releaseToPool)
     {
-        _hPLine = _pool.GetHPLine();
-
+        _hPLine = line;
         _hPLine.ChangeState(_state.State);
+        _releaseAction = releaseToPool;
     }
 
-    private void LateUpdate()
-    {
-        if(_hPLine)
-            _hPLine.HPLineRectTransform.position = _mainCamera.WorldToScreenPoint(transform.position);
-    }
+    private void LateUpdate() => _hPLine.SetScreenPosition(_HPLinePosition.position);
 
-    private void OnDisable()
-    {
-        if (_hPLine)
-            _pool.ReleaseToPool(_hPLine);
-    }
+    private void OnDisable() => _releaseAction.Invoke(_hPLine);
 }

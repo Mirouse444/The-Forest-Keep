@@ -1,10 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class CoinCounter : MonoBehaviour
+public class CoinCounter : MonoBehaviour, ICoinReceiver
 {
-    public int CurrentCoin {get; private set; }
-
-    public void addCoin(int amount) => CurrentCoin += amount;
+    private int _currentCoin;
+    public event Action<int> OnCoinChange;
     
-    public void SpendingCoin(int amount) => CurrentCoin -= amount;
+    public void AddCoins(int amount)
+    {
+        _currentCoin += amount;
+        OnCoinChange?.Invoke(_currentCoin);
+    }
+
+    public bool TrySpendingCoins(int amount)
+    {
+        if(amount > _currentCoin) return false;
+
+        _currentCoin -= amount;
+        OnCoinChange?.Invoke(_currentCoin);
+        return true;
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,28 +19,15 @@ public class GroundMover : MonoBehaviour
 
     private float _currentBufferTime;
     private bool _isGrounded;
-    private Vector3 _rightScale;
-    private Vector3 _leftScale;
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _controller = GetComponent<PlayerInputController>();
-        
-        _rightScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        _leftScale = transform.localScale;
     }
 
     private void Update()
     {
         _currentBufferTime += Time.deltaTime;
-
-        float horizontalInput = _controller.MoveHorizontal;
-
-        if (horizontalInput > 0)
-            transform.localScale = _leftScale;
-        else if (horizontalInput < 0)
-            transform.localScale = _rightScale;
 
         if (_controller.JumpPressed)
             _currentBufferTime = 0;
@@ -52,7 +40,7 @@ public class GroundMover : MonoBehaviour
     {
         _isGrounded = Physics2D.OverlapBox(_groundCheck.position, _groundCheckSize, 0f, _groundLayer);
 
-        _rigidbody.linearVelocity = new Vector2(_controller.MoveHorizontal * _moveSpeed, _rigidbody.linearVelocity.y);
+        _rigidbody.linearVelocity = new Vector2(Math.Sign(_controller.MoveHorizontal) * _moveSpeed, _rigidbody.linearVelocity.y);
 
         if (_currentBufferTime < _actionBuffer && _isGrounded)
         {

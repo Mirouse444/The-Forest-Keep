@@ -41,4 +41,6 @@ public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
             yield return _fireRateTime;
         }
     }
+
+    private void OnDisable() => _fireCoroutine = null;
 }

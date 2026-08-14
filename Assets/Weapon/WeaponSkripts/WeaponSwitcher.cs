@@ -6,6 +6,8 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] private PlayerInputController _input;
     [SerializeField] private Inventory _inventory;
 
+    private GameObject _currentActiveWeapon;
+    
     private void OnEnable()
     {
         _input.OnButton1 += Button1Pressed;
@@ -29,12 +31,18 @@ public class WeaponSwitcher : MonoBehaviour
     
     private void SelectCategory(WeaponCategory category)
     {
-        GameObject weapon = _inventory.GetWeapon(category);
+        _currentActiveWeapon?.SetActive(false);
         
-        if(weapon != null)
+        _currentActiveWeapon = _inventory.GetWeapon(category);
+        
+        if(_currentActiveWeapon != null)
         {
-            weapon.SetActive(true);
-            _weaponController.EquipWeapon(weapon);
+            _currentActiveWeapon.SetActive(true);
+            _weaponController.EquipWeapon(_currentActiveWeapon);
+        }
+        else
+        {
+            _weaponController.EquipWeapon(null);
         }
     }
 }

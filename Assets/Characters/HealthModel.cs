@@ -1,12 +1,13 @@
 using System;
 
 [Serializable]
-internal class HealthModel : IHealthState
+public class HealthModel : IHealthState
 {
     private int _maxHealth;
     private int _currentHealth;
 
     public event Action OnDeath;
+    public event Action OnApplyDamage;
     public event Action<int, int> OnHealthChanged;
 
     public void Initialization(int newMaxHealth)
@@ -27,6 +28,22 @@ internal class HealthModel : IHealthState
             OnDeath?.Invoke();
         }
 
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        OnApplyDamage?.Invoke();
+    }
+
+    public bool AddHP(int health)
+    {
+        if(_currentHealth == _maxHealth) return false;
+        
+        _currentHealth = Math.Min(_currentHealth + health, _maxHealth);
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        return true;
+    }
+
+    public void ResetToMax()
+    {
+        _currentHealth = _maxHealth;
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 }

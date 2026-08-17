@@ -8,6 +8,7 @@ public class PlayerInputReader : MonoBehaviour
 
     public event Action OnFireStarted;
     public event Action OnFireCanceled;
+    public event Action OnReloadStarted;
 
     private void Awake() => _input = new PlayerInput();
 
@@ -17,6 +18,7 @@ public class PlayerInputReader : MonoBehaviour
 
         _input.Player.Fire.started += StartFire;
         _input.Player.Fire.canceled += CancelFire;
+        _input.Player.Reload.started += StartReload;
     }
 
     private void OnDisable()
@@ -25,10 +27,12 @@ public class PlayerInputReader : MonoBehaviour
         
         _input.Player.Fire.started -= StartFire;
         _input.Player.Fire.canceled -= CancelFire;
+        _input.Player.Reload.started -= StartReload;
     }
 
     public Vector2 MouseScreenPosition => _input.Player.Aim.ReadValue<Vector2>();
 
     private void StartFire(InputAction.CallbackContext ctx) => OnFireStarted?.Invoke();
     private void CancelFire(InputAction.CallbackContext ctx) => OnFireCanceled?.Invoke();
+    private void StartReload(InputAction.CallbackContext ctx) => OnReloadStarted?.Invoke();
 }

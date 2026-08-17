@@ -11,10 +11,13 @@ public class ProjectileLauncher : MonoBehaviour, IGunLauncher
     [SerializeField, Min(0)] private float _shootSpeed;
     [SerializeField, Min(0)] private float _knockbackForce;
 
+    private IWeaponMagazine _magazine;
     private ProjectilePool _pool;
 
     private void Awake()
     {
+        _magazine = GetComponent<IWeaponMagazine>();
+        
        var setter = GetComponentInParent<ProjectilePoolGetter>();
        _pool = setter.GetPool(_projectileType);
     }
@@ -23,6 +26,8 @@ public class ProjectileLauncher : MonoBehaviour, IGunLauncher
 
     public void Fire(Vector2 direction, float powerMultiplier = 1)
     {
+        if (!_magazine.TryConsumeAmmo()) return;
+        
         bool isCritical = _criticalChance > Random.Range(0, 100);
 
         int baseDamage = isCritical ? _criticalDamage : _damage;

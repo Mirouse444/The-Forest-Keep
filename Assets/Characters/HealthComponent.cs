@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class HealthComponent : MonoBehaviour, IDamageable
+internal class HealthComponent : MonoBehaviour, IDamageable, IHealable
 {
     private HealthModel _healthModel = new HealthModel();
 
@@ -18,15 +18,13 @@ internal class HealthComponent : MonoBehaviour, IDamageable
         }
     }
 
-    public void RemoveModifier(IDamageModifier modifier)
-    {
-        _modifiers.Remove(modifier);
-    }
+    public void RemoveModifier(IDamageModifier modifier) => _modifiers.Remove(modifier);
 
-    public void InitializeHealth(int maxHealth)
-    {
-        _healthModel.Initialization(maxHealth);
-    }
+    public void InitializeHealth(int maxHealth) => _healthModel.Initialization(maxHealth);
+
+    public bool AddHP(int hp) => hp > 0 && _healthModel.AddHP(hp);
+
+    public void ResetToMax() => _healthModel.ResetToMax();
 
     public void TakeDamage(int rawDamage)
     {

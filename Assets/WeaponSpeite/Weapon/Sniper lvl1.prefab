@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1806980139627181359}
   - component: {fileID: 9113500325413485952}
   - component: {fileID: 2280232576725335520}
+  - component: {fileID: 297978021186439384}
   m_Layer: 0
   m_Name: Sniper lvl1
   m_TagString: Untagged
@@ -127,6 +128,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SemiAutomatic
   _fireRate: 1
+--- !u!114 &297978021186439384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495326491000930768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bd4157f50c44b48c4302fb29f48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
+  _maxAmmo: 10
+  _reloadTime: 3.29
 --- !u!1 &3480227562863053612
 GameObject:
   m_ObjectHideFlags: 0

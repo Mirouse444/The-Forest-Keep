@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(IGunLauncher))]
+[RequireComponent(typeof(IWeaponLauncher))]
 public class ChargeWeapon : MonoBehaviour, IWeaponTrigger
 {
     [SerializeField] private float _maxChargeTime = 1.5f;
     [SerializeField] private float _minChargeTime = 0.5f;
 
-    private IGunLauncher _launcher;
+    private IWeaponLauncher _weaponLauncher;
     private float _chargeStartTime;
     private bool _isCharging;
 
     private void Awake()
     {
-        _launcher = GetComponent<IGunLauncher>();
+        _weaponLauncher = GetComponent<IWeaponLauncher>();
     }
 
     public void OnTriggerPressed(IAimProvider aimProvider)
@@ -32,8 +32,8 @@ public class ChargeWeapon : MonoBehaviour, IWeaponTrigger
 
         float chargePercent = Mathf.Clamp01(chargeDuration / _maxChargeTime);
 
-        Vector2 releaseDirection = aimProvider.GetAimDirection(_launcher.transform.position);
+        Vector2 releaseDirection = aimProvider.GetAimDirection(_weaponLauncher.transform.position);
 
-        _launcher.Fire(releaseDirection, chargePercent);
+        _weaponLauncher.Fire(releaseDirection, chargePercent);
     }
 }

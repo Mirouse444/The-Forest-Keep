@@ -10,6 +10,7 @@ using UnityEngine;
      [SerializeField] private EnemySpawner  _rightSpawner;
      [SerializeField] private CoinCounter _coinCounter;
      [SerializeField] private HPLinesPool _hpLinesPool;
+     [SerializeField] private DamageTextManager _damageTextManager;
      [SerializeField] private float _timeRange;
      
      private IEnemyFactory _factory;
@@ -36,16 +37,10 @@ using UnityEngine;
          _rightSpawnerConfig.OnEnemyGo -= RightSpawnerActivate;
      }
      
-     private void LeftSpawnerActivate(NightConfig config)
-     {
-         StartCoroutine(SpawnCoroutine(config, _leftSpawner));
-     }
-     
-     private void RightSpawnerActivate(NightConfig config)
-     {
-         StartCoroutine(SpawnCoroutine(config, _rightSpawner));
-     }
-     
+     private void LeftSpawnerActivate(NightConfig config) => StartCoroutine(SpawnCoroutine(config, _leftSpawner));
+
+     private void RightSpawnerActivate(NightConfig config) => StartCoroutine(SpawnCoroutine(config, _rightSpawner));
+
      private IEnumerator SpawnCoroutine(NightConfig config, EnemySpawner  spawner)
      {
         OnWaveSpawn?.Invoke(config);
@@ -80,5 +75,8 @@ using UnityEngine;
          
          if(enemy.TryGetComponent<EnemyHealthBarController>(out var healthBar))
              healthBar.Initialize(_hpLinesPool.GetHPLine, _hpLinesPool.ReleaseToPool);
+         
+         if(enemy.TryGetComponent<DamageOnPlace>(out var damageOnPlace))
+             damageOnPlace.Initialize(_damageTextManager);
      }
  }

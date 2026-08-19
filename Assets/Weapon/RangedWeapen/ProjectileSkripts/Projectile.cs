@@ -1,8 +1,14 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(TrailRenderer))]
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private ProjectileHitEffects _hitEffects;
+    [SerializeField] private TrailRenderer _trail;
+    
+    public void Initialize(IDamageTextSpawner spawner) => _hitEffects.Initialize(spawner);
+
     private Action<Projectile> _returnAction;
     private bool _isDespawned;
 
@@ -26,6 +32,7 @@ public class Projectile : MonoBehaviour
         if (_isDespawned) return;
         _isDespawned = true;
 
+        _trail.Clear();
         _returnAction?.Invoke(this);
     }
 }

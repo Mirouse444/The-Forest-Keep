@@ -13,7 +13,7 @@ public class CannonWeapon : MonoBehaviour
     {
         _nextFireTime = Time.time + stats.FireRate;
 
-        Projectile projectile = _projectilePool.GetProjectile();
+        Projectile projectile = _projectilePool.GetProjectile;
         
         if (projectile.TryGetComponent<ProjectileExplosion>(out var explosion))
             explosion.Stats = stats;

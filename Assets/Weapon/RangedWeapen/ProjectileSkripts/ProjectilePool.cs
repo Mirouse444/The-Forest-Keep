@@ -20,10 +20,7 @@ public class ProjectilePool : MonoBehaviour
         );
     }
 
-    public Projectile GetProjectile()
-    {
-        return _projectilePool.Get();
-    }
+    public Projectile GetProjectile => _projectilePool.Get();
 
     private Projectile CreateProjectile()
     {

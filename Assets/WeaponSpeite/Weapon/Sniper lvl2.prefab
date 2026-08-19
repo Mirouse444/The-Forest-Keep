@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3415248240427699401}
   - component: {fileID: 1806980139627181359}
   - component: {fileID: 9113500325413485952}
-  - component: {fileID: 6958959245681348203}
   - component: {fileID: 7498345649984563621}
+  - component: {fileID: 5560792112432599815}
   m_Layer: 0
   m_Name: Sniper lvl2
   m_TagString: Untagged
@@ -110,24 +110,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 3923013962336002650}
   _projectileType: 1
-  _damage: 8
-  _criticalDamage: 16
+  _minDamage: 7
+  _maxDamage: 10
+  _criticalDamage: 18
   _criticalChance: 20
   _shootSpeed: 30
   _knockbackForce: 6
---- !u!114 &6958959245681348203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495326491000930768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71c4ba1ca3a4c76b86583c86c314039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SemiAutomatic
-  _fireRate: 2
 --- !u!114 &7498345649984563621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +130,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
   _maxAmmo: 30
   _reloadTime: 3
+--- !u!114 &5560792112432599815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495326491000930768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd39ad776eb33d4286cdf7c753f5486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutomaticWeapon
+  _fireRate: 1
 --- !u!1 &3480227562863053612
 GameObject:
   m_ObjectHideFlags: 0

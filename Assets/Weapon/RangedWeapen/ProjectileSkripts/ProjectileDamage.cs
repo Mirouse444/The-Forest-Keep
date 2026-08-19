@@ -4,7 +4,6 @@ public class ProjectileDamage : MonoBehaviour
 {
     [SerializeField] private Projectile _projectileRoot;
     [SerializeField] private ProjectileCollision _collision;
-    [SerializeField] private int _baseProjectileDamage;
 
     private int _totalDamage;
 
@@ -22,7 +21,7 @@ public class ProjectileDamage : MonoBehaviour
 
     private void OnLaunch(LaunchData data)
     {
-        _totalDamage = _baseProjectileDamage + data.WeaponDamage;
+        _totalDamage =  data.WeaponDamage;
     }
 
     private void DealDamage(Collider2D target)

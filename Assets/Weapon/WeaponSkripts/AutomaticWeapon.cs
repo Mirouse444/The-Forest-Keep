@@ -1,18 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(IGunLauncher))]
+[RequireComponent(typeof(IWeaponLauncher))]
 public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
 {
     [SerializeField] private float _fireRate = 0.1f;
 
-    private IGunLauncher _launcher;
-    private Coroutine _fireCoroutine;
+    private IWeaponLauncher _weaponLauncher;
+    private IWeaponMagazine  _magazine;
     private WaitForSeconds _fireRateTime;
+    private Coroutine _fireCoroutine;
 
     private void Awake()
     {
-        _launcher = GetComponent<IGunLauncher>();
+        _weaponLauncher = GetComponent<IWeaponLauncher>();
+        _magazine = GetComponent<IWeaponMagazine>();
         _fireRateTime = new WaitForSeconds(_fireRate);
     }
 
@@ -35,8 +37,10 @@ public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
     {
         while (true)
         {
-            Vector2 dir = aimProvider.GetAimDirection(_launcher.transform.position);
-            _launcher.Fire(dir);
+            if (!_magazine.TryConsumeAmmo()) yield break;
+            
+            Vector2 dir = aimProvider.GetAimDirection(_weaponLauncher.transform.position);
+            _weaponLauncher.Fire(dir);
 
             yield return _fireRateTime;
         }

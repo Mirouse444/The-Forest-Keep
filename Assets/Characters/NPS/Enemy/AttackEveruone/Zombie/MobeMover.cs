@@ -6,7 +6,7 @@ internal class MobeMover : MonoBehaviour
     [SerializeField] private float _sprintSpeed;
 
     [Header("Combat")]
-    [SerializeField] private float _stopDistance = 0f;
+    [SerializeField] private float _stopDistance;
 
     private Vector3 _originalScale;
     private TargetScanner _scanner;

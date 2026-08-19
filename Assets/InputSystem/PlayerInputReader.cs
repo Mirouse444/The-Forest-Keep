@@ -9,13 +9,16 @@ public class PlayerInputReader : MonoBehaviour
     public event Action OnFireStarted;
     public event Action OnFireCanceled;
     public event Action OnReloadStarted;
-
-    private void Awake() => _input = new PlayerInput();
+    
+    private void Awake()
+    {
+        _input = new PlayerInput();
+    }
 
     private void OnEnable()
     {
         _input.Enable();
-
+        
         _input.Player.Fire.started += StartFire;
         _input.Player.Fire.canceled += CancelFire;
         _input.Player.Reload.started += StartReload;

@@ -12,12 +12,8 @@ public class ProjectileCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (_enemyLayer.Contains(collision.gameObject.layer))
-        {
             OnTargetHit?.Invoke(collision);
-        }
         else if(_groundLayer.Contains(collision.gameObject.layer))
-        {
             OnGroundHit?.Invoke(collision);
-        }
     }
 }

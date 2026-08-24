@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3666199655879014139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8314931949768399364}
-  m_Layer: 9
-  m_Name: HPLine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8314931949768399364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3666199655879014139}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.21, y: 1.405, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7840431847605976136}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6150241072232588816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,11 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65.230034
+      value: -96.14334
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6979523
+      value: -2.9367259
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -177,18 +146,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7658153620364721197, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: _maxHealth
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7658153620364721197, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: _minHealth
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1729065916050208342, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8314931949768399364}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       insertIndex: -1
@@ -197,6 +164,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4893956439140404499}
   m_SourcePrefab: {fileID: 100100000, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+--- !u!4 &1720607563016579594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4808393996508646426, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+  m_PrefabInstance: {fileID: 6150241072232588816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6999497301872940077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
@@ -228,9 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91b60778df324e4384bd901ce5be5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBarController
-  _HPLinePosition: {fileID: 8314931949768399364}
---- !u!4 &7840431847605976136 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-  m_PrefabInstance: {fileID: 6150241072232588816}
-  m_PrefabAsset: {fileID: 0}
+  _HPLinePosition: {fileID: 1720607563016579594}

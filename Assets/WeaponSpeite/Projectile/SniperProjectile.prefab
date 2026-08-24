@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965648bc5fda57f4daf41b919ef45fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileDespawner
-  _pierceCount: 3
+  _pierceCount: 1
   _collisionDetector: {fileID: 1696844626570564965}
   _projectileRoot: {fileID: 3144793658958056012}
   _timeToDespawn: 15

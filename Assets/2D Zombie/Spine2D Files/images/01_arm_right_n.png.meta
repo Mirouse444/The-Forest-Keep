@@ -89,3 +89,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184521
+  packageName: 2D Animated Zombie
+  packageVersion: 1.0
+  assetPath: Assets/2D Zombie/Spine2D Files/images/01_arm_right_n.png
+  uploadId: 404993

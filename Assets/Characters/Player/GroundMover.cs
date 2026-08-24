@@ -19,6 +19,7 @@ public class GroundMover : MonoBehaviour
 
     private float _currentBufferTime;
     private bool _isGrounded;
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();

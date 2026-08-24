@@ -8,56 +8,40 @@ internal class MobeMover : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private float _stopDistance;
 
-    private Vector3 _originalScale;
-    private TargetScanner _scanner;
+    [SerializeField] private Animator _animator;
     
+    [Header("Settings")]
+    [SerializeField] private TargetScanner _scanner;
+    [SerializeField] private Transform _mainTarget;
 
-    private void Awake()
-    {
-        _scanner = GetComponent<TargetScanner>();
-    }
-
-    private void Start()
-    {
-        _originalScale = transform.localScale;
-    }
-
-    private void Update()
-    {
-        Move();
-    }
+    private void Update() => Move();
 
     private void Move()
     {
-        float currentDirectionX = 1; 
+        Vector2 targetPosition = _mainTarget.position;
+        
+        
         float currentSpeed = _defaultSpeed;
 
         if (_scanner.CurrentTarget != null)
         {
-            Vector3 targetPos = _scanner.CurrentTarget.Position;
-            float distanceToTarget = Vector2.Distance(transform.position, targetPos);
-
-            currentDirectionX = Mathf.Sign(targetPos.x - transform.position.x);
-            ApplyRotation(currentDirectionX);
-
-            if (distanceToTarget <= _stopDistance) return;
-
+            targetPosition = _scanner.CurrentTarget.Position;
             currentSpeed = _sprintSpeed;
+            _animator.SetBool("isMoving", true);
         }
-        else
-        {
-            ApplyRotation(currentDirectionX);
-        }
-
-        transform.Translate(Vector3.right * currentDirectionX * Time.deltaTime * currentSpeed);
+        
+        float distanceX = Mathf.Abs(targetPosition.x - transform.position.x);
+        if (distanceX <= _stopDistance) return; 
+        
+        float maxStep = distanceX - _stopDistance;
+        float defaultStep = currentSpeed * Time.deltaTime;
+        float step = Mathf.Min(defaultStep, maxStep);
+        
+        int directionX = targetPosition.x >= transform.position.x ? 1 : -1;
+        
+        ApplyRotation(directionX);
+        transform.Translate(new Vector3(directionX * step, 0f));
     }
 
-    private void ApplyRotation(float directionX)
-    {
-        transform.localScale = new Vector3(
-            Mathf.Abs(_originalScale.x) * directionX,
-            _originalScale.y,
-            _originalScale.z
-        );
-    }
+    private void ApplyRotation(float directionX) => transform.rotation = Quaternion.Euler(0f, directionX < 0 ? 180f : 0f, 0f);
 }

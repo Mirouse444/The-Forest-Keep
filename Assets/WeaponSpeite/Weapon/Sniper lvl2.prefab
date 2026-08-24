@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1806980139627181359}
   - component: {fileID: 9113500325413485952}
   - component: {fileID: 7498345649984563621}
-  - component: {fileID: 5560792112432599815}
+  - component: {fileID: -4827829474396154161}
   m_Layer: 0
   m_Name: Sniper lvl2
   m_TagString: Untagged
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 3923013962336002650}
-  _projectileType: 1
-  _minDamage: 7
-  _maxDamage: 10
-  _criticalDamage: 18
-  _criticalChance: 20
-  _shootSpeed: 30
+  _projectileType: 2
+  _minDamage: 5
+  _maxDamage: 7
+  _criticalDamage: 12
+  _criticalChance: 50
+  _shootSpeed: 54
   _knockbackForce: 6
 --- !u!114 &7498345649984563621
 MonoBehaviour:
@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bd4157f50c44b48c4302fb29f48d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
-  _maxAmmo: 30
-  _reloadTime: 3
---- !u!114 &5560792112432599815
+  _maxAmmo: 153
+  _reloadTime: 3.3
+--- !u!114 &-4827829474396154161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd39ad776eb33d4286cdf7c753f5486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticWeapon
-  _fireRate: 1
+  _fireRate: 0.1
 --- !u!1 &3480227562863053612
 GameObject:
   m_ObjectHideFlags: 0

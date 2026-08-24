@@ -19,9 +19,11 @@ internal class SlimeMover : MonoBehaviour
     [Header("Main Target")]
     [SerializeField] private Transform _mainTarget;
 
+    [Header("Settings")]
+    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private TargetScanner _scanner;
+    
     private Coroutine _slimeMove;
-    private Rigidbody2D _rigidbody;
-    private TargetScanner _scanner;
     private WaitForSeconds _jumpWait;
     private WaitForSeconds _fallCheckWait;
     
@@ -30,8 +32,6 @@ internal class SlimeMover : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _scanner = GetComponent<TargetScanner>();
         _jumpWait = new WaitForSeconds(_jumpDelay);
         _fallCheckWait = new WaitForSeconds(_checkInterval);
     }
@@ -43,10 +43,7 @@ internal class SlimeMover : MonoBehaviour
         _currentHorizontalSpeed = _horizontalSpeed + Random.Range(-0.5f, 0.5f);
     }
 
-    private void OnDisable()
-    {
-        StopCoroutine(_slimeMove);
-    }
+    private void OnDisable() => StopCoroutine(_slimeMove);
 
     private IEnumerator SlimeMove()
     { 

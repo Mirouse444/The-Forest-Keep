@@ -10,14 +10,10 @@ public class DamageOnPlace : MonoBehaviour
     [SerializeField] private float _knockbackForce = 5f;
     [SerializeField] private float _attackCooldown = 1f;
     [SerializeField] private LayerMask _targetLayer;
-    
+
     private IDamageTextSpawner _textSpawner;
     
-    public void Initialize(IDamageTextSpawner textSpawner)
-    {
-        _textSpawner = textSpawner;
-    }
-    
+
     private struct TargetInfo
     {
         public Collider2D Collider;
@@ -26,14 +22,15 @@ public class DamageOnPlace : MonoBehaviour
     }
 
     private readonly List<TargetInfo> _targets = new();
-
+    
     private Coroutine _attackCoroutine;
     private WaitForSeconds _cooldown;
+    
+    public event System.Action OnTakeDamage;
 
-    private void Awake()
-    {
-        _cooldown = new WaitForSeconds(_attackCooldown);
-    }
+    private void Awake() => _cooldown = new WaitForSeconds(_attackCooldown);
+    
+    public void Initialize(IDamageTextSpawner textSpawner) => _textSpawner = textSpawner;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,8 +51,7 @@ public class DamageOnPlace : MonoBehaviour
             Knockbackable = knockbackable
         });
 
-        if (_attackCoroutine == null)
-            _attackCoroutine = StartCoroutine(AttackLoop());
+        _attackCoroutine ??= StartCoroutine(AttackLoop());
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -77,7 +73,7 @@ public class DamageOnPlace : MonoBehaviour
             {
                 var target = _targets[i];
 
-                if (target.Collider == null)
+                if (target.Collider is null)
                 {
                     _targets.RemoveAt(i);
                     continue;
@@ -97,6 +93,7 @@ public class DamageOnPlace : MonoBehaviour
                 }
             }
 
+            OnTakeDamage?.Invoke();
             yield return _cooldown;
         }
 

@@ -3,12 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(HealthComponent))]
 internal class Tower : MonoBehaviour, ITarget
 {
+    [SerializeField] private GameObject _gameOverPanel;
+    
     private HealthComponent _health;
 
-    private void Awake()
-    {
-        _health = GetComponent<HealthComponent>();
-    }
+    private void Awake() => _health = GetComponent<HealthComponent>();
 
     public Vector3 Position => transform.position;
 
@@ -18,6 +17,6 @@ internal class Tower : MonoBehaviour, ITarget
 
     private void GameOver()
     {
-        gameObject.SetActive(false);
+        _gameOverPanel.SetActive(true);
     }
 }

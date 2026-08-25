@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: "\u042F\u0434\u0440\u043E"
     originalName: 
-    pivot: {x: 0.5199485, y: 0.081808396}
+    pivot: {x: 0.5124191, y: 0.45561883}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

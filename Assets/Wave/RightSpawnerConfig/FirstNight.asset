@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NightConfig
   _waves:
   - _enemyPrefab: {fileID: 7478299128603158124, guid: 1c0fe518e6ce1aa46b6c2f18152a1612, type: 3}
-    _count: 12
-    _spawnInterval: 3
+    _count: 10
+    _spawnInterval: 1111

@@ -244,6 +244,8 @@ MonoBehaviour:
   _groundCheckSize: {x: 0.99, y: 0.1}
   _checkInterval: 0.1
   _mainTarget: {fileID: 5383276610035052029, guid: 9df5a97c045131046a3ef6843131267f, type: 3}
+  _rigidbody: {fileID: 176303023789764188}
+  _scanner: {fileID: 5950788206471362739}
 --- !u!114 &3720685735310637969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +316,7 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 384
+  _animator: {fileID: 0}
 --- !u!114 &8203307708050219846
 MonoBehaviour:
   m_ObjectHideFlags: 0

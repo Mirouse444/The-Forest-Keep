@@ -12,14 +12,7 @@ public class TowerHealth : MonoBehaviour
         _health = GetComponent<HealthComponent>();
         _health.InitializeHealth(_MaxHealth);
     }
-
-    private void ResetHealth()
-    {
-        _health.InitializeHealth(_MaxHealth);
-    }
-
-    private void UpdateTower()
-    {
-        _MaxHealth = (int)(_MaxHealth * 1.35f + 0.5f); 
-    }
+    
+    private void UpdateTower() => _MaxHealth = (int)(_MaxHealth * 1.35f + 0.5f);
 }
+

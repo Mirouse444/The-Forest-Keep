@@ -218,7 +218,7 @@ MonoBehaviour:
   _scanInterval: 0.25
   _targetLayer:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 16768
   _blindZoneWidth: 0
   _blindZoneHeight: 0
   _blindZoneOffset: {x: 0, y: 0}
@@ -315,8 +315,7 @@ MonoBehaviour:
   _attackCooldown: 1
   _targetLayer:
     serializedVersion: 2
-    m_Bits: 384
-  _animator: {fileID: 0}
+    m_Bits: 16768
 --- !u!114 &8203307708050219846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e984ac7c3d316fa4cb61ccbcb0207649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyForDeath
+  _receiver: {fileID: 11400000, guid: b1128893d9a6097448d7d618283cb1c4, type: 2}
+  _health: {fileID: 1689745816965413539}
   _maxCoinForDied: 4
   _minCoinForDied: 6
 --- !u!114 &1729065916050208342
@@ -343,7 +344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91b60778df324e4384bd901ce5be5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBarController
+  _hPLineSO: {fileID: 11400000, guid: bb8ca6ee433d7ae4c99b37ff2d35220e, type: 2}
   _HPLinePosition: {fileID: 4808393996508646426}
+  _state: {fileID: 1689745816965413539}
 --- !u!1 &4048932311363389470
 GameObject:
   m_ObjectHideFlags: 0

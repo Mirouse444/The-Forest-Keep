@@ -1005,13 +1005,15 @@ GameObject:
   - component: {fileID: 2862269585526220258}
   - component: {fileID: 1357425985223840899}
   - component: {fileID: 4316441004449101906}
+  - component: {fileID: 2006526009500480713}
+  - component: {fileID: 7030834432249012568}
   m_Layer: 9
   m_Name: 'Zombie_Normal '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6020848412578773155
 Transform:
   m_ObjectHideFlags: 0
@@ -1149,8 +1151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011ec57f438d5e44d9da3c3620c56f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomHealthSpawner
-  _minHealth: 20
-  _maxHealth: 50
+  _minHealth: 14
+  _maxHealth: 62
 --- !u!114 &7288942274335417216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,9 +1165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c3b86a05574f42a9419fcb73625e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationTrigger
-  _animator: {fileID: 1487122805368050505}
-  _damageOnPlace: {fileID: 1440020954689426660}
+  _deathAnimation: {fileID: 11400000, guid: edfc0ce8ed466d845a8f9da7a0876274, type: 2}
   _health: {fileID: 2532842342192004707}
+  _animator: {fileID: 1487122805368050505}
 --- !u!114 &1440020954689426660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1199,10 +1201,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MobeMover
   _defaultSpeed: 3.16
   _sprintSpeed: 9.9
-  _stopDistance: 1
-  _animator: {fileID: 1487122805368050505}
+  _stopDistance: 0.7
+  _stopHurtTime: 0.37
+  _healthComponent: {fileID: 2532842342192004707}
   _scanner: {fileID: 2862269585526220258}
-  _mainTarget: {fileID: 0}
+  _mainTarget: {fileID: 5383276610035052029, guid: 9df5a97c045131046a3ef6843131267f, type: 3}
+  _animator: {fileID: 1487122805368050505}
 --- !u!114 &2862269585526220258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,12 +1219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d682ccb17c28c4446a2df54e0069996b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetScanner
-  _visionRadius: 6.05
-  _loseTargetRadius: 8.28
+  _visionRadius: 6
+  _loseTargetRadius: 9
   _scanInterval: 0.25
   _targetLayer:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 16768
   _blindZoneWidth: 0
   _blindZoneHeight: 0
   _blindZoneOffset: {x: 0, y: 0}
@@ -1248,7 +1252,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91b60778df324e4384bd901ce5be5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBarController
+  _hPLineSO: {fileID: 11400000, guid: bb8ca6ee433d7ae4c99b37ff2d35220e, type: 2}
   _HPLinePosition: {fileID: 4098095278624107190}
+  _state: {fileID: 2532842342192004707}
+--- !u!114 &2006526009500480713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653981121320664489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335b5dfe48b0487eba26c385cb30acb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageTextEmitter
+  _effectsSO: {fileID: 11400000, guid: a238d24e358b38a4c927e84c85ead51c, type: 2}
+  _health: {fileID: 2532842342192004707}
+--- !u!114 &7030834432249012568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653981121320664489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e984ac7c3d316fa4cb61ccbcb0207649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyForDeath
+  _receiver: {fileID: 11400000, guid: b1128893d9a6097448d7d618283cb1c4, type: 2}
+  _health: {fileID: 2532842342192004707}
+  _maxCoinForDied: 14
+  _minCoinForDied: 19
 --- !u!1 &5850158067021091853
 GameObject:
   m_ObjectHideFlags: 0

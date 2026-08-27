@@ -3,6 +3,7 @@ using UnityEngine.Pool;
 
 public class DamageTextManager : MonoBehaviour, IDamageTextSpawner
 {
+    [SerializeField] private HitEffectsSO  _hitEffects;
     [SerializeField] private DamagePopup _baseTextPrefab;
     [SerializeField] private DamagePopup _critTextPrefab;
 
@@ -11,11 +12,12 @@ public class DamageTextManager : MonoBehaviour, IDamageTextSpawner
 
     private void Awake()
     {
+        _hitEffects.Spawner = this; 
+        
         _basePool = CreatePool(_baseTextPrefab);
         _critPool = CreatePool(_critTextPrefab);
     }
 
-    // Реализация интерфейса IDamageTextSpawner
     public void SpawnText(Vector3 position, int damage, bool isCrit)
     {
         var pool = isCrit ? _critPool : _basePool;

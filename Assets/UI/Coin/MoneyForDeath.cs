@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class MoneyForDeath : MonoBehaviour
 {
+    [SerializeField] private CoinReceiverReferenceSO _receiver;
+    [SerializeField] private HealthComponent _health;
     [SerializeField] private int _maxCoinForDied;
     [SerializeField] private int _minCoinForDied; 
     
     private ICoinReceiver _coinReceiver;
-    private HealthComponent _health;
 
-    private void Awake() => _health = GetComponent<HealthComponent>();
+    private void Start() => _coinReceiver = _receiver.Receiver;
     private void OnDisable() => _health.State.OnDeath -= CoinForDie;
     private void OnEnable() => _health.State.OnDeath += CoinForDie;
-    
-    public void Initialize(ICoinReceiver receiver) => _coinReceiver = receiver;
     
     private void CoinForDie()
     {

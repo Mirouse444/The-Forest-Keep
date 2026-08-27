@@ -2,17 +2,18 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class HPLinesPool : MonoBehaviour
+public class HPLinesPool : MonoBehaviour, IHPLineSpawner
 {
+    [SerializeField] private HPLineSO _lineSo;
     [SerializeField] private HPLine _hpLinePrefab;
 
     private ObjectPool<HPLine> _pool;
 
-    public Action<HPLine> ReleaseToPool { get; private set; }
-
     private void Awake()
-    {     
-        _pool = new ObjectPool<HPLine>(
+    {
+        _lineSo.HPLineSpawner = this;
+        _pool = new ObjectPool<HPLine>
+        (
             createFunc: CreateLine,
             actionOnGet: OnTakeLineFromPool,
             actionOnRelease: OnReturnLineToPool,
@@ -21,11 +22,14 @@ public class HPLinesPool : MonoBehaviour
             defaultCapacity: 14,
             maxSize: 30
         );
-        
-        ReleaseToPool = _pool.Release;
     }
 
-    public HPLine GetHPLine => _pool.Get();
+    public HPLine GetHPLine(out Action<HPLine> releaseAction)
+    {
+        releaseAction = _pool.Release;
+        return _pool.Get();
+    }
+
     private HPLine CreateLine() => Instantiate(_hpLinePrefab, transform);
     private void OnTakeLineFromPool(HPLine hpLine) => hpLine.gameObject.SetActive(true);
     private void OnReturnLineToPool(HPLine hpLine) => hpLine.gameObject.SetActive(false);

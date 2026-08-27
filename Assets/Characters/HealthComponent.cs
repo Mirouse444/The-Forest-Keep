@@ -8,6 +8,8 @@ internal class HealthComponent : MonoBehaviour, IDamageable, IHealable
     private List<IDamageModifier> _modifiers = new List<IDamageModifier>();
 
     public IHealthState State => _healthModel;
+    
+    public event System.Action<DamageResult> OnDamageProcessed;
 
     public void AddModifier(IDamageModifier modifier)
     {
@@ -26,9 +28,9 @@ internal class HealthComponent : MonoBehaviour, IDamageable, IHealable
 
     public void ResetToMax() => _healthModel.ResetToMax();
 
-    public void TakeDamage(int rawDamage)
+    public void TakeDamage(DamageInfo info)
     {
-        int finalDamage = rawDamage;
+        int finalDamage = info.Amount;
 
         for (int i = 0; i < _modifiers.Count; i++)
             finalDamage = _modifiers[i].ProcessDamage(finalDamage);
@@ -36,5 +38,12 @@ internal class HealthComponent : MonoBehaviour, IDamageable, IHealable
         finalDamage = Mathf.Max(1, finalDamage);
 
         _healthModel.ApplyDamage(finalDamage);
+        
+        OnDamageProcessed?.Invoke(new DamageResult 
+        { 
+            FinalDamage = finalDamage, 
+            IsCritical = info.IsCritical,
+            HitPosition = transform.position
+        });
     }
 }

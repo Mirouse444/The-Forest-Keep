@@ -14,22 +14,13 @@ internal class TargetScanner : MonoBehaviour
     [SerializeField] private Vector2 _blindZoneOffset = new Vector2(0f, 0f);
 
     private float _scanTimer;
+    private Collider2D _targetCollider;
     private ContactFilter2D _contactFilter;
     private readonly Collider2D[] _visionResults = new Collider2D[10];
-
+    
     public ITarget CurrentTarget { get; private set; }
-    private Collider2D TargetCollider;
 
-    public Vector3 TargetExactPosition
-    {
-        get
-        {
-            if (TargetCollider)
-                return TargetCollider.ClosestPoint(transform.position);
-
-            return CurrentTarget?.Position ?? transform.position;
-        }
-    }
+    public Vector3 TargetExactPosition => _targetCollider ? _targetCollider.bounds.ClosestPoint(transform.position) : Vector3.zero;
 
     private void Awake()
     {
@@ -44,7 +35,7 @@ internal class TargetScanner : MonoBehaviour
     private void OnDisable()
     {
         CurrentTarget = null;
-        TargetCollider = null;
+        _targetCollider = null;
     }
 
     private void Update()
@@ -60,12 +51,14 @@ internal class TargetScanner : MonoBehaviour
 
     private void FindClosestTarget()
     {
+        if (CurrentTarget != null && ((Vector2)(CurrentTarget.Position - transform.position)).sqrMagnitude < _loseTargetRadius * _loseTargetRadius) return;
+        
         int hitsCount = Physics2D.OverlapCircle(transform.position, _visionRadius, _contactFilter, _visionResults);
 
         if (hitsCount == 0)
         {
             CurrentTarget = null;
-            TargetCollider = null;
+            _targetCollider = null;
             return;
         }
 
@@ -82,7 +75,7 @@ internal class TargetScanner : MonoBehaviour
 
             if (candidateCollider.TryGetComponent(out ITarget target))
             {
-                Vector2 closestPoint = candidateCollider.ClosestPoint(transform.position);
+                Vector2 closestPoint = candidateCollider.bounds.ClosestPoint(transform.position);
                 float dSqrToTarget = (closestPoint - (Vector2)transform.position).sqrMagnitude;
 
                 if (dSqrToTarget < closestDistanceSqr)
@@ -94,19 +87,19 @@ internal class TargetScanner : MonoBehaviour
             }
         }
 
-        if (bestTarget != null && closestDistanceSqr >= _loseTargetRadius * _loseTargetRadius)
+        if (bestTarget == null)
         {
             CurrentTarget = null;
-            TargetCollider = null;
+            _targetCollider = null;
         }
         else
         {
             CurrentTarget = bestTarget;
-            TargetCollider = bestCollider;
+            _targetCollider = bestCollider;
         }
     }
-    
-    public bool IsInBlindZone(Vector3 targetPosition)
+
+    private bool IsInBlindZone(Vector3 targetPosition)
     {
         if (_blindZoneHeight <= 0 || _blindZoneWidth <= 0) return false;
         

@@ -38,9 +38,6 @@ public class ProjectileLauncher : MonoBehaviour, IWeaponLauncher
             isCritical
         );
 
-        var projectile = _pool.GetProjectile;
-        projectile.Initialize(_textSpawner);
-    
-        projectile.Launch(data, _shootPlace.position, _shootPlace.rotation);
+        _pool.GetProjectile.Launch(data, _shootPlace.position, _shootPlace.rotation);
     }
 }

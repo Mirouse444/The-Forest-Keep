@@ -1,4 +1,4 @@
-﻿internal interface IDamageable
-{
-    void TakeDamage(int damage);
+﻿public interface IDamageable
+{ 
+    void TakeDamage(DamageInfo damageInfo);
 }

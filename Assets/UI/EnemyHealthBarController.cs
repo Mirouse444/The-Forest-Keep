@@ -3,22 +3,20 @@ using UnityEngine;
 
 public class EnemyHealthBarController : MonoBehaviour
 {
+    [SerializeField] private HPLineSO _hPLineSO;
     [SerializeField] private Transform _HPLinePosition;
+    [SerializeField] private HealthComponent _state;
 
     private Action<HPLine> _releaseAction;
-    private HealthComponent _state;
     private HPLine _hPLine;
 
-    private void Awake() => _state = GetComponent<HealthComponent>();
-
-    public void Initialize(HPLine line, Action<HPLine> releaseToPool)
+    private void OnEnable()
     {
-        _hPLine = line;
+        _hPLine = _hPLineSO.HPLineSpawner.GetHPLine(out _releaseAction);
         _hPLine.ChangeState(_state.State);
-        _releaseAction = releaseToPool;
     }
+    private void OnDisable() => _releaseAction.Invoke(_hPLine);
 
     private void LateUpdate() => _hPLine.SetScreenPosition(_HPLinePosition.position);
 
-    private void OnDisable() => _releaseAction.Invoke(_hPLine);
 }

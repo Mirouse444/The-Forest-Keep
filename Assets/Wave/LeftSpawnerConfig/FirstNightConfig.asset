@@ -19,3 +19,6 @@ MonoBehaviour:
   - _enemyPrefab: {fileID: 1735977640445930941, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
     _count: 0
     _spawnInterval: 2.04
+  - _enemyPrefab: {fileID: 1357425985223840899, guid: fb6ca85fa82ed4b4b9b0a5e1af43e6c0, type: 3}
+    _count: 9
+    _spawnInterval: 2.04

@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class CoinCounter : MonoBehaviour, ICoinReceiver
 {
-    private int _currentCoin;
-    public event Action<int> OnCoinChange;
+    [SerializeField] private CoinReceiverReferenceSO _coinReceiverReference;
     
+    private int _currentCoin;
+    
+    public event Action<int> OnCoinChange;
+
+    private void Awake() => _coinReceiverReference.Receiver = this;
+
     public void AddCoins(int amount)
     {
         _currentCoin += amount;

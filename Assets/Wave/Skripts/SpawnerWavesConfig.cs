@@ -15,7 +15,8 @@ public class SpawnerWavesConfig : MonoBehaviour
 
     private void EnemyGo()
     {
-        OnEnemyGo?.Invoke(_nightConfigArray[_currentNight]);
+        if (_currentNight < _nightConfigArray.Length)
+            OnEnemyGo?.Invoke(_nightConfigArray[_currentNight]);
         _currentNight++;
     }
 }

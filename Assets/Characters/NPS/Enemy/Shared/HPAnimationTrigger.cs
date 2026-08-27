@@ -1,26 +1,23 @@
 ﻿using UnityEngine;
 
-public class AnimationTrigger : MonoBehaviour
+public class HPAnimationTrigger : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
-    [SerializeField] private DamageOnPlace _damageOnPlace;
+    [SerializeField] private DeathAnimationSO _deathAnimation;
     [SerializeField] private HealthComponent _health;
-
+    [SerializeField] private Animator _animator;
+    
     private void OnEnable()
     {
         _health.State.OnApplyDamage += PlayHurtAnimation;
         _health.State.OnDeath += PlayDeathAnimation;
-        _damageOnPlace.OnTakeDamage += PlayTakeDamageAnimation;
     }
 
     private void OnDisable()
     {
         _health.State.OnApplyDamage -= PlayHurtAnimation;
         _health.State.OnDeath -= PlayDeathAnimation;
-        _damageOnPlace.OnTakeDamage -= PlayTakeDamageAnimation;
     }
 
     private void PlayHurtAnimation() => _animator.SetTrigger("Hurt");
-    private void PlayDeathAnimation() => _animator.SetTrigger("Death");
-    private void PlayTakeDamageAnimation() => _animator.SetTrigger("Attack");
+    private void PlayDeathAnimation() => _deathAnimation.DeathAnimation.SpawnDeathModel(transform.position, transform.rotation);
 }

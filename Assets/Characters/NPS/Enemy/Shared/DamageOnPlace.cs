@@ -10,10 +10,7 @@ public class DamageOnPlace : MonoBehaviour
     [SerializeField] private float _knockbackForce = 5f;
     [SerializeField] private float _attackCooldown = 1f;
     [SerializeField] private LayerMask _targetLayer;
-
-    private IDamageTextSpawner _textSpawner;
     
-
     private struct TargetInfo
     {
         public Collider2D Collider;
@@ -29,8 +26,6 @@ public class DamageOnPlace : MonoBehaviour
     public event System.Action OnTakeDamage;
 
     private void Awake() => _cooldown = new WaitForSeconds(_attackCooldown);
-    
-    public void Initialize(IDamageTextSpawner textSpawner) => _textSpawner = textSpawner;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -82,8 +77,7 @@ public class DamageOnPlace : MonoBehaviour
                 if(target.Damageable != null)
                 {
                     var damage = Random.Range(_minDamage, _maxDamage + 1);
-                    target.Damageable.TakeDamage(damage);
-                    _textSpawner?.SpawnText(target.Collider.transform.position, damage, false);
+                    target.Damageable.TakeDamage(new DamageInfo(damage, false));
                 }
 
                 if (target.Knockbackable is not null)
@@ -111,3 +105,4 @@ public class DamageOnPlace : MonoBehaviour
         _targets.Clear();
     }
 }
+

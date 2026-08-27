@@ -8,9 +8,6 @@ using UnityEngine;
      [SerializeField] private EnemySpawner _leftSpawner; 
      [SerializeField] private SpawnerWavesConfig _rightSpawnerConfig;
      [SerializeField] private EnemySpawner  _rightSpawner;
-     [SerializeField] private CoinCounter _coinCounter;
-     [SerializeField] private HPLinesPool _hpLinesPool;
-     [SerializeField] private DamageTextManager _damageTextManager;
      [SerializeField] private float _timeRange;
      
      private IEnemyFactory _factory;
@@ -69,14 +66,5 @@ using UnityEngine;
      {
          OnEnemySpawn?.Invoke(enemy);
          spawner.Spawn(enemy);
-
-         if (enemy.TryGetComponent<MoneyForDeath>(out var moneyForDeath))
-             moneyForDeath.Initialize(_coinCounter);
-         
-         if(enemy.TryGetComponent<EnemyHealthBarController>(out var healthBar))
-             healthBar.Initialize(_hpLinesPool.GetHPLine, _hpLinesPool.ReleaseToPool);
-         
-         if(enemy.TryGetComponent<DamageOnPlace>(out var damageOnPlace))
-             damageOnPlace.Initialize(_damageTextManager);
      }
  }

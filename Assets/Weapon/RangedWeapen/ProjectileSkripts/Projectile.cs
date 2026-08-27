@@ -4,10 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(TrailRenderer))]
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private ProjectileHitEffects _hitEffects;
     [SerializeField] private TrailRenderer _trail;
-    
-    public void Initialize(IDamageTextSpawner spawner) => _hitEffects.Initialize(spawner);
 
     private Action<Projectile> _returnAction;
     private bool _isDespawned;

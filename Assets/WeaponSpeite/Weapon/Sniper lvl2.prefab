@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 3923013962336002650}
-  _projectileType: 2
+  _projectileType: 1
   _minDamage: 5
   _maxDamage: 7
   _criticalDamage: 12
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd39ad776eb33d4286cdf7c753f5486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticWeapon
-  _fireRate: 0.1
+  _fireRate: 0.34
 --- !u!1 &3480227562863053612
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341599851337789701, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: _targetLayer.m_Bits
-      value: 384
+      value: 16768
       objectReference: {fileID: 0}
     - target: {fileID: 2200548848162893185, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_Size.x
@@ -66,11 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -96.14334
+      value: -103.60164
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9367259
+      value: -0.7301812
       objectReference: {fileID: 0}
     - target: {fileID: 4149157291872377432, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -140,6 +140,10 @@ PrefabInstance:
       propertyPath: _groundCheckOffset.y
       value: 0.11
       objectReference: {fileID: 0}
+    - target: {fileID: 5950788206471362739, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+      propertyPath: _targetLayer.m_Bits
+      value: 16768
+      objectReference: {fileID: 0}
     - target: {fileID: 7391572961583248817, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       propertyPath: m_Color.b
       value: 0.4980392
@@ -160,14 +164,19 @@ PrefabInstance:
       propertyPath: _minHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8203307708050219846, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 4767382866426076339}
+    - target: {fileID: 8203307708050219846, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+      propertyPath: _receiver
+      value: 
+      objectReference: {fileID: 11400000, guid: b1128893d9a6097448d7d618283cb1c4, type: 2}
     m_RemovedComponents:
     - {fileID: 1729065916050208342, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5216277143305044228}
     - targetCorrespondingSourceObject: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4893956439140404499}
@@ -188,6 +197,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4808393996508646426, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
   m_PrefabInstance: {fileID: 6150241072232588816}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4767382866426076339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1689745816965413539, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+  m_PrefabInstance: {fileID: 6150241072232588816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999497301872940077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e27a7a0bd8551b4abaacb372faf4404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
 --- !u!50 &6280358749276211276 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 176303023789764188, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
@@ -198,20 +218,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3781121658392277565, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
   m_PrefabInstance: {fileID: 6150241072232588816}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5216277143305044228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6999497301872940077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e984ac7c3d316fa4cb61ccbcb0207649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoneyForDeath
-  _maxCoinForDied: 1
-  _minCoinForDied: 3
 --- !u!114 &4893956439140404499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,4 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91b60778df324e4384bd901ce5be5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBarController
+  _hPLineSO: {fileID: 11400000, guid: bb8ca6ee433d7ae4c99b37ff2d35220e, type: 2}
   _HPLinePosition: {fileID: 1720607563016579594}
+  _state: {fileID: 4767382866426076339}

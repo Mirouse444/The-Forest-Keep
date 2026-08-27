@@ -5,7 +5,7 @@ public class ProjectileDamage : MonoBehaviour
     [SerializeField] private Projectile _projectileRoot;
     [SerializeField] private ProjectileCollision _collision;
 
-    private int _totalDamage;
+    private LaunchData _data;
 
     private void OnEnable()
     {
@@ -19,14 +19,11 @@ public class ProjectileDamage : MonoBehaviour
         _collision.OnTargetHit -= DealDamage;
     }
 
-    private void OnLaunch(LaunchData data)
-    {
-        _totalDamage =  data.WeaponDamage;
-    }
+    private void OnLaunch(LaunchData data) => _data =  data;
 
     private void DealDamage(Collider2D target)
     {
         if (target.TryGetComponent<IDamageable>(out var damageable))
-            damageable.TakeDamage(_totalDamage);
+            damageable.TakeDamage(new DamageInfo(_data.WeaponDamage, _data.IsCritical));
     }
 }

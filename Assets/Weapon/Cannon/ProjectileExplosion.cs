@@ -47,7 +47,7 @@ public class ProjectileExplosion : MonoBehaviour
             int calculatedDamage = Mathf.RoundToInt(Stats.Damage * damagePercent);
 
             if (_visionResults[i].TryGetComponent<IDamageable>(out var damageable))
-                damageable.TakeDamage(calculatedDamage);
+                damageable.TakeDamage(new DamageInfo(calculatedDamage, false));
 
             if (_visionResults[i].TryGetComponent<IKnockbackable>(out var knockbackable))
             {

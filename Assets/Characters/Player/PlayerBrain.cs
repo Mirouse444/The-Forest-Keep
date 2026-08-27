@@ -24,6 +24,7 @@ public class PlayerBrain : MonoBehaviour
         _detector.OnLadderExit += DisableClimbingPotential;
 
         _knockback.KnockbackApplied += OnStunned;
+        _groundMover.enabled = true;
     }
 
     private void OnDisable()

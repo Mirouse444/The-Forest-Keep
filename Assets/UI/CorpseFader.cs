@@ -6,16 +6,24 @@ public class CorpseFader : MonoBehaviour
     [SerializeField] private AnimationCurve _fadeCurve;
     
     private static readonly int ColorProperty = Shader.PropertyToID("_Color");
-
-    private SkinnedMeshRenderer[] _renderers;
+    
+    private Renderer[] _renderers;
     private MaterialPropertyBlock _propBlock;
     private float _timer;
     private bool _isFinished;
 
     private void Awake()
     {
-        _renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        _renderers = GetComponentsInChildren<Renderer>();
         _propBlock = new MaterialPropertyBlock();
+    }
+
+    private void OnEnable()
+    {
+        _timer = 0f;
+        _isFinished = false;
+        
+        SetAlpha(1f);
     }
 
     private void Update()
@@ -28,16 +36,22 @@ public class CorpseFader : MonoBehaviour
             float normalizedTime = Mathf.Clamp01(_timer / _fadeDuration);
 
             float alpha = _fadeCurve.Evaluate(normalizedTime);
-            Color currentColor = new Color(1f, 1f, 1f, alpha);
-
-            for (int i = 0; i < _renderers.Length; i++)
-            {
-                _renderers[i].GetPropertyBlock(_propBlock);
-                _propBlock.SetColor(ColorProperty, currentColor);
-                _renderers[i].SetPropertyBlock(_propBlock);
-            }
+            SetAlpha(alpha);
         }
         else
+        {
             _isFinished = true;
+        }
+    }
+    
+    private void SetAlpha(float alpha)
+    {
+        Color currentColor = new Color(1f, 1f, 1f, alpha);
+        for (int i = 0; i < _renderers.Length; i++)
+        {
+            _renderers[i].GetPropertyBlock(_propBlock);
+            _propBlock.SetColor(ColorProperty, currentColor);
+            _renderers[i].SetPropertyBlock(_propBlock);
+        }
     }
 }

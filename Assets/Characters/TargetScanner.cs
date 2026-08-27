@@ -51,7 +51,6 @@ internal class TargetScanner : MonoBehaviour
 
     private void FindClosestTarget()
     {
-        if (CurrentTarget != null && ((Vector2)(CurrentTarget.Position - transform.position)).sqrMagnitude < _loseTargetRadius * _loseTargetRadius) return;
         
         int hitsCount = Physics2D.OverlapCircle(transform.position, _visionRadius, _contactFilter, _visionResults);
 
@@ -87,15 +86,18 @@ internal class TargetScanner : MonoBehaviour
             }
         }
 
-        if (bestTarget == null)
-        {
-            CurrentTarget = null;
-            _targetCollider = null;
-        }
-        else
+        
+        if (bestTarget != null)
         {
             CurrentTarget = bestTarget;
             _targetCollider = bestCollider;
+            return;
+        }
+
+        if (CurrentTarget == null || ((Vector2)(CurrentTarget.Position - transform.position)).sqrMagnitude > _loseTargetRadius * _loseTargetRadius)
+        {
+            CurrentTarget = null;
+            _targetCollider = null;
         }
     }
 

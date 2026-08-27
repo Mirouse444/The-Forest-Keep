@@ -12,14 +12,11 @@ public class ProjectileLauncher : MonoBehaviour, IWeaponLauncher
     [SerializeField, Min(0)] private float _knockbackForce;
     
     private ProjectilePool _pool;
-    private IDamageTextSpawner _textSpawner;
 
     private void Awake()
     {
         var projectilePoolGetter = GetComponentInParent<ProjectilePoolGetter>();
         _pool = projectilePoolGetter.GetPool(_projectileType);
-
-        _textSpawner = GetComponentInParent<IDamageTextSpawner>();
     }
 
     public float ShootSpeed => _shootSpeed;

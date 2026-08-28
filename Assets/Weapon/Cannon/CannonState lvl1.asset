@@ -16,4 +16,4 @@ MonoBehaviour:
   ProjectileSpeed: 18.7
   KnockbackForce: 5
   FireRate: 1.5
-  ExplosionRadius: 4.06
+  ExplosionRadius: 1

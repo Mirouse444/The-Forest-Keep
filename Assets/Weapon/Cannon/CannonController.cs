@@ -35,7 +35,7 @@ public class CannonController : MonoBehaviour
 
     public bool TryFire()
     {
-        if (!_weapon.CanFire(CurrentStats.FireRate)) return false;
+        if (!_weapon.CanFire) return false;
 
         _weapon.Fire(_calculatedDirection, CurrentStats);
         return true;

@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-internal class StuckProjectilePool : MonoBehaviour
+internal class StuckProjectilePool : MonoBehaviour, IStuckProjectileSpawner
 {
+    [SerializeField] private StuckProjectilePoolSO _spawner;
     [SerializeField] private StuckProjectile _arrowPrefab;
 
     private IObjectPool<StuckProjectile> _arrowPool;
 
     private void Awake()
     {
+        _spawner.Spawner = this;
+        
         _arrowPool = new ObjectPool<StuckProjectile>(
             createFunc: CreateStuckArrow,
             actionOnGet: OnTakeStuckArrowFromPool,
@@ -20,10 +23,7 @@ internal class StuckProjectilePool : MonoBehaviour
         );
     }
 
-    public StuckProjectile GetStuckArrow()
-    {
-        return _arrowPool.Get();
-    }
+    public StuckProjectile Spawn => _arrowPool.Get();
 
     private StuckProjectile CreateStuckArrow()
     {
@@ -32,19 +32,8 @@ internal class StuckProjectilePool : MonoBehaviour
 
         return arrow;
     }
-
-    private void OnTakeStuckArrowFromPool(StuckProjectile stuckArrow)
-    {
-        stuckArrow.gameObject.SetActive(true);
-    }
-
-
-    private void OnReturnStuckArrowToPool(StuckProjectile stuckArrow)
-    {
-        stuckArrow.gameObject.SetActive(false);
-    }
-    private void OnDestroyStuckArrowPool(StuckProjectile stuckArrowPool)
-    {
-        Destroy(stuckArrowPool.gameObject);
-    }
+    
+    private void OnTakeStuckArrowFromPool(StuckProjectile stuckArrow) => stuckArrow.gameObject.SetActive(true);
+    private void OnReturnStuckArrowToPool(StuckProjectile stuckArrow) => stuckArrow.gameObject.SetActive(false);
+    private void OnDestroyStuckArrowPool(StuckProjectile stuckArrowPool) => Destroy(stuckArrowPool.gameObject);
 }

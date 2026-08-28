@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class SpawnStuckProjectile : MonoBehaviour 
+public class SpawnStuckProjectile : MonoBehaviour
 {
+    [SerializeField] private StuckProjectilePoolSO _spawner;
     [SerializeField] private ProjectileCollision _collision;
-    [SerializeField] private StuckProjectilePool _pool;
-
+    
     private void OnEnable()
     {
         _collision.OnTargetHit += SpawnStuck;
@@ -17,8 +17,5 @@ public class SpawnStuckProjectile : MonoBehaviour
         _collision.OnGroundHit -= SpawnStuck;
     }
 
-    private void SpawnStuck(Collider2D collider)
-    {
-        _pool.GetStuckArrow().Init(transform, collider.transform);
-    }
+    private void SpawnStuck(Collider2D collider) => _spawner.Spawner.Spawn.Launch(transform, collider.transform);
 }

@@ -79,12 +79,12 @@ public class SkeletonArcherBrain : MonoBehaviour
         direction = Vector2.zero;
         if (_scanner.CurrentTarget == null) return false;
         
-        Vector3 targetPos = _scanner.TargetExactPosition;
-        float distanceSqr = ((Vector2)(_shootPlace.position - targetPos)).sqrMagnitude;
+        Vector2 targetPos = (Vector2)_scanner.CurrentTarget.Position + Vector2.up * 1.5f;
+        float distanceSqr = ((Vector2)_shootPlace.position - targetPos).sqrMagnitude;
         
         if (distanceSqr <= _directShootDistance * _directShootDistance)
         {
-            direction = (targetPos - _shootPlace.position).normalized;
+            direction = (targetPos - (Vector2)_shootPlace.position).normalized;
             return true;
         }
 

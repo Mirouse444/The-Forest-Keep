@@ -3,17 +3,17 @@
 public class CannonWeapon : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private ProjectilePool _projectilePool;
+    [SerializeField] private ProjectilePoolSO _projectilePool;
 
     private float _nextFireTime;
 
-    public bool CanFire(float fireRate) => Time.time >= _nextFireTime;
+    public bool CanFire => Time.time >= _nextFireTime;
 
     public void Fire(Vector2 direction, CannonStats stats)
     {
         _nextFireTime = Time.time + stats.FireRate;
 
-        Projectile projectile = _projectilePool.GetProjectile;
+        Projectile projectile = _projectilePool.Spawner.Spawn;
         
         if (projectile.TryGetComponent<ProjectileExplosion>(out var explosion))
             explosion.Stats = stats;

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(TrailRenderer))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private TrailRenderer _trail;
@@ -11,10 +10,7 @@ public class Projectile : MonoBehaviour
 
     public event Action<LaunchData> LaunchAction;
 
-    public void SetReleaseAction(Action<Projectile> returnAction)
-    {
-        _returnAction = returnAction;
-    }
+    public void SetReleaseAction(Action<Projectile> returnAction) => _returnAction = returnAction;
 
     public void Launch(LaunchData data, Vector3 position, Quaternion rotation)
     {

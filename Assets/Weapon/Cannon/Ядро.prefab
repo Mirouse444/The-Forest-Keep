@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dd41960f4c17eaf48af1fbde09735b3a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.953
+      value: -51.84
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dd41960f4c17eaf48af1fbde09735b3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.979
+      value: 1.94
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dd41960f4c17eaf48af1fbde09735b3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82,9 +82,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: dd41960f4c17eaf48af1fbde09735b3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3877215778900286112}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: dd41960f4c17eaf48af1fbde09735b3a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4021621962916854522}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: dd41960f4c17eaf48af1fbde09735b3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 977013088235544522}
@@ -176,20 +173,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.044234596, y: 0.12635341}
-  m_Radius: 3.6312532
---- !u!114 &4021621962916854522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8771623242227504747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 019295b1f4674a63a7a2b08b6b41ba13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileHitEffects
+  m_Offset: {x: 0.049750015, y: 0.09540494}
+  m_Radius: 3.6455474
 --- !u!114 &977013088235544522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4594851497bfaad4f84f5e84c462fb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  _hitEffects: {fileID: 4021621962916854522}
   _trail: {fileID: 4263836136975649065}
 --- !u!114 &8158277123196006476
 MonoBehaviour:
@@ -323,7 +307,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 25bfce0df14f8154183f0a6e432dbb50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -344,7 +328,7 @@ TrailRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Time: 0.2
   m_PreviewTimeScale: 1
@@ -356,21 +340,21 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.13698578
-        inSlope: 0
-        outSlope: 0
+        value: 0.37572438
+        inSlope: -0.518284
+        outSlope: -0.518284
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.09917357
       - serializedVersion: 3
         time: 0.9999999
         value: 0
-        inSlope: -0.1781755
-        outSlope: -0.1781755
+        inSlope: -0.24224278
+        outSlope: -0.24224278
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.10251041
+        inWeight: 0.055785008
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

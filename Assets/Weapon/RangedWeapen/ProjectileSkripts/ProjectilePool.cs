@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ProjectilePool : MonoBehaviour 
+public class ProjectilePool : MonoBehaviour, IProjectileSpawner
 {
+    [SerializeField] private ProjectilePoolSO _projectileSpawner;
     [SerializeField] private Projectile _projectilePrefab;
-
+    
     private IObjectPool<Projectile> _projectilePool;
 
     private void Awake()
     {
+        _projectileSpawner.Spawner = this;
+        
         _projectilePool = new ObjectPool<Projectile>(
             createFunc: CreateProjectile,
             actionOnGet: OnTakeProjectileFromPool,
@@ -20,7 +23,7 @@ public class ProjectilePool : MonoBehaviour
         );
     }
 
-    public Projectile GetProjectile => _projectilePool.Get();
+    public Projectile Spawn => _projectilePool.Get();
 
     private Projectile CreateProjectile()
     {
@@ -29,19 +32,8 @@ public class ProjectilePool : MonoBehaviour
 
         return projectile;
     }
-
-    private void OnTakeProjectileFromPool(Projectile projectile)
-    {
-        projectile.gameObject.SetActive(true);
-    }
-
-
-    private void OnReturnProjectileToPool(Projectile projectile)
-    {
-        projectile.gameObject.SetActive(false);
-    }
-    private void OnDestroyProjectile(Projectile  projectile)
-    {
-        Destroy(projectile.gameObject);
-    }
+    
+    private void OnTakeProjectileFromPool(Projectile projectile) => projectile.gameObject.SetActive(true);
+    private void OnReturnProjectileToPool(Projectile projectile) => projectile.gameObject.SetActive(false);
+    private void OnDestroyProjectile(Projectile  projectile) => Destroy(projectile.gameObject);
 }

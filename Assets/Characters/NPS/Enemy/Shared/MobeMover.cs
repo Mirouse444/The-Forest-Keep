@@ -46,6 +46,9 @@ internal class MobeMover : MonoBehaviour
             animationSpeed = 2f;
         }
         
+        int directionX = targetPosition.x >= transform.position.x ? 1 : -1;
+        ApplyRotation(directionX);
+        
         float distanceX = Mathf.Abs(targetPosition.x - transform.position.x);
         if (distanceX - _fault <= _stopDistance) 
         {
@@ -57,9 +60,6 @@ internal class MobeMover : MonoBehaviour
         float defaultStep = currentSpeed * Time.deltaTime;
         float step = Mathf.Min(defaultStep, maxStep);
         
-        int directionX = targetPosition.x >= transform.position.x ? 1 : -1;
-        
-        ApplyRotation(directionX);
         _animator.SetFloat("MoveSpeed", animationSpeed);
         transform.Translate(new Vector3(directionX * step, 0f, 0f), Space.World);
     }

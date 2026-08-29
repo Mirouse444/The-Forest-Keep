@@ -38,8 +38,8 @@ public class DeathAnimationPool : MonoBehaviour, IAnimationSpawner
 
     private IEnumerator DeathAnimationCoroutine(Animator corpseModel)
     {
-        string clipName = Random.value > 0.5f ? "death_01" : "death_02"; 
-        corpseModel.Play(clipName, -1, 0f);
+        corpseModel.SetFloat("RandomValue", Random.value);
+        corpseModel.SetTrigger("Death");
 
         yield return _deathWait;
 

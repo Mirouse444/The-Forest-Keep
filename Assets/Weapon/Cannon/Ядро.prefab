@@ -280,7 +280,7 @@ MonoBehaviour:
   _pierceCount: 1
   _collisionDetector: {fileID: 8158277123196006476}
   _projectileRoot: {fileID: 977013088235544522}
-  _timeToDespawn: 1
+  _timeToDespawn: 8
 --- !u!96 &4263836136975649065
 TrailRenderer:
   serializedVersion: 4

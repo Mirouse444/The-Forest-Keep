@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SpriteFader : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer[] _spriteRenderers;
     [SerializeField] private float _fadeTime;
-    [SerializeField] AnimationCurve _fadeCurve;
+    [SerializeField] private AnimationCurve _fadeCurve;
 
     private float _currentFadeTime;
 
@@ -12,13 +12,17 @@ public class SpriteFader : MonoBehaviour
 
     private void Update()
     {
-        if(_currentFadeTime < _fadeTime)
-        {
-            Color color = _spriteRenderer.color;
-            color.a = _fadeCurve.Evaluate(_currentFadeTime / _fadeTime);
-            _spriteRenderer.color = color;
+        if(_currentFadeTime >= _fadeTime) return;
 
-            _currentFadeTime += Time.deltaTime;
+        float alpha = _fadeCurve.Evaluate(_currentFadeTime / _fadeTime);
+        
+        foreach (var spriteRenderer in _spriteRenderers)
+        {
+            Color color = spriteRenderer.color;
+            color.a = alpha;
+            spriteRenderer.color = color;
         }
+
+        _currentFadeTime += Time.deltaTime;
     }
 }

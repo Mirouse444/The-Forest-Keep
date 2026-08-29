@@ -1,4 +1,4 @@
-﻿internal enum DamageModifierPriority
+﻿public enum DamageModifierPriority
 {
     Additive,
     Multiplicative

@@ -2,6 +2,8 @@
 
 public class PlayerAimVisuals : MonoBehaviour
 {
+    private const float Offset = 0.4f; 
+    
     [SerializeField] private PlayerAim _aimProvider;
     [SerializeField] private Transform _weaponHolder;
     
@@ -14,11 +16,8 @@ public class PlayerAimVisuals : MonoBehaviour
     private Vector3 _rightWeaponScale;
     private Vector3 _leftWeaponScale;
 
-    private void Awake()
-    {
-        _PlayerSpriteRenderer = GetComponent<SpriteRenderer>();
-    }
-    
+    private void Awake() => _PlayerSpriteRenderer = GetComponent<SpriteRenderer>();
+
     private void Start()
     {
         _rightWeaponLocalPosition = new Vector3(-_weaponHolder.localPosition.x, _weaponHolder.localPosition.y, _weaponHolder.localPosition.z);
@@ -29,22 +28,25 @@ public class PlayerAimVisuals : MonoBehaviour
     
     private void Update()
     {
-        Vector2 direction = _aimProvider.GetAimDirection(_weaponHolder.position);
+        Vector2 flipDirection = _aimProvider.GetAimDirection(transform.position);
         
-        if (direction.x < -0.5f)
+        switch (flipDirection.x)
         {
-            _PlayerSpriteRenderer.flipX = true;
-            _weaponHolder.localPosition = _rightWeaponLocalPosition;
-            _weaponHolder.localScale = _rightWeaponScale; 
+            case < -Offset:
+                _PlayerSpriteRenderer.flipX = true;
+                _weaponHolder.localPosition = _rightWeaponLocalPosition;
+                _weaponHolder.localScale = _rightWeaponScale;
+                break;
+            case > Offset:
+                _PlayerSpriteRenderer.flipX = false;
+                _weaponHolder.localPosition = _leftWeaponLocalPosition;
+                _weaponHolder.localScale = _leftWeaponScale;
+                break;
         }
-        else if (direction.x > 0.5f)
-        {
-            _PlayerSpriteRenderer.flipX = false;
-            _weaponHolder.localPosition = _leftWeaponLocalPosition;
-            _weaponHolder.localScale = _leftWeaponScale;
-        }
+
+        Vector2 weaponAimDirection = _aimProvider.GetAimDirection(_weaponHolder.position);
         
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float targetAngle = Mathf.Atan2(weaponAimDirection.y, weaponAimDirection.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
         
         _weaponHolder.rotation = Quaternion.Lerp(

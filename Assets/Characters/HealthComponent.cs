@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class HealthComponent : MonoBehaviour, IDamageable, IHealable
+public class HealthComponent : MonoBehaviour, IDamageable, IHealable
 {
     private HealthModel _healthModel = new HealthModel();
 

@@ -12,11 +12,8 @@ public class SkeletonArcherBrain : MonoBehaviour
     [SerializeField] private Transform _shootPlace;
     [SerializeField] private ProjectileLauncher _launcher;
 
-    [Header("Animation & Rigging")]
+    [Header("Animation")]
     [SerializeField] private Animator _animator;
-    [SerializeField] private Transform _aimBone; 
-    [SerializeField] private float _aimBoneRotationOffset;
-    [SerializeField] private float _aimLerpSpeed = 15f;
 
     [Header("Physics")]
     [SerializeField] private float _gravityScale = 1f;
@@ -67,8 +64,6 @@ public class SkeletonArcherBrain : MonoBehaviour
             return;
         }
         
-        RotateAimBone(_currentAimDirection);
-        
         _aimTimer += Time.deltaTime;
         if (_aimTimer >= _aimDuration)
             Shoot();
@@ -98,25 +93,19 @@ public class SkeletonArcherBrain : MonoBehaviour
             _currentState = State.Walk;
     }
     
-    private void RotateAimBone(Vector2 direction)
-    {
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle + _aimBoneRotationOffset);
-        _aimBone.rotation = Quaternion.Lerp(_aimBone.rotation, targetRotation, Time.deltaTime * _aimLerpSpeed);
-    }
-
     private void Shoot()
     {
         _animator.SetTrigger("ReleaseBow");
-        _launcher.Fire(_currentAimDirection);
         
         _lastAttackTime = Time.time;
         _currentState = State.Idle;
     }
-
+    
     private void CancelAiming()
     {
         _animator.SetTrigger("CancelAim");
         _currentState = State.Walk;
     }
+    
+    private void AnimationEvent_SpawnArrow() => _launcher.Fire(_currentAimDirection);
 }

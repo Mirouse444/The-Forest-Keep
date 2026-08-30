@@ -10,9 +10,11 @@ public class NightTrigger : MonoBehaviour
     
     public event Action OnNightStarted;
 
-    private void OnEnable() =>_dayTrigger.OnDayStarted += () => _isDay = true;
+    private void OnEnable() =>_dayTrigger.OnDayStarted += StartDay;
+    private void OnDisable() =>_dayTrigger.OnDayStarted -= StartDay;
 
-
+    private void StartDay() => _isDay = true; 
+    
     public void StartNight()
     {
         if (_isDay && _activeZone.PlayerInZone)

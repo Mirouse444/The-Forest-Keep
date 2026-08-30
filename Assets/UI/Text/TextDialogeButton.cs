@@ -9,18 +9,19 @@ public class TextDialogeButton : MonoBehaviour
     [SerializeField] private DialogeTyper _text;
     
     private int _currentMessageIndex;
+    
     public event Action OnDialogeEnd;
     
-    private void OnEnable() => _button.onClick.AddListener(OnButtonClick);
-    private void OnDisable() => _button.onClick.RemoveListener(OnButtonClick);
-    
-    private void Start()
+    private void OnEnable()
     {
+        _button.onClick.AddListener(OnButtonClick);
         if (_messages.Length <= 0) return;
         
-        _text.ShowDialog(_messages[_currentMessageIndex]);
-        _currentMessageIndex++;
+        _currentMessageIndex = 0;
+        _text.ShowDialog(_messages[_currentMessageIndex++]);
     }
+
+    private void OnDisable() => _button.onClick.RemoveListener(OnButtonClick);
 
     private void OnButtonClick()
     {
@@ -32,13 +33,12 @@ public class TextDialogeButton : MonoBehaviour
 
         if (_currentMessageIndex < _messages.Length)
         {
-            _text.ShowDialog(_messages[_currentMessageIndex]);
-            _currentMessageIndex++;
+            _text.ShowDialog(_messages[_currentMessageIndex++]);
         }
         else
         {
             OnDialogeEnd?.Invoke();
-            gameObject.SetActive(false);
+            _currentMessageIndex = 0;
         }
     }
 }

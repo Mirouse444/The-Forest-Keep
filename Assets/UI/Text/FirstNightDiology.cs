@@ -3,7 +3,6 @@
 public class FirstNightDiology : MonoBehaviour
 {
     [SerializeField] private TextDialogeButton _dialog;
-    [SerializeField] private GameObject _border;
     [SerializeField] private NightTrigger _trigger;
 
     private void OnEnable()
@@ -26,7 +25,6 @@ public class FirstNightDiology : MonoBehaviour
     
     private void CloseDialoge()
     {
-        Destroy(_border);
         Destroy(_dialog.gameObject);
         Time.timeScale = 1;
         Destroy(gameObject);

@@ -1,9 +1,9 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-public class DiologyContinue : MonoBehaviour
+public class DialogyContinue : MonoBehaviour
 {
-    [SerializeField] private GameObject _diolog;
+    [SerializeField] private GameObject _dialog;
     [SerializeField] private GameObject _panel;
     [SerializeField] private Button _button;
 
@@ -13,7 +13,7 @@ public class DiologyContinue : MonoBehaviour
     private void OnButtonClick()
     {
         _panel.SetActive(true);
-        _diolog.SetActive(true);
+        _dialog.SetActive(true);
         Destroy(gameObject);
     }
 }

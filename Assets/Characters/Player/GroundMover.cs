@@ -49,4 +49,10 @@ public class GroundMover : MonoBehaviour
             _currentBufferTime = _actionBuffer;
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(_groundCheck.position, _groundCheckSize);
+    }
 }

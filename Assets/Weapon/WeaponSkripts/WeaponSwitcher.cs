@@ -24,10 +24,10 @@ public class WeaponSwitcher : MonoBehaviour
         _input.OnButton4 -= Button4Pressed;
     }
 
-    private void Button1Pressed() => SelectCategory(WeaponCategory.MeleeWeapon);
+    private void Button1Pressed() => SelectCategory(WeaponCategory.AssaultRifle);
     private void Button2Pressed() => SelectCategory(WeaponCategory.Shotgun);
-    private void Button3Pressed() => SelectCategory(WeaponCategory.AssaultRifle);
-    private void Button4Pressed() => SelectCategory(WeaponCategory.SniperRifle);
+    private void Button3Pressed() => SelectCategory(WeaponCategory.SniperRifle);
+    private void Button4Pressed() => SelectCategory(WeaponCategory.Spacial);
     
     private void SelectCategory(WeaponCategory category)
     {

@@ -10,13 +10,8 @@ public class PlayerWeaponController : MonoBehaviour
     private IReloadMagazine _currentMagazine;
     private PlayerInputReader _inputReader;
     private IWeaponTrigger _currentWeapon;
-    private IAimProvider _aimProvider;
 
-    private void Awake()
-    {
-        _inputReader = GetComponent<PlayerInputReader>();
-        _aimProvider = GetComponent<PlayerAim>(); 
-    }
+    private void Awake() => _inputReader = GetComponent<PlayerInputReader>();
 
     private void OnEnable()
     {
@@ -57,10 +52,10 @@ public class PlayerWeaponController : MonoBehaviour
         if (_currentMagazine is { IsEmpty: true } )  
             ReloadPressed();
         else
-            _currentWeapon?.OnTriggerPressed(_aimProvider);
+            _currentWeapon?.OnTriggerPressed();
     }
 
-    private void FireReleased() => _currentWeapon?.OnTriggerReleased(_aimProvider);
+    private void FireReleased() => _currentWeapon?.OnTriggerReleased();
     
     private void ReloadPressed() => _currentMagazine?.Reload();
 }

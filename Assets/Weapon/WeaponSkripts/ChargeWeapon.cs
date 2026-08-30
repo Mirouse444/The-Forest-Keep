@@ -15,13 +15,13 @@ public class ChargeWeapon : MonoBehaviour, IWeaponTrigger
         _weaponLauncher = GetComponent<IWeaponLauncher>();
     }
 
-    public void OnTriggerPressed(IAimProvider aimProvider)
+    public void OnTriggerPressed()
     {
         _isCharging = true;
         _chargeStartTime = Time.time;
     }
 
-    public void OnTriggerReleased(IAimProvider aimProvider)
+    public void OnTriggerReleased()
     {
         if (!_isCharging) return;
         _isCharging = false;
@@ -32,7 +32,7 @@ public class ChargeWeapon : MonoBehaviour, IWeaponTrigger
 
         float chargePercent = Mathf.Clamp01(chargeDuration / _maxChargeTime);
 
-        Vector2 releaseDirection = aimProvider.GetAimDirection(_weaponLauncher.transform.position);
+        Vector2 releaseDirection = _weaponLauncher.transform.right;
 
         _weaponLauncher.Fire(releaseDirection, chargePercent);
     }

@@ -10,10 +10,7 @@ public class PlayerInputReader : MonoBehaviour
     public event Action OnFireCanceled;
     public event Action OnReloadStarted;
     
-    private void Awake()
-    {
-        _input = new PlayerInput();
-    }
+    private void Awake() => _input = new PlayerInput();
 
     private void OnEnable()
     {

@@ -2,12 +2,14 @@
 
 public class PlayerAimVisuals : MonoBehaviour
 {
-    private const float Offset = 0.4f; 
+    private const float Offset = 0.07f; 
     
     [SerializeField] private PlayerAim _aimProvider;
     [SerializeField] private Transform _weaponHolder;
     
-    [Header("Настройки")]
+    [Header("Settings")]
+    [SerializeField, Range(0f, 90f)] private float _maxAngleUp = 30f;
+    [SerializeField, Range(0f, 90f)] private float _maxAngleDown = 30f;
     [SerializeField, Range(5f, 30f)] private float _weaponRotationSpeed = 15f;
     
     private SpriteRenderer _PlayerSpriteRenderer;
@@ -15,6 +17,7 @@ public class PlayerAimVisuals : MonoBehaviour
     private Vector3 _leftWeaponLocalPosition;
     private Vector3 _rightWeaponScale;
     private Vector3 _leftWeaponScale;
+    private bool _isFacingRight;
 
     private void Awake() => _PlayerSpriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -36,17 +39,25 @@ public class PlayerAimVisuals : MonoBehaviour
                 _PlayerSpriteRenderer.flipX = true;
                 _weaponHolder.localPosition = _rightWeaponLocalPosition;
                 _weaponHolder.localScale = _rightWeaponScale;
+                _isFacingRight = false;
                 break;
             case > Offset:
                 _PlayerSpriteRenderer.flipX = false;
                 _weaponHolder.localPosition = _leftWeaponLocalPosition;
                 _weaponHolder.localScale = _leftWeaponScale;
+                _isFacingRight = true;
                 break;
         }
 
         Vector2 weaponAimDirection = _aimProvider.GetAimDirection(_weaponHolder.position);
         
-        float targetAngle = Mathf.Atan2(weaponAimDirection.y, weaponAimDirection.x) * Mathf.Rad2Deg;
+        Vector2 workingDirection = new Vector2(Mathf.Abs(weaponAimDirection.x), weaponAimDirection.y);
+        float targetAngle = Mathf.Atan2(workingDirection.y, workingDirection.x) * Mathf.Rad2Deg;
+        targetAngle = Mathf.Clamp(targetAngle, -_maxAngleDown, _maxAngleUp);
+
+        if (!_isFacingRight)
+            targetAngle = 180f - targetAngle;
+        
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
         
         _weaponHolder.rotation = Quaternion.Lerp(

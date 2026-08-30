@@ -10,6 +10,7 @@ public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
     private IWeaponMagazine  _magazine;
     private WaitForSeconds _fireRateTime;
     private Coroutine _fireCoroutine;
+    private float _timer;
 
     private void Awake()
     {
@@ -18,13 +19,13 @@ public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
         _fireRateTime = new WaitForSeconds(_fireRate);
     }
 
-    public void OnTriggerPressed(IAimProvider aimProvider)
+    public void OnTriggerPressed()
     {
-        if (_fireCoroutine == null)
-            _fireCoroutine = StartCoroutine(FireRoutine(aimProvider));
+        if (Time.time >= _timer + _fireRate)
+            _fireCoroutine ??= StartCoroutine(FireRoutine());
     }
 
-    public void OnTriggerReleased(IAimProvider aimProvider)
+    public void OnTriggerReleased()
     {
         if (_fireCoroutine != null)
         {
@@ -33,15 +34,16 @@ public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
         }
     }
 
-    private IEnumerator FireRoutine(IAimProvider aimProvider)
+    private IEnumerator FireRoutine()
     {
         while (true)
         {
             if (!_magazine.TryConsumeAmmo()) yield break;
+            _timer =  Time.time;
             
-            Vector2 dir = aimProvider.GetAimDirection(_weaponLauncher.transform.position);
+            Vector2 dir = _weaponLauncher.transform.right;
             _weaponLauncher.Fire(dir);
-
+            
             yield return _fireRateTime;
         }
     }

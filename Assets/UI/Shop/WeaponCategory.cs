@@ -3,5 +3,5 @@
     Shotgun,
     AssaultRifle,
     SniperRifle,
-    MeleeWeapon
+    Spacial
 }

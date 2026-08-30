@@ -17,7 +17,7 @@ public class ShotgunSemiAutomatic : MonoBehaviour, IWeaponTrigger
         _magazine = GetComponent<IWeaponMagazine>();
     }
 
-    public void OnTriggerPressed(IAimProvider aimProvider)
+    public void OnTriggerPressed()
     {
         if (Time.time - _timer > _fireRate)
         {
@@ -25,7 +25,7 @@ public class ShotgunSemiAutomatic : MonoBehaviour, IWeaponTrigger
             
             _timer = Time.time;
             
-            Vector2 baseDirection = aimProvider.GetAimDirection(_weaponLauncher.transform.position);
+            Vector2 baseDirection = _weaponLauncher.transform.right;
             
             float angleStep = _projectileCount > 1 ? _spreadAngle / (_projectileCount - 1) : 0f;
   
@@ -42,5 +42,5 @@ public class ShotgunSemiAutomatic : MonoBehaviour, IWeaponTrigger
         }
     }
     
-    public void OnTriggerReleased(IAimProvider aimProvider) {}
+    public void OnTriggerReleased() {}
 }

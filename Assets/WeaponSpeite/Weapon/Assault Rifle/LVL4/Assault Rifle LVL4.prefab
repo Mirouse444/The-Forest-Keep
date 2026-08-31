@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 7262d218f9f9b02439a271e712617251, type: 3}
       propertyPath: m_Name
-      value: Assault Rifle LVL3
+      value: Assault Rifle LVL4
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 7262d218f9f9b02439a271e712617251, type: 3}
       propertyPath: m_LocalScale.x
@@ -108,13 +108,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7262d218f9f9b02439a271e712617251, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5505401838567451722}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7262d218f9f9b02439a271e712617251, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4971624721978860243}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7262d218f9f9b02439a271e712617251, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8278846091004778114}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7262d218f9f9b02439a271e712617251, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5505401838567451722}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 7262d218f9f9b02439a271e712617251, type: 3}
 --- !u!4 &1552539271617903877 stripped
 Transform:
@@ -126,20 +126,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7262d218f9f9b02439a271e712617251, type: 3}
   m_PrefabInstance: {fileID: 8709468969403712008}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5505401838567451722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758163839912203616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87bd4157f50c44b48c4302fb29f48d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
-  _maxAmmo: 30
-  _reloadTime: 1.5
 --- !u!114 &4971624721978860243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,14 +138,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e118e820a6edd542a8169f4b0172c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
-  _shootPlace: {fileID: 0}
-  _projectileSpawner: {fileID: 0}
-  _minDamage: 0
-  _maxDamage: 0
-  _criticalDamage: 0
-  _criticalChance: 0
-  _shootSpeed: 0
-  _knockbackForce: 0
+  _shootPlace: {fileID: 4441491999077373120}
+  _projectileSpawner: {fileID: 11400000, guid: f4f911ae12db890408c52b2544855d26, type: 2}
+  _minDamage: 15
+  _maxDamage: 24
+  _criticalDamage: 39
+  _criticalChance: 12
+  _shootSpeed: 50
+  _knockbackForce: 7
 --- !u!114 &8278846091004778114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,4 +158,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd39ad776eb33d4286cdf7c753f5486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticWeapon
-  _fireRate: 0.1
+  _fireRate: 0.12
+--- !u!114 &5505401838567451722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758163839912203616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bd4157f50c44b48c4302fb29f48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
+  _maxAmmo: 35
+  _reloadTime: 1.3

@@ -17,15 +17,6 @@ public class MenuPanelController : MonoBehaviour
             Open();
     }
 
-    private void Open()
-    {
-        _panel.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    private void Close()
-    {
-        _panel.SetActive(false);
-        Time.timeScale = 1f;
-    }
+    private void Open() => _panel.SetActive(true);
+    private void Close() => _panel.SetActive(false);
 }

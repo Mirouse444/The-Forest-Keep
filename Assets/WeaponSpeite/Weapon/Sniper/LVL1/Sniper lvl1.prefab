@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3415248240427699401}
   - component: {fileID: 1806980139627181359}
   - component: {fileID: 9113500325413485952}
-  - component: {fileID: 7498345649984563621}
-  - component: {fileID: -4827829474396154161}
+  - component: {fileID: -2831095087706113406}
+  - component: {fileID: 297978021186439384}
   m_Layer: 0
-  m_Name: Sniper lvl2
+  m_Name: Sniper lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,14 +28,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495326491000930768}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -85.7, y: 322.4, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3923013962336002650}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1806980139627181359
 SpriteRenderer:
   serializedVersion: 3
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6932812066694256677, guid: cf3c3c557f177804aa90f1be18c312ff, type: 3}
+  m_Sprite: {fileID: 3574538954488043157, guid: 784ccb109802a3f47bacd734001fee9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,28 +109,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 3923013962336002650}
-  _projectileSpawner: {fileID: 11400000, guid: f4f911ae12db890408c52b2544855d26, type: 2}
-  _minDamage: 5
-  _maxDamage: 7
-  _criticalDamage: 12
-  _criticalChance: 50
-  _shootSpeed: 54
-  _knockbackForce: 6
---- !u!114 &7498345649984563621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495326491000930768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87bd4157f50c44b48c4302fb29f48d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
-  _maxAmmo: 153
-  _reloadTime: 3.3
---- !u!114 &-4827829474396154161
+  _projectileSpawner: {fileID: 11400000, guid: bea9b586030b5504097c7f284ed5fc4c, type: 2}
+  _minDamage: 12
+  _maxDamage: 17
+  _criticalDamage: 29
+  _criticalChance: 13
+  _shootSpeed: 40
+  _knockbackForce: 7
+--- !u!114 &-2831095087706113406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +128,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd39ad776eb33d4286cdf7c753f5486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticWeapon
-  _fireRate: 0.34
+  _fireRate: 1.5
+--- !u!114 &297978021186439384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495326491000930768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bd4157f50c44b48c4302fb29f48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
+  _maxAmmo: 10
+  _reloadTime: 2
 --- !u!1 &3480227562863053612
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 3480227562863053612}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.001, y: 4.642, z: 0}
+  m_LocalPosition: {x: 8.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

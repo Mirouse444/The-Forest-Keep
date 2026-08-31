@@ -18,8 +18,8 @@ public class ProjectilePool : MonoBehaviour, IProjectileSpawner
             actionOnRelease: OnReturnProjectileToPool,
             actionOnDestroy: OnDestroyProjectile,
             collectionCheck: false,
-            defaultCapacity: 10,
-            maxSize: 16
+            defaultCapacity: 30,
+            maxSize: 50
         );
     }
 

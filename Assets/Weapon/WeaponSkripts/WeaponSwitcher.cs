@@ -41,7 +41,8 @@ public class WeaponSwitcher : MonoBehaviour
     
     private void SelectCategory(WeaponCategory category)
     {
-        _currentActiveWeapon?.SetActive(false);
+        if (_currentActiveWeapon != null)
+            _currentActiveWeapon.SetActive(false);
         
         _currentActiveWeapon = _inventory.GetWeapon(category);
         

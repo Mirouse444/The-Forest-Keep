@@ -11,15 +11,11 @@ public class GameOverMenu : MonoBehaviour
 
     private void Show()
     {
-        Time.timeScale = 0f;
-
         _panel.SetActive(true);
     }
 
     public void RestartGame()
     {
-        Time.timeScale = 1f;
-
         _panel.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

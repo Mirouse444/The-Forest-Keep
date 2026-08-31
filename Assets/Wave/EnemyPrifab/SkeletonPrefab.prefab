@@ -759,6 +759,8 @@ GameObject:
   - component: {fileID: 4086384665068011463}
   - component: {fileID: 3504753886889527136}
   - component: {fileID: -185509096008747866}
+  - component: {fileID: -454386724925031296}
+  - component: {fileID: 8567207040878202893}
   m_Layer: 9
   m_Name: SkeletonPrefab
   m_TagString: Untagged
@@ -934,8 +936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011ec57f438d5e44d9da3c3620c56f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomHealthSpawner
-  _minHealth: 20
-  _maxHealth: 50
+  _minHealth: 65
+  _maxHealth: 85
 --- !u!114 &3416203377057305730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,8 +967,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoneyForDeath
   _receiver: {fileID: 11400000, guid: b1128893d9a6097448d7d618283cb1c4, type: 2}
   _health: {fileID: 621513304720378386}
-  _maxCoinForDied: 47
-  _minCoinForDied: 78
+  _maxCoinForDied: 25
+  _minCoinForDied: 30
 --- !u!114 &814024230536768923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,8 +981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d682ccb17c28c4446a2df54e0069996b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetScanner
-  _visionRadius: 15
-  _loseTargetRadius: 25
+  _visionRadius: 14
+  _loseTargetRadius: 19
   _scanInterval: 0.25
   _targetLayer:
     serializedVersion: 2
@@ -1000,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb094d107a7eef479e10265a27e2b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonArcherBrain
-  _attackCooldown: 1
+  _attackCooldown: 0.5
   _aimDuration: 1
   _directShootDistance: 2.14
   _shootPlace: {fileID: 6706355919069336742}
@@ -1043,6 +1045,34 @@ MonoBehaviour:
   _deathAnimation: {fileID: 11400000, guid: e26d5ac6b29a8d241b3777ab4a8e40d8, type: 2}
   _health: {fileID: 621513304720378386}
   _animator: {fileID: 6108156432769439621}
+--- !u!114 &-454386724925031296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847636828195214171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335b5dfe48b0487eba26c385cb30acb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageTextEmitter
+  _effectsSO: {fileID: 11400000, guid: a238d24e358b38a4c927e84c85ead51c, type: 2}
+  _health: {fileID: 621513304720378386}
+--- !u!114 &8567207040878202893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847636828195214171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54def37b26ea22543a7d9b7062e8b1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockbackReceiver
+  _knockbackTrajectory: {x: 1, y: 0.5}
+  _stunDuration: 0.25
 --- !u!1 &1953990794233754496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,12 +2650,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 6706355919069336742}
   _projectileSpawner: {fileID: 11400000, guid: 402415193bf327f4eb68ceab29c959b5, type: 2}
-  _minDamage: 1
-  _maxDamage: 2
-  _criticalDamage: 25
+  _minDamage: 25
+  _maxDamage: 35
+  _criticalDamage: 0
   _criticalChance: 0
-  _shootSpeed: 14.4
-  _knockbackForce: 2.25
+  _shootSpeed: 14
+  _knockbackForce: 7
 --- !u!1 &6931189163660076480
 GameObject:
   m_ObjectHideFlags: 0

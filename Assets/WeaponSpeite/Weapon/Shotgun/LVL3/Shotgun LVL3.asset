@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de2a373d0414ea0bf914056d0b5cf03, type: 3}
+  m_Name: Shotgun LVL3
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDataUI
+  Category: 0
+  WeaponPrefab: {fileID: 2092542647499340699, guid: 311452bd2cb4c0b4bbb333f87f303e18, type: 3}
+  UIIcon: {fileID: 7856409591847296691, guid: 31b4c85db8d2b354593272f1a0f8b3ca, type: 3}

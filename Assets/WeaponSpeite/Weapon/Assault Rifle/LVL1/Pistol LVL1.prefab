@@ -110,12 +110,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 5771109404705114346}
   _projectileSpawner: {fileID: 11400000, guid: bea9b586030b5504097c7f284ed5fc4c, type: 2}
-  _minDamage: 4
-  _maxDamage: 6
-  _criticalDamage: 10
-  _criticalChance: 15
+  _minDamage: 3
+  _maxDamage: 5
+  _criticalDamage: 8
+  _criticalChance: 10
   _shootSpeed: 40
-  _knockbackForce: 6
+  _knockbackForce: 7
 --- !u!114 &3292233539676805324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd39ad776eb33d4286cdf7c753f5486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticWeapon
-  _fireRate: 0.4
+  _fireRate: 1
 --- !u!114 &6572126712388390452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
   _maxAmmo: 10
-  _reloadTime: 1.5
+  _reloadTime: 2
 --- !u!1 &8841184909743253359
 GameObject:
   m_ObjectHideFlags: 0

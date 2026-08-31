@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a240300dbd70d2489fff743011ec7b2, type: 3}
+  m_Name: Night 3
+  m_EditorClassIdentifier: Assembly-CSharp::NightConfig
+  _waves:
+  - _enemyPrefab: {fileID: 5570220310193245101, guid: cedc9b127554d4548b464d48dc060119, type: 3}
+    _count: 10
+    _spawnInterval: 0
+  - _enemyPrefab: {fileID: 1735977640445930941, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+    _count: 10
+    _spawnInterval: 20
+  - _enemyPrefab: {fileID: 7478299128603158124, guid: 1c0fe518e6ce1aa46b6c2f18152a1612, type: 3}
+    _count: 20
+    _spawnInterval: 10
+  - _enemyPrefab: {fileID: 1357425985223840899, guid: fb6ca85fa82ed4b4b9b0a5e1af43e6c0, type: 3}
+    _count: 1
+    _spawnInterval: 0

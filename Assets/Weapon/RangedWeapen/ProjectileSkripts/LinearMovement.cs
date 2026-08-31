@@ -4,30 +4,31 @@ using UnityEngine;
 public class LinearMovement : MonoBehaviour
 {
     [SerializeField] private Projectile _projectile;
-
+    [SerializeField] private Rigidbody2D _projectileRigidbody;
+    [SerializeField] private LayerMask _collisionMask;
+    
     private Vector2 _velocity;
-    private bool _isMoving;
 
-    private void OnEnable()
-    { 
-        _projectile.LaunchAction += OnLaunch; 
-    }
+    private void OnEnable() => _projectile.LaunchAction += OnLaunch;
+    private void OnDisable() => _projectile.LaunchAction -= OnLaunch;
 
-    private void OnDisable()
+    private void OnLaunch(LaunchData data) => _velocity = data.Direction * data.Speed;
+
+    private void FixedUpdate()
     {
-        _projectile.LaunchAction -= OnLaunch;
-        _isMoving = false;
-    }
+        Vector2 currentPosition = transform.position;
+        Vector2 movementThisFrame = _velocity * Time.fixedDeltaTime;
+        float distanceThisFrame = movementThisFrame.magnitude;
+        
+        RaycastHit2D hit = Physics2D.Raycast(currentPosition, _velocity.normalized, distanceThisFrame, _collisionMask);
 
-    private void OnLaunch(LaunchData data)
-    {
-        _velocity = data.Direction * data.Speed;
-        _isMoving = true;
-    }
-
-    private void Update()
-    {
-        if (_isMoving)
-            transform.Translate(_velocity * Time.deltaTime, Space.World);
+        if (hit.collider != null)
+        {
+            _projectileRigidbody.MovePosition(hit.point);
+        }
+        else
+        {
+            _projectileRigidbody.MovePosition(currentPosition + movementThisFrame);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(PlayerAim))]
 [RequireComponent(typeof(PlayerInputReader))]
@@ -49,6 +50,12 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void FirePressed()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        
+        if (_currentMagazine as Object == null)
+            return;
+        
         if (_currentMagazine is { IsEmpty: true } )  
             ReloadPressed();
         else

@@ -1007,6 +1007,7 @@ GameObject:
   - component: {fileID: 4316441004449101906}
   - component: {fileID: 2006526009500480713}
   - component: {fileID: 7030834432249012568}
+  - component: {fileID: -8985220061244193551}
   m_Layer: 9
   m_Name: 'Zombie_Normal '
   m_TagString: Untagged
@@ -1090,7 +1091,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1151,8 +1152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011ec57f438d5e44d9da3c3620c56f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomHealthSpawner
-  _minHealth: 14
-  _maxHealth: 62
+  _minHealth: 90
+  _maxHealth: 110
 --- !u!114 &7288942274335417216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,10 +1181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865cb0a5753ec8e45ba3c488ff4a9b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnPlace
-  _minDamage: 1
-  _maxDamage: 1
-  _knockbackForce: 5
-  _attackCooldown: 1
+  _minDamage: 12
+  _maxDamage: 20
+  _knockbackForce: 8
+  _attackCooldown: 0.5
   _targetLayer:
     serializedVersion: 2
     m_Bits: 16768
@@ -1219,8 +1220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d682ccb17c28c4446a2df54e0069996b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetScanner
-  _visionRadius: 6
-  _loseTargetRadius: 9
+  _visionRadius: 9
+  _loseTargetRadius: 12
   _scanInterval: 0.25
   _targetLayer:
     serializedVersion: 2
@@ -1283,8 +1284,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoneyForDeath
   _receiver: {fileID: 11400000, guid: b1128893d9a6097448d7d618283cb1c4, type: 2}
   _health: {fileID: 2532842342192004707}
-  _maxCoinForDied: 14
-  _minCoinForDied: 19
+  _maxCoinForDied: 20
+  _minCoinForDied: 25
+--- !u!114 &-8985220061244193551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653981121320664489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54def37b26ea22543a7d9b7062e8b1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockbackReceiver
+  _knockbackTrajectory: {x: 1, y: 0.5}
+  _stunDuration: 0.25
 --- !u!1 &5850158067021091853
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class CannonRotator : MonoBehaviour
 
     public bool AimAt(Vector2 globalDirection)
     {
-        Transform baseTransform = _barrelPivot.parent != null ? _barrelPivot.parent : transform;
+        Transform baseTransform = _barrelPivot.parent ?? transform;
         
         Vector3 localDir = baseTransform.InverseTransformDirection(globalDirection);
         float localAngle = Mathf.Atan2(localDir.y, localDir.x) * Mathf.Rad2Deg;

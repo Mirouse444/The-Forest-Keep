@@ -12,7 +12,7 @@ public class CannonController : MonoBehaviour
     
     private Vector2 _calculatedDirection;
 
-    public CannonStats CurrentStats => _stats[_currentLevel];
+    private CannonStats CurrentStats => _stats[_currentLevel];
 
     private void Awake()
     {

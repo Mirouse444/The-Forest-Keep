@@ -16,7 +16,7 @@ public class CannonWeapon : MonoBehaviour
         Projectile projectile = _projectilePool.Spawner.Spawn;
         
         if (projectile.TryGetComponent<ProjectileExplosion>(out var explosion))
-            explosion.Stats = stats;
+            explosion.OverrideExplosionRadius(stats.ExplosionRadius); 
 
         LaunchData launchData = new LaunchData(
             direction: direction, 

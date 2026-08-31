@@ -18,6 +18,11 @@ public class HPAnimationTrigger : MonoBehaviour
         _health.State.OnDeath -= PlayDeathAnimation;
     }
 
-    private void PlayHurtAnimation() => _animator.SetTrigger("Hurt");
+    private void PlayHurtAnimation()
+    {
+        _animator.SetFloat("RandomValue", Random.value);
+        _animator.SetTrigger("Hurt");
+    }
+
     private void PlayDeathAnimation() => _deathAnimation.DeathAnimation.SpawnDeathModel(transform.position, transform.rotation);
 }

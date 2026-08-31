@@ -1008,6 +1008,7 @@ GameObject:
   - component: {fileID: 2006526009500480713}
   - component: {fileID: 7030834432249012568}
   - component: {fileID: -8985220061244193551}
+  - component: {fileID: 787005582529788346}
   m_Layer: 9
   m_Name: 'Zombie_Normal '
   m_TagString: Untagged
@@ -1300,6 +1301,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KnockbackReceiver
   _knockbackTrajectory: {x: 1, y: 0.5}
   _stunDuration: 0.25
+--- !u!114 &787005582529788346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653981121320664489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813a9e5b441b43a8ad7186d8afcebeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnPlaceAnimation
+  _damageOnPlace: {fileID: 1440020954689426660}
+  _animator: {fileID: 1487122805368050505}
 --- !u!1 &5850158067021091853
 GameObject:
   m_ObjectHideFlags: 0

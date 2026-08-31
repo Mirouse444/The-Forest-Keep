@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(TargetScanner))]
@@ -20,7 +21,11 @@ public class SkeletonArcherBrain : MonoBehaviour
 
     [Header("Setting")]
     [SerializeField] private TargetScanner _scanner;
-    
+    [SerializeField] private HealthComponent _healthComponent;
+
+    private void OnEnable() => _healthComponent.State.OnApplyDamage += CancelAiming;
+    private void OnDisable() => _healthComponent.State.OnApplyDamage -= CancelAiming;
+
     private State _currentState = State.Walk;
     private float _lastAttackTime;
     private float _aimTimer;

@@ -276,8 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335b5dfe48b0487eba26c385cb30acb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageTextEmitter
-  _effectsSO: {fileID: 0}
-  _health: {fileID: 0}
+  _effectsSO: {fileID: 11400000, guid: a238d24e358b38a4c927e84c85ead51c, type: 2}
+  _health: {fileID: 7542405429152788850}
 --- !u!114 &7542405429152788850 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1689745816965413539, guid: 30eef62fad70831479a50f877168ba6b, type: 3}

@@ -1025,7 +1025,7 @@ MonoBehaviour:
   _defaultSpeed: 7.69
   _sprintSpeed: 7
   _stopDistance: 16
-  _stopHurtTime: 0.24
+  _stopHurtTime: 0.45
   _healthComponent: {fileID: 621513304720378386}
   _scanner: {fileID: 814024230536768923}
   _mainTarget: {fileID: 5383276610035052029, guid: 9df5a97c045131046a3ef6843131267f, type: 3}

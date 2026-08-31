@@ -21,7 +21,7 @@ MonoBehaviour:
     _spawnInterval: 2
   - _enemyPrefab: {fileID: 7478299128603158124, guid: 1c0fe518e6ce1aa46b6c2f18152a1612, type: 3}
     _count: 10
-    _spawnInterval: 0
+    _spawnInterval: 15
   - _enemyPrefab: {fileID: 1357425985223840899, guid: fb6ca85fa82ed4b4b9b0a5e1af43e6c0, type: 3}
     _count: 20
     _spawnInterval: 3

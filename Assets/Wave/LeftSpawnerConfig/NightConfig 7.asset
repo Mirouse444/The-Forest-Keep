@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: NightConfig 7
   m_EditorClassIdentifier: Assembly-CSharp::NightConfig
   _waves:
-  - _enemyPrefab: {fileID: 7478299128603158124, guid: 1c0fe518e6ce1aa46b6c2f18152a1612, type: 3}
-    _count: 15
-    _spawnInterval: 10
-  - _enemyPrefab: {fileID: 1357425985223840899, guid: fb6ca85fa82ed4b4b9b0a5e1af43e6c0, type: 3}
+  - _enemyPrefab: {fileID: 5570220310193245101, guid: cedc9b127554d4548b464d48dc060119, type: 3}
     _count: 10
     _spawnInterval: 2
+  - _enemyPrefab: {fileID: 1735977640445930941, guid: 30eef62fad70831479a50f877168ba6b, type: 3}
+    _count: 10
+    _spawnInterval: 2
+  - _enemyPrefab: {fileID: 7478299128603158124, guid: 1c0fe518e6ce1aa46b6c2f18152a1612, type: 3}
+    _count: 10
+    _spawnInterval: 15
+  - _enemyPrefab: {fileID: 1357425985223840899, guid: fb6ca85fa82ed4b4b9b0a5e1af43e6c0, type: 3}
+    _count: 50
+    _spawnInterval: 2
   - _enemyPrefab: {fileID: 1995142558102522196, guid: ae25de7aaca3dbc49a2b6242813ab912, type: 3}
-    _count: 1
+    _count: 10
     _spawnInterval: 0

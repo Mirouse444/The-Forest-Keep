@@ -1010,6 +1010,7 @@ MonoBehaviour:
   _animator: {fileID: 6108156432769439621}
   _gravityScale: 1
   _scanner: {fileID: 814024230536768923}
+  _healthComponent: {fileID: 621513304720378386}
 --- !u!114 &3504753886889527136
 MonoBehaviour:
   m_ObjectHideFlags: 0

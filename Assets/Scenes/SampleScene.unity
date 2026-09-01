@@ -3813,7 +3813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788dd8f1cef64f4888707767c2f93b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosionEffectPool
-  _prefab: {fileID: 5857089349754475916}
+  _prefab: {fileID: 7165848651823848873, guid: 351df4230ceed1746ad84a36a2540803, type: 3}
   _scriptableObject: {fileID: 11400000, guid: bec035f67b3d2234981f39f921b9f197, type: 2}
 --- !u!1 &339564662
 GameObject:
@@ -26791,74 +26791,6 @@ Transform:
   - {fileID: 242256295}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &5857089349754475915
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -22.84519
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.18037
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3593098005050089124, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345483050036845050, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-      propertyPath: m_Name
-      value: Explosion
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
---- !u!114 &5857089349754475916 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4711328793944273868, guid: 648babe71f2134d4ca8690954390cb42, type: 3}
-  m_PrefabInstance: {fileID: 5857089349754475915}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b65a40f60c4d43b8c8bb1a26181c3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ExplosionEffect
 --- !u!1001 &8177368859293459529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27248,4 +27180,3 @@ SceneRoots:
   - {fileID: 1589993097}
   - {fileID: 572591182}
   - {fileID: 1526547770}
-  - {fileID: 5857089349754475915}

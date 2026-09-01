@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7f61ebd0be4354a19d3189fa2e352a, type: 3}
   m_Name: CannonState lvl1
   m_EditorClassIdentifier: Assembly-CSharp::CannonStats
-  Damage: 10
+  Damage: 50
   ProjectileSpeed: 18.7
   KnockbackForce: 5
   FireRate: 1.5
-  ExplosionRadius: 1
+  ExplosionRadius: 6

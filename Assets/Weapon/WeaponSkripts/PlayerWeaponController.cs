@@ -11,8 +11,11 @@ public class PlayerWeaponController : MonoBehaviour
     private IReloadMagazine _currentMagazine;
     private PlayerInputReader _inputReader;
     private IWeaponTrigger _currentWeapon;
+    
+    private bool _isPointerOverUI;
 
     private void Awake() => _inputReader = GetComponent<PlayerInputReader>();
+    
 
     private void OnEnable()
     {
@@ -27,6 +30,8 @@ public class PlayerWeaponController : MonoBehaviour
         _inputReader.OnFireCanceled -= FireReleased;
         _inputReader.OnReloadStarted -= ReloadPressed;
     }
+
+    private void Update() => _isPointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
     public void EquipWeapon(GameObject weaponObject)
     {
@@ -50,7 +55,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void FirePressed()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (_isPointerOverUI)
             return;
         
         if (_currentMagazine as Object == null)

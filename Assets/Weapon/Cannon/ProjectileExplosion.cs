@@ -7,17 +7,15 @@ public class ProjectileExplosion : MonoBehaviour
     [SerializeField] private LayerMask _damageableLayer;
     
     [Header("Explosion Settings")]
-    [SerializeField] private float _defaultExplosionRadius = 2f;
+    [SerializeField, Min(0)] private float _explosionRadius = 2f;
 
     [Header("Visuals")]
     [SerializeField] private ExplosionEffectPoolSO _effectPoolSo;
-    [SerializeField] private GameObject _explosionEffectPrefab;
 
     private readonly Collider2D[] _visionResults = new Collider2D[20];
     private ContactFilter2D _contactFilter;
     
     private LaunchData _launchData;
-    private float _currentExplosionRadius;
 
     private void Awake()
     {
@@ -43,32 +41,24 @@ public class ProjectileExplosion : MonoBehaviour
         _collisionDetector.OnGroundHit -= Explode;
     }
 
-    private void OnLaunch(LaunchData data)
-    {
-        _launchData = data;
-        if (_currentExplosionRadius <= 0f)
-            _currentExplosionRadius = _defaultExplosionRadius;
-    }
-    
-    public void OverrideExplosionRadius(float newRadius)
-    {
-        _currentExplosionRadius = newRadius;
-    }
+    private void OnLaunch(LaunchData data) => _launchData = data;
+
+    public void OverrideExplosionRadius(float newRadius) => _explosionRadius = newRadius;
 
     private void Explode(Collider2D hitCollider)
     {
-        if (_currentExplosionRadius <= 0.01f) return;
+        if (_explosionRadius <= 0.01f) return;
 
         Vector2 explosionCenter = transform.position;
-        int hitsCount = Physics2D.OverlapCircle(transform.position, _currentExplosionRadius, _contactFilter, _visionResults);
+        int hitsCount = Physics2D.OverlapCircle(transform.position, _explosionRadius, _contactFilter, _visionResults);
 
-        _effectPoolSo.GetEffect.Play(_currentExplosionRadius, transform.position);
+        _effectPoolSo.GetEffect.Play(_explosionRadius, transform.position);
         
         for(int i = 0; i < hitsCount; i++)
         {
             float distance = Vector2.Distance(explosionCenter, _visionResults[i].transform.position);
             
-            float damagePercent = Mathf.Clamp01(1f - distance / _currentExplosionRadius);
+            float damagePercent = Mathf.Clamp01(1f - distance / _explosionRadius);
             
             int calculatedDamage = Mathf.RoundToInt(_launchData.WeaponDamage * damagePercent);
 
@@ -86,6 +76,6 @@ public class ProjectileExplosion : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _currentExplosionRadius > 0 ? _currentExplosionRadius : _defaultExplosionRadius);
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
 }

@@ -217,7 +217,9 @@ MonoBehaviour:
   _damageableLayer:
     serializedVersion: 2
     m_Bits: 512
-  _defaultExplosionRadius: 2
+  _explosionRadius: 2
+  _effectPoolSo: {fileID: 11400000, guid: bec035f67b3d2234981f39f921b9f197, type: 2}
+  _explosionEffectPrefab: {fileID: 0}
 --- !u!114 &8378498276852881342
 MonoBehaviour:
   m_ObjectHideFlags: 0

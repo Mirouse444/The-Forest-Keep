@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeeed0b120b419599f5f8f1a491f36d, type: 3}
+  m_Name: Shotgun LVL 1
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponInfoSo
+  _icon: {fileID: 6496607616797416519, guid: 9e1b5b929f9804a4ba9cb9bc34f8a328, type: 3}
+  _minDamage: 2
+  _maxDamage: 4
+  _criticalDamage: 6
+  _criticalChance: 10
+  _knockbackForce: 8
+  _shootSpeed: 40
+  _fireRate: 1.2
+  _projectileCount: 3
+  _pierceCount: 1
+  _spreadAngle: 5
+  _maxAmmo: 5
+  _reloadTime: 2

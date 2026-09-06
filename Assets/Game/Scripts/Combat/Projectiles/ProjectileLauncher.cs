@@ -12,7 +12,8 @@ public class ProjectileLauncher : MonoBehaviour, IWeaponLauncher
     [SerializeField, Min(0)] private float _knockbackForce;
 
     public float ShootSpeed => _shootSpeed;
-
+    public event System.Action OnFire;
+    
     public void Fire(Vector2 direction, float powerMultiplier = 1)
     {
         bool isCritical = _criticalChance > Random.Range(0, 100);
@@ -27,6 +28,7 @@ public class ProjectileLauncher : MonoBehaviour, IWeaponLauncher
             isCritical
         );
 
+        OnFire?.Invoke();
         _projectileSpawner.Spawner.Spawn.Launch(data, _shootPlace.position, _shootPlace.rotation);
     }
 }

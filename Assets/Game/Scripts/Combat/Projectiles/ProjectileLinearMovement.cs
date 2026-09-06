@@ -23,12 +23,8 @@ public class PrijectileLinearMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(currentPosition, _velocity.normalized, distanceThisFrame, _collisionMask);
 
         if (hit.collider != null)
-        {
             _projectileRigidbody.MovePosition(hit.point);
-        }
         else
-        {
             _projectileRigidbody.MovePosition(currentPosition + movementThisFrame);
-        }
     }
 }

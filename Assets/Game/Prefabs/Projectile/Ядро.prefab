@@ -219,7 +219,7 @@ MonoBehaviour:
     m_Bits: 512
   _explosionRadius: 2
   _effectPoolSo: {fileID: 11400000, guid: bec035f67b3d2234981f39f921b9f197, type: 2}
-  _explosionEffectPrefab: {fileID: 0}
+  _audioSpawnerSO: {fileID: 11400000, guid: 6384363226284c042993e19a309cd56e, type: 2}
 --- !u!114 &8378498276852881342
 MonoBehaviour:
   m_ObjectHideFlags: 0

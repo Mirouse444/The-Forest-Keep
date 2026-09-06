@@ -30,6 +30,8 @@ internal class SlimeMover : MonoBehaviour
     private float _currentJumpForce;
     private float _currentHorizontalSpeed;
 
+    public event System.Action OnJump;
+    
     private void Awake()
     {
         _jumpWait = new WaitForSeconds(_jumpDelay);
@@ -54,7 +56,10 @@ internal class SlimeMover : MonoBehaviour
                 yield return _jumpWait;
                 
                 if(IsGrounded())
+                {
                     Jump();
+                    OnJump?.Invoke();
+                }
             }
             else
             {

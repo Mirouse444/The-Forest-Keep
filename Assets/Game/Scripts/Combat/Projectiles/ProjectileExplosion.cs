@@ -12,6 +12,9 @@ public class ProjectileExplosion : MonoBehaviour
     [Header("Visuals")]
     [SerializeField] private ExplosionEffectPoolSO _effectPoolSo;
 
+    [Header("Audio")] 
+    [SerializeField] private ExplosionAudioPoolSO _audioSpawnerSO;
+
     private readonly Collider2D[] _visionResults = new Collider2D[20];
     private ContactFilter2D _contactFilter;
     
@@ -53,6 +56,7 @@ public class ProjectileExplosion : MonoBehaviour
         int hitsCount = Physics2D.OverlapCircle(transform.position, _explosionRadius, _contactFilter, _visionResults);
 
         _effectPoolSo.GetEffect.Play(_explosionRadius, transform.position);
+        _audioSpawnerSO.Spawn(transform.position);
         
         for(int i = 0; i < hitsCount; i++)
         {

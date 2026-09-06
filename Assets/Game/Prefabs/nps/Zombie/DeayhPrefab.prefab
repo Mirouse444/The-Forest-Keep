@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 9c96297fbcf68d143b33b11590eef48b, type: 2}
     - target: {fileID: 3715820047659455768, guid: df083ad502d97fc4d85f4c95d686c40e, type: 3}
       propertyPath: m_CullingMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3965190396975293606, guid: df083ad502d97fc4d85f4c95d686c40e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422c2f41ddb74f01b55252bc6e598d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseFader
-  _fadeDuration: 3
+  _fadeDuration: 9
   _fadeCurve:
     serializedVersion: 2
     m_Curve:

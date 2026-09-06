@@ -761,6 +761,8 @@ GameObject:
   - component: {fileID: -185509096008747866}
   - component: {fileID: -454386724925031296}
   - component: {fileID: 8567207040878202893}
+  - component: {fileID: 7984671084711840967}
+  - component: {fileID: 7983950071853375819}
   m_Layer: 9
   m_Name: SkeletonPrefab
   m_TagString: Untagged
@@ -1023,7 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54442d28939c2b9408e7981315aafd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobeMover
-  _defaultSpeed: 7.69
+  _defaultSpeed: 7
   _sprintSpeed: 7
   _stopDistance: 16
   _stopHurtTime: 0.45
@@ -1074,6 +1076,118 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KnockbackReceiver
   _knockbackTrajectory: {x: 1, y: 0.5}
   _stunDuration: 0.25
+--- !u!114 &7984671084711840967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847636828195214171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67c044778dd8694780fc9aba3b0bf04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobAudio
+  _source: {fileID: 7983950071853375819}
+  _audioClip: {fileID: 8300000, guid: 3b0871f5b37e2b749be97a29011ca522, type: 3}
+  _timeDistance: 0
+--- !u!82 &7983950071853375819
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847636828195214171}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 45
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1953990794233754496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,6 +2668,7 @@ GameObject:
   - component: {fileID: 1444182098479515043}
   - component: {fileID: 8770125576394034156}
   - component: {fileID: 1075573273304236959}
+  - component: {fileID: 3863396129840450319}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -2657,6 +2772,21 @@ MonoBehaviour:
   _criticalChance: 0
   _shootSpeed: 14
   _knockbackForce: 7
+--- !u!114 &3863396129840450319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822995354997114782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d6230f4878499bb9e1cba751912bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireAudio
+  _audioSource: {fileID: 7983950071853375819}
+  _audioClip: {fileID: 8300000, guid: a2efd8b46a27fb145a03ba6ad8f91250, type: 3}
+  _projectileLauncher: {fileID: 1075573273304236959}
 --- !u!1 &6931189163660076480
 GameObject:
   m_ObjectHideFlags: 0

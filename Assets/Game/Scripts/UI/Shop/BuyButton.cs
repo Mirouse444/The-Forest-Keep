@@ -6,9 +6,11 @@ public class BuyButton : MonoBehaviour
 {
     [SerializeField] private CoinCounter _coinCounter; 
     [SerializeField] private int _price;
-
+    
     private Button _buyButton;
 
+    public event System.Action OnBuy;
+    
     private void Awake() => _buyButton = GetComponent<Button>();
 
     private void OnEnable() => _buyButton.onClick.AddListener(TryToBuy);
@@ -18,6 +20,9 @@ public class BuyButton : MonoBehaviour
     private void TryToBuy()
     {
         if (_coinCounter.TrySpendingCoins(_price))
+        {
+            OnBuy?.Invoke();
             Destroy(gameObject);
+        }
     }
 }

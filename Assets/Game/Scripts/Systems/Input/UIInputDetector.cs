@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class UIInputDetector : MonoBehaviour
 {
-    private PlayerInput _input;
+    private PlayerControls _input;
     public event Action CallMenu;
 
     private void Awake()
     {
-        _input = new PlayerInput();
+        _input = new PlayerControls();
 
         _input.UI.CallMemu.performed += ctx => CallMenu?.Invoke();
     }

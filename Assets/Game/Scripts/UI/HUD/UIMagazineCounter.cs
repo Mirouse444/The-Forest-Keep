@@ -1,26 +1,31 @@
 ﻿using TMPro;
+using System;
 using UnityEngine;
 
 public class UIMagazineCounter : MonoBehaviour
 {
    [SerializeField] private TextMeshProUGUI _magazineText;
    [SerializeField] private GameObject _magazineImage;
-
-   private IReloadUI _playerMagazine;
+   [SerializeField] private ReloadUIDataSO _reloadUIDataSo;
    
-   public void InitMagazine(IReloadUI magazine)
+   private IReloadUI _playerMagazine;
+
+   private void OnEnable() => _reloadUIDataSo.OnWeaponChanged += InitMagazine;
+   private void OnDisable() => _reloadUIDataSo.OnWeaponChanged -= InitMagazine;
+
+   private void InitMagazine()
    {
       RemoveEvent();
       
-      if (magazine != null)
+      if (_reloadUIDataSo.ReloadUI != null)
       {
-         magazine.OnAmmoChanged += ChangeText;
-         ChangeText(magazine.CurrentAmmo, magazine.MaxAmmo);
+         _reloadUIDataSo.ReloadUI.OnAmmoChanged += ChangeText;
+         ChangeText(_reloadUIDataSo.ReloadUI.CurrentAmmo, _reloadUIDataSo.ReloadUI.MaxAmmo);
       }
       else
          CloseImage();
       
-        _playerMagazine = magazine;
+      _playerMagazine = _reloadUIDataSo.ReloadUI;
    }
 
    private void OnDestroy() => RemoveEvent();
@@ -38,7 +43,17 @@ public class UIMagazineCounter : MonoBehaviour
       if (!_magazineImage.activeSelf) 
          _magazineImage.SetActive(true);
       
-      _magazineText.SetText("{0}/{1}", currentProjectile,  maxProjectile);
+      Span<char> buffer = stackalloc char[32];
+      int length = 0;
+      
+      if (currentProjectile.TryFormat(buffer.Slice(length), out int written))
+         length += written;
+      
+      buffer[length++] = '/';
+      
+      if (maxProjectile.TryFormat(buffer.Slice(length), out written))
+         length += written;
+      
+      _magazineText.SetText(buffer.Slice(0, length));
    }
-   
 }

@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputReader : MonoBehaviour
 {
-    private PlayerInput _input;
+    private PlayerControls _input;
 
     public event Action OnFireStarted;
     public event Action OnFireCanceled;
     public event Action OnReloadStarted;
     
-    private void Awake() => _input = new PlayerInput();
+    private void Awake() => _input = new PlayerControls();
 
     private void OnEnable()
     {

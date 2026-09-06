@@ -6,20 +6,23 @@ public class StandardMagazine : MonoBehaviour, IWeaponMagazine, IReloadMagazine,
 {
     [SerializeField, Min(1)] private int _maxAmmo = 30;
     [SerializeField, Min(0)] private float _reloadTime = 1.5f;
+    [SerializeField] private ReloadUIDataSO _reloadUIDataSo;
 
     private Coroutine _reloadCoroutine;
     private WaitForSeconds _reloadWait;
 
     private bool IsReloading => _reloadCoroutine != null;
-    
+
     public int CurrentAmmo { get; private set; }
     public int MaxAmmo => _maxAmmo;
-    
+
     public bool IsEmpty => CurrentAmmo <= 0;
 
     public event Action<int, int> OnAmmoChanged;
     public event Action<float> OnReloadStarted;
     public event Action OnDryFire;
+
+    private void OnEnable() => _reloadUIDataSo.ReloadUI = this;
 
     private void Awake()
     {

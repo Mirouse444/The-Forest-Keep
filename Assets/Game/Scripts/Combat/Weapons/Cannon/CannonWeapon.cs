@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CannonWeapon : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class CannonWeapon : MonoBehaviour
 
     private float _nextFireTime;
 
+    public event System.Action OnFire;
     public bool CanFire => Time.time >= _nextFireTime;
 
     public void Fire(Vector2 direction, CannonStats stats)
@@ -25,7 +27,8 @@ public class CannonWeapon : MonoBehaviour
             knockbackForce: stats.KnockbackForce,
             isCritical: false
         );
-
+        
+        OnFire?.Invoke();
         projectile.Launch(launchData, _firePoint.position, _firePoint.rotation);
     }
 }

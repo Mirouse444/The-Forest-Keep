@@ -5,21 +5,25 @@ using UnityEngine;
 public class UIMagazineReload : MonoBehaviour
 {
     [SerializeField] private RectTransform _reloadPanel;
-    [SerializeField] private Image _reloadImage;
     [SerializeField] private Transform _reloadPosition;
-
+    [SerializeField] private ReloadUIDataSO _reloadUIDataSo;
+    [SerializeField] private Image _reloadImage;
+    
     private Camera _mainCamera;
     private IReloadUI _magazine;
 
-    public void InitMagazine(IReloadUI magazine)
+    private void OnEnable() => _reloadUIDataSo.OnWeaponChanged += InitMagazine;
+    private void OnDisable() => _reloadUIDataSo.OnWeaponChanged -= InitMagazine;
+
+    private void InitMagazine()
     {
         RemoveEvent();
         StopReload();
         
-        if (magazine != null)
-            magazine.OnReloadStarted += StartReload;
+        if (_reloadUIDataSo.ReloadUI != null)
+            _reloadUIDataSo.ReloadUI.OnReloadStarted += StartReload;
 
-        _magazine = magazine;
+        _magazine = _reloadUIDataSo.ReloadUI;
     }
 
     private void Awake() => _mainCamera = Camera.main;

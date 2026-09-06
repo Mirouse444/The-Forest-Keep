@@ -44,6 +44,10 @@ GameObject:
   - component: {fileID: 3078637296912783655}
   - component: {fileID: 5622392872814913189}
   - component: {fileID: 1526526125944546447}
+  - component: {fileID: -5154161148897488618}
+  - component: {fileID: 908520584216865626}
+  - component: {fileID: -8982210870021302494}
+  - component: {fileID: 2148651789484346530}
   m_Layer: 0
   m_Name: Shotgun LVL3
   m_TagString: Untagged
@@ -176,3 +180,146 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StandardMagazine
   _maxAmmo: 7
   _reloadTime: 1.5
+  _reloadUIDataSo: {fileID: 11400000, guid: db270e411392e1443a7ef32b2d8f43bc, type: 2}
+--- !u!82 &-5154161148897488618
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092542647499340699}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.06
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &908520584216865626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092542647499340699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b479f52b8e4d8792cf97d584fa90c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReloadAudio
+  _audioSource: {fileID: -5154161148897488618}
+  _audioClip: {fileID: 8300000, guid: e3e2b4f9ee6af7b4eb26718e7fbfa7a1, type: 3}
+  _magazine: {fileID: 1526526125944546447}
+--- !u!114 &-8982210870021302494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092542647499340699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d6230f4878499bb9e1cba751912bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireAudio
+  _audioSource: {fileID: -5154161148897488618}
+  _audioClip: {fileID: 8300000, guid: 6b4a31e431c92da46af5f8ce33cc74ea, type: 3}
+  _projectileLauncher: {fileID: 3078637296912783655}
+--- !u!114 &2148651789484346530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092542647499340699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6777a09796c4196a6fb5e3664a9ca6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DryFireAudio
+  _audioSource: {fileID: -5154161148897488618}
+  _audioClip: {fileID: 8300000, guid: 46a104ec04018d64c9e3b8be9e80a7a8, type: 3}
+  _standardMagazine: {fileID: 1526526125944546447}

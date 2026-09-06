@@ -5,9 +5,6 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(PlayerInputReader))]
 public class PlayerWeaponController : MonoBehaviour
 {
-    [SerializeField] private UIMagazineCounter  _magazineCounter;
-    [SerializeField] private UIMagazineReload _reload;
-    
     private IReloadMagazine _currentMagazine;
     private PlayerInputReader _inputReader;
     private IWeaponTrigger _currentWeapon;
@@ -16,7 +13,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Awake() => _inputReader = GetComponent<PlayerInputReader>();
     
-
     private void OnEnable()
     {
         _inputReader.OnFireStarted += FirePressed;
@@ -39,17 +35,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             _currentWeapon = null;
             _currentMagazine = null;
-            _reload.InitMagazine(null);
-            _magazineCounter.InitMagazine(null);
         }
         else
         {
             weaponObject.TryGetComponent(out _currentWeapon);
             weaponObject.TryGetComponent(out _currentMagazine);
-            weaponObject.TryGetComponent(out IReloadUI uiInfo);
-
-            _reload.InitMagazine(uiInfo);
-            _magazineCounter.InitMagazine(uiInfo);
         }
     }
 

@@ -22,15 +22,25 @@ public class StandardMagazine : MonoBehaviour, IWeaponMagazine, IReloadMagazine,
     public event Action<float> OnReloadStarted;
     public event Action OnDryFire;
 
-    private void OnEnable() => _reloadUIDataSo.ReloadUI = this;
+    private void OnEnable()
+    {
+        _reloadUIDataSo.ReloadUI = this;
+        OnAmmoChanged?.Invoke(CurrentAmmo, _maxAmmo); 
+    }
+
+    private void OnDisable()
+    {
+        _reloadCoroutine = null;
+        
+        if (_reloadUIDataSo.ReloadUI == (IReloadUI)this)
+            _reloadUIDataSo.ReloadUI = null;
+    }
 
     private void Awake()
     {
         CurrentAmmo = _maxAmmo;
         _reloadWait = new WaitForSeconds(_reloadTime);
     }
-
-    private void OnDisable() => _reloadCoroutine = null;
 
     public bool TryConsumeAmmo()
     {

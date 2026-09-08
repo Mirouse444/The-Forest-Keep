@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0fc89df9a27224f4ca62ee8a9e805861
+guid: 032277c226ad2e640bfc70048eb21070
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,19 +127,19 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: UperIcon
+  - name: Ground
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: -0.047619052}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 948
-      height: 1037
-    spriteID: 2fd9afc64ba66b244ba1f86ea692f320
+      width: 1000
+      height: 42
+    spriteID: 7b65d474e36ee0c4c938220fcec97328
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1653953125
+      value0: 2024493761
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: UperIcon
+    name: Ground
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: UperIcon
+    - name: Ground
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
-        width: 948
-        height: 1037
-      spriteId: 2fd9afc64ba66b244ba1f86ea692f320
+        y: 2
+        width: 1000
+        height: 42
+      spriteId: 7b65d474e36ee0c4c938220fcec97328
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -180,5 +180,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 1024, y: 2048}
-  canvasSize: {x: 948, y: 1037}
+  previousTextureSize: {x: 1024, y: 64}
+  canvasSize: {x: 1000, y: 44}

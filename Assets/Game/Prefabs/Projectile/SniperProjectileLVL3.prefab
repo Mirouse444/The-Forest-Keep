@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1669904160959122002, guid: 4058a206094ee9b4c872ef4db85cb107, type: 3}
       propertyPath: m_Name
-      value: SniperProjectileLVL2 Variant
+      value: SniperProjectileLVL3
       objectReference: {fileID: 0}
     - target: {fileID: 3679537394599818941, guid: 4058a206094ee9b4c872ef4db85cb107, type: 3}
       propertyPath: _pierceCount

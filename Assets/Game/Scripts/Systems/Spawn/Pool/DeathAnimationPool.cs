@@ -33,11 +33,15 @@ public class DeathAnimationPool : MonoBehaviour, IAnimationSpawner
         Animator corpseModel = _pool.Get();
         corpseModel.transform.SetLocalPositionAndRotation(position, rotation);
 
+        corpseModel.Rebind();
+        corpseModel.Update(0f);
+        
         StartCoroutine(DeathAnimationCoroutine(corpseModel));
     }
 
     private IEnumerator DeathAnimationCoroutine(Animator corpseModel)
     {
+        corpseModel.ResetTrigger("Death");
         corpseModel.SetFloat("RandomValue", Random.value);
         corpseModel.SetTrigger("Death");
 

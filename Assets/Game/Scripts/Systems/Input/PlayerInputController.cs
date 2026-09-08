@@ -11,6 +11,7 @@ public class PlayerInputController : MonoBehaviour
     public event Action OnButton3;
     public event Action OnButton4;
     public event Action OnTeleport;
+    public event Action OnInteract;
     
     public float MoveHorizontal => _playerInput.Player.Move.ReadValue<Vector2>().x;
     public float MoveVertical => _playerInput.Player.Move.ReadValue<Vector2>().y;
@@ -28,6 +29,7 @@ public class PlayerInputController : MonoBehaviour
         _playerInput.Player.Slot3.performed += OnPressingButton3;
         _playerInput.Player.Slot4.performed += OnPressingButton4;
         _playerInput.Player.Teleport.performed += OnPressingButtonT;
+        _playerInput.Player.Interact.performed += OnInteractPressed;
     }
 
     private void OnDisable()
@@ -38,7 +40,7 @@ public class PlayerInputController : MonoBehaviour
         _playerInput.Player.Slot2.performed -= OnPressingButton2;
         _playerInput.Player.Slot3.performed -= OnPressingButton3;
         _playerInput.Player.Slot4.performed -= OnPressingButton4;
-        _playerInput.Player.Teleport.performed -= OnPressingButtonT;
+        _playerInput.Player.Teleport.performed -= OnInteractPressed;
     }
     
     private void OnPressingButton1(InputAction.CallbackContext context) => OnButton1?.Invoke();
@@ -46,4 +48,5 @@ public class PlayerInputController : MonoBehaviour
     private void OnPressingButton3(InputAction.CallbackContext context) => OnButton3?.Invoke();
     private void OnPressingButton4(InputAction.CallbackContext context) => OnButton4?.Invoke();
     private void OnPressingButtonT(InputAction.CallbackContext context) => OnTeleport?.Invoke();
+    private void OnInteractPressed(InputAction.CallbackContext context) => OnInteract?.Invoke();
 }

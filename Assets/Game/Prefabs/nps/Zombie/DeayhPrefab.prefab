@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 9c96297fbcf68d143b33b11590eef48b, type: 2}
     - target: {fileID: 3715820047659455768, guid: df083ad502d97fc4d85f4c95d686c40e, type: 3}
       propertyPath: m_CullingMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3965190396975293606, guid: df083ad502d97fc4d85f4c95d686c40e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

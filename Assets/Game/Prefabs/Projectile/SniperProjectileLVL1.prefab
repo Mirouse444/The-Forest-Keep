@@ -235,7 +235,7 @@ MonoBehaviour:
   _pierceCount: 2
   _collisionDetector: {fileID: 1696844626570564965}
   _projectileRoot: {fileID: 3144793658958056012}
-  _timeToDespawn: 15
+  _timeToDespawn: 1
 --- !u!114 &1696844626570564965
 MonoBehaviour:
   m_ObjectHideFlags: 0

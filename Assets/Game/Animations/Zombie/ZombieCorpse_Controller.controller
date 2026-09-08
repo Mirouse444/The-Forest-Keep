@@ -116,7 +116,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
-  m_EvaluateTransitionsOnStart: 1
+  m_EvaluateTransitionsOnStart: 0
 --- !u!1102 &752018115581974086
 AnimatorState:
   serializedVersion: 6

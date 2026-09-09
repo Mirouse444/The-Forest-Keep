@@ -10,13 +10,17 @@ public class CannonRotator : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private bool _invertAngle = true;
     
+    private Transform _baseTransform;
     public Transform BarrelPivot => _barrelPivot;
+
+    private void Awake()
+    {
+        _baseTransform = _barrelPivot.parent != null ? _barrelPivot.parent : transform;
+    }
 
     public bool AimAt(Vector2 globalDirection)
     {
-        Transform baseTransform = _barrelPivot.parent ?? transform;
-        
-        Vector3 localDir = baseTransform.InverseTransformDirection(globalDirection);
+        Vector3 localDir = _baseTransform.InverseTransformDirection(globalDirection);
         float localAngle = Mathf.Atan2(localDir.y, localDir.x) * Mathf.Rad2Deg;
 
         if (_invertAngle) 

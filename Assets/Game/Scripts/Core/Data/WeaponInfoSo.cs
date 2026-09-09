@@ -5,18 +5,18 @@
 public class WeaponInfoSo : ScriptableObject
 {
     [SerializeField] private Sprite _icon;
-    [SerializeField] private int _minDamage;
-    [SerializeField] private int _maxDamage;
-    [SerializeField] private int _criticalDamage;
-    [SerializeField] private int _criticalChance;
-    [SerializeField] private float _knockbackForce;
-    [SerializeField] private float _shootSpeed;
-    [SerializeField] private float _fireRate;
-    [SerializeField] private int _projectileCount;
-    [SerializeField] private int _pierceCount;
-    [SerializeField] private float _spreadAngle;
-    [SerializeField] private float _maxAmmo;
-    [SerializeField] private float _reloadTime;
+    [SerializeField, Min(0)] private int _minDamage;
+    [SerializeField, Min(0)] private int _maxDamage;
+    [SerializeField, Min(0)] private int _criticalDamage;
+    [SerializeField, Min(0)] private int _criticalChance;
+    [SerializeField, Min(0)] private float _knockbackForce;
+    [SerializeField, Min(0)] private float _shootSpeed;
+    [SerializeField, Min(0)] private float _fireRate;
+    [SerializeField, Min(0)] private int _projectileCount;
+    [SerializeField, Min(0)] private int _pierceCount;
+    [SerializeField, Min(0)] private float _spreadAngle;
+    [SerializeField, Min(0)] private float _maxAmmo;
+    [SerializeField, Min(0)] private float _reloadTime;
     
     public Sprite Icon => _icon;
     public int MinDamage => _minDamage;

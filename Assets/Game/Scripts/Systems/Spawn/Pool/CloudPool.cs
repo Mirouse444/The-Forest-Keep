@@ -7,10 +7,7 @@ public class CloudPool : MonoBehaviour
     
     private List<Cloud> _freeClouds;
 
-    private void Awake()
-    {
-        _freeClouds = new List<Cloud>(_allSceneClouds);
-    }
+    private void Awake() => _freeClouds = new List<Cloud>(_allSceneClouds);
 
     private void Start()
     {
@@ -30,10 +27,7 @@ public class CloudPool : MonoBehaviour
             cloud.ExitedBounds -= AddCloud;
     }
 
-    private void AddCloud(Cloud cloud)
-    {
-            _freeClouds.Add(cloud);
-    }
+    private void AddCloud(Cloud cloud) => _freeClouds.Add(cloud);
 
     public Cloud GetRandomCloud()
     {

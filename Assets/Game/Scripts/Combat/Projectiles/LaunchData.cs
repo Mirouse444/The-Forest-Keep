@@ -2,11 +2,11 @@ using UnityEngine;
 
 public readonly struct LaunchData
 {
-    public readonly Vector2 Direction;
-    public readonly int WeaponDamage;
-    public readonly float Speed;
-    public readonly float KnockbackForce;
-    public readonly bool IsCritical;
+    public Vector2 Direction { get; }
+    public int WeaponDamage { get; }
+    public float Speed { get; }
+    public float KnockbackForce { get; }
+    public bool IsCritical { get; }
 
     public LaunchData(Vector2 direction, int weaponDamage, float speed, float knockbackForce, bool isCritical)
     {

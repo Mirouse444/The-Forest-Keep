@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerInputReader))]
-public class PlayerAim : MonoBehaviour, IAimProvider
+public class PlayerAim : MonoBehaviour
 {
     private Camera _mainCamera;
     private PlayerInputReader _inputReader;

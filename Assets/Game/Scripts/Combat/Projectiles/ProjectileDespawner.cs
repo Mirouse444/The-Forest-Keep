@@ -7,7 +7,7 @@ public class ProjectileDespawner : MonoBehaviour
     [SerializeField, Min(1)] private int _pierceCount;
     [SerializeField] private ProjectileCollision _collisionDetector;
     [SerializeField] private Projectile _projectileRoot;
-    [SerializeField] private float _timeToDespawn = 1f;
+    [SerializeField, Min(0)] private float _timeToDespawn = 1f;
 
     private float _timer;
     private int _currentPierceCount;
@@ -29,6 +29,7 @@ public class ProjectileDespawner : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime;
+        
         if (_timer >= _timeToDespawn)
             _projectileRoot.Despawn();
     }
@@ -36,14 +37,10 @@ public class ProjectileDespawner : MonoBehaviour
     private void OnEnemyHit(Collider2D enemy)
     {
         _currentPierceCount--;
+        
         if (_currentPierceCount <= 0)
             _projectileRoot.Despawn();
     }
 
-    private void OnGroundHit(Collider2D ground)
-    {
-        _projectileRoot.Despawn(); 
-    }
-    
-    
+    private void OnGroundHit(Collider2D ground) => _projectileRoot.Despawn();
 }

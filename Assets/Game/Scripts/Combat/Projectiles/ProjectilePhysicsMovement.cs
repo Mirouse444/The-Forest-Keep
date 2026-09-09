@@ -12,10 +12,7 @@ public class ProjectilePhysicsMovement : MonoBehaviour
     private void OnEnable() => _projectile.LaunchAction += OnLaunch;
     private void OnDisable() => _projectile.LaunchAction -= OnLaunch;
 
-    private void OnLaunch(LaunchData data)
-    {
-        _rigidbody.linearVelocity = data.Direction * data.Speed;
-    }
+    private void OnLaunch(LaunchData data) => _rigidbody.linearVelocity = data.Direction * data.Speed;
 
     private void Update()
     {

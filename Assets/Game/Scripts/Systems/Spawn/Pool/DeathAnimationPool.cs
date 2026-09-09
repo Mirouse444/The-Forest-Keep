@@ -6,7 +6,7 @@ public class DeathAnimationPool : MonoBehaviour, IAnimationSpawner
 {
     [SerializeField] private DeathAnimationSO _animationSo;
     [SerializeField] private Animator _modelPrefab;
-    [SerializeField] private float _deathTime = 0.5f;
+    [SerializeField, Min(0)] private float _deathTime = 0.5f;
     
     private ObjectPool<Animator> _pool;
     private WaitForSeconds _deathWait;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-internal interface ITarget
+public interface ITarget
 {
     public Vector3 Position { get; }
 }

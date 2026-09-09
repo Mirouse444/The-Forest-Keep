@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-internal class KnockbackReceiver : MonoBehaviour, IKnockbackable
+public class KnockbackReceiver : MonoBehaviour, IKnockbackable
 {
     [SerializeField] private Vector2 _knockbackTrajectory = new Vector2(1f, 0.5f);
     [SerializeField] private float _stunDuration = 0.25f; 
@@ -11,10 +11,7 @@ internal class KnockbackReceiver : MonoBehaviour, IKnockbackable
     
     public event Action<float> KnockbackApplied;
 
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
+    private void Awake() => _rigidbody = GetComponent<Rigidbody2D>();
 
     public void ApplyKnockback(Vector2 force)
     {

@@ -1,11 +1,13 @@
-﻿public struct DamageInfo
+﻿using UnityEngine;
+
+public readonly struct DamageInfo
 {
-    public readonly int Amount;
-    public readonly bool IsCritical;
+    public int Amount { get; }
+    public bool IsCritical { get; }
 
     public DamageInfo(int amount, bool isCritical)
     {
-        Amount = amount;
+        Amount = Mathf.Max(0, amount);
         IsCritical = isCritical;
     }
 }

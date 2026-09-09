@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour, IDamageable, IHealable
 {
-    private HealthModel _healthModel = new HealthModel();
+    private readonly HealthModel _healthModel = new HealthModel();
 
-    private List<IDamageModifier> _modifiers = new List<IDamageModifier>();
+    private readonly List<IDamageModifier> _modifiers = new List<IDamageModifier>();
 
     public IHealthState State => _healthModel;
     
@@ -13,11 +13,10 @@ public class HealthComponent : MonoBehaviour, IDamageable, IHealable
 
     public void AddModifier(IDamageModifier modifier)
     {
-        if(!_modifiers.Contains(modifier))
-        {
-            _modifiers.Add(modifier);
-            _modifiers.Sort((a, b) => a.Priority.CompareTo(b.Priority));
-        }
+        if (_modifiers.Contains(modifier)) return;
+        
+        _modifiers.Add(modifier);
+        _modifiers.Sort((a, b) => a.Priority.CompareTo(b.Priority));
     }
 
     public void RemoveModifier(IDamageModifier modifier) => _modifiers.Remove(modifier);
@@ -38,12 +37,7 @@ public class HealthComponent : MonoBehaviour, IDamageable, IHealable
         finalDamage = Mathf.Max(1, finalDamage);
 
         _healthModel.ApplyDamage(finalDamage);
-        
-        OnDamageProcessed?.Invoke(new DamageResult 
-        { 
-            FinalDamage = finalDamage, 
-            IsCritical = info.IsCritical,
-            HitPosition = transform.position
-        });
+
+        OnDamageProcessed?.Invoke(new DamageResult(finalDamage, info.IsCritical, transform.position));
     }
 }

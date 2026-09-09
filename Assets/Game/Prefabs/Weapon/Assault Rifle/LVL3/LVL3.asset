@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de2a373d0414ea0bf914056d0b5cf03, type: 3}
   m_Name: LVL3
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataUI
-  Category: 1
-  WeaponPrefab: {fileID: 3754925922656385568, guid: c5308d693a3f0ce4a93aefce53f2090a, type: 3}
-  UIIcon: {fileID: 4496362305996200708, guid: 5d690322165141e4e962377153417ee5, type: 3}
+  _category: 1
+  _weaponPrefab: {fileID: 3754925922656385568, guid: c5308d693a3f0ce4a93aefce53f2090a, type: 3}
+  _uiIcon: {fileID: 4496362305996200708, guid: 5d690322165141e4e962377153417ee5, type: 3}

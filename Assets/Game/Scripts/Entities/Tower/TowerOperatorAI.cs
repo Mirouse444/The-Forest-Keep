@@ -3,49 +3,69 @@
 public class TowerOperatorAI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private TargetScanner _towerCenterScanner;
+    [SerializeField] private TargetScanner _scanner;
     [SerializeField] private CannonStation _leftStation;
     [SerializeField] private CannonStation _rightStation;
     [SerializeField] private TowerOperatorMovement _movement;
 
     [Header("AI Settings")]
-    [Tooltip("Ширина мертвой зоны по центру. Враг должен выйти за нее, чтобы оператор сменил пушку.")]
-    [SerializeField] private float _deadZoneWidth = 3f;
-    [SerializeField] private float _deadZoneHeight = 5f;
+    [SerializeField] private Vector2 _deadZoneSize = new Vector2(3f, 5f);
+    [SerializeField] private Vector2 _deadZoneOffset = Vector2.zero;
 
     private CannonStation _currentStation;
+    private ITarget _currentTarget;
 
-    private void Start()
-    {
-        _currentStation = _leftStation;
-    }
+    private void Start() => _currentStation = _leftStation;
 
     private void Update()
     {
-        ITarget target = _towerCenterScanner.CurrentTarget;
+        if (!IsTargetValid(_currentTarget))
+            _currentTarget = _scanner.GetClosestTarget(IsTargetValid);
 
-        if (target == null) return;
-        
-        CannonStation requiredStation = SelectStationForTarget(target.Position);
+        if (_currentTarget == null) return;
+
+        CannonStation requiredStation = SelectStationForTarget(_currentTarget.Position);
         
         bool hasArrived = _movement.MoveTo(requiredStation.StandPosition);
 
         if (hasArrived)
         {
             _currentStation = requiredStation;
-            OperateCannon(target);
+            OperateCannon(_currentTarget);
         }
+    }
+
+    private bool IsTargetValid(ITarget target)
+    {
+        if (target == null) return false;
+
+        if (target is Component component && (!component || !component.gameObject.activeInHierarchy))
+            return false;
+
+        return !IsInDeadZone(target.Position);
+    }
+
+    private bool IsInDeadZone(Vector3 targetPosition)
+    {
+        Vector2 center = (Vector2)_scanner.transform.position + _deadZoneOffset;
+        float halfWidth = _deadZoneSize.x * 0.5f;
+        float halfHeight = _deadZoneSize.y * 0.5f;
+
+        bool insideX = targetPosition.x >= center.x - halfWidth && targetPosition.x <= center.x + halfWidth;
+        bool insideY = targetPosition.y >= center.y - halfHeight && targetPosition.y <= center.y + halfHeight;
+
+        return insideX && insideY;
     }
 
     private CannonStation SelectStationForTarget(Vector3 targetPosition)
     {
-        float towerCenterX = _towerCenterScanner.transform.position.x;
-        float halfDeadZone = _deadZoneWidth / 2f;
-        
-        if (_currentStation == _leftStation && targetPosition.x > towerCenterX + halfDeadZone)
+        float towerCenterX = _scanner.transform.position.x + _deadZoneOffset.x;
+        float halfDeadZoneX = _deadZoneSize.x * 0.5f;
+
+        if (_currentStation == _leftStation && targetPosition.x > towerCenterX + halfDeadZoneX)
             return _rightStation;
-      
-        else if (_currentStation == _rightStation && targetPosition.x < towerCenterX - halfDeadZone)
+
+        if (_currentStation == _rightStation && targetPosition.x < towerCenterX - halfDeadZoneX)
             return _leftStation;
 
         return _currentStation;
@@ -57,24 +77,19 @@ public class TowerOperatorAI : MonoBehaviour
         
         bool isAimed = cannon.AimAt(target.Position);
 
-        if (isAimed)
-        {
-            cannon.TryFire();
-        }
+        if (isAimed) cannon.TryFire();
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (_towerCenterScanner != null)
-        {
-            Vector3 center = _towerCenterScanner.transform.position;
-            Vector3 size = new Vector3(_deadZoneWidth, _deadZoneHeight, 0f);
-            
-            Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
-            Gizmos.DrawCube(center, size);
-            
-            Gizmos.color = Color.red; 
-            Gizmos.DrawWireCube(center, size);
-        }
+        if (_scanner == null) return;
+
+        Vector3 center = _scanner.transform.position + (Vector3)_deadZoneOffset;
+        Vector3 size = new Vector3(_deadZoneSize.x, _deadZoneSize.y, 0f);
+        
+        Gizmos.color = new Color(1f, 0f, 0f, 0.25f);
+        Gizmos.DrawCube(center, size);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(center, size);
     }
 }

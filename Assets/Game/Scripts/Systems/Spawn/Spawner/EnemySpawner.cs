@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour, IWaveSpawner
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _spawnPosition;
 

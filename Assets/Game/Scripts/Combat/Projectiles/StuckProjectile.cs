@@ -14,10 +14,7 @@ public class StuckProjectile : MonoBehaviour
     private Vector3 _localPositionOffset;
     private Quaternion _localRotationOffset;
     
-    public void SetReleaseAction(Action<StuckProjectile> returnAction)
-    {
-        _returnToPool = returnAction;
-    }
+    public void SetReleaseAction(Action<StuckProjectile> returnAction) => _returnToPool = returnAction;
 
     public void Launch(Transform pointOfImpact, Transform carrier)
     {

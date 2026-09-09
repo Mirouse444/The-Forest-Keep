@@ -6,7 +6,7 @@ public class SpawnerWavesConfig : MonoBehaviour
     [SerializeField] private NightConfig[] _nightConfigArray;
     [SerializeField] private NightTrigger _trigger;
 
-    private int _currentNight = 0;
+    private int _currentNight;
     
     public event Action<NightConfig> OnEnemyGo;
 
@@ -17,6 +17,7 @@ public class SpawnerWavesConfig : MonoBehaviour
     {
         if (_currentNight < _nightConfigArray.Length)
             OnEnemyGo?.Invoke(_nightConfigArray[_currentNight]);
+        
         _currentNight++;
     }
 }

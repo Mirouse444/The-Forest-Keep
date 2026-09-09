@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NightConfig", menuName = "Scriptable Objects/NightConfig")]
+[CreateAssetMenu(fileName = "NightConfig", menuName = "Wave/NightConfig")]
 public class NightConfig : ScriptableObject
 {
     [System.Serializable]

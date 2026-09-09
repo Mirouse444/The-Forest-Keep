@@ -2,7 +2,7 @@
 
 public class TowerOperatorMovement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 4f;
+    [SerializeField, Min(0)] private float _moveSpeed = 4f;
     
     private Vector3 _rightScale;
     private Vector3 _leftScale;

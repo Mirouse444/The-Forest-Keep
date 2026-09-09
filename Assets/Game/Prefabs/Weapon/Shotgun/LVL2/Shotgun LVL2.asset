@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de2a373d0414ea0bf914056d0b5cf03, type: 3}
   m_Name: Shotgun LVL2
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataUI
-  Category: 0
-  WeaponPrefab: {fileID: 4073082973132799194, guid: 0f646ff56f82ef142a4ebedd8f762005, type: 3}
-  UIIcon: {fileID: 7856409591847296691, guid: 7591805352a86d24bb0e4109b02025fd, type: 3}
+  _category: 0
+  _weaponPrefab: {fileID: 4073082973132799194, guid: 0f646ff56f82ef142a4ebedd8f762005, type: 3}
+  _uiIcon: {fileID: 7856409591847296691, guid: 7591805352a86d24bb0e4109b02025fd, type: 3}

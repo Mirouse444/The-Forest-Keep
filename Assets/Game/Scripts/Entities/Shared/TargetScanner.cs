@@ -1,17 +1,12 @@
 using UnityEngine;
 
-internal class TargetScanner : MonoBehaviour
+public class TargetScanner : MonoBehaviour
 {
     [Header("Vision Configuration")]
     [SerializeField, Min(0)] private float _visionRadius = 5f;
     [SerializeField, Min(0)] private float _loseTargetRadius = 7f;
     [SerializeField, Min(0)] private float _scanInterval = 0.25f;
     [SerializeField] private LayerMask _targetLayer;
-    
-    [Header("Blind Zone Settings")]
-    [SerializeField, Min(0)] private float _blindZoneWidth = 0f;
-    [SerializeField, Min(0)] private float _blindZoneHeight = 0f;
-    [SerializeField] private Vector2 _blindZoneOffset = new Vector2(0f, 0f);
 
     private float _scanTimer;
     private Collider2D _targetCollider;
@@ -48,32 +43,27 @@ internal class TargetScanner : MonoBehaviour
             FindClosestTarget();
         }
     }
+    
+    private void FindClosestTarget() => CurrentTarget = GetClosestTarget();
 
-    private void FindClosestTarget()
+    public ITarget GetClosestTarget(System.Predicate<ITarget> filter = null)
     {
-        
         int hitsCount = Physics2D.OverlapCircle(transform.position, _visionRadius, _contactFilter, _visionResults);
 
-        if (hitsCount == 0)
-        {
-            CurrentTarget = null;
-            _targetCollider = null;
-            return;
-        }
+        if (hitsCount == 0) return null;
 
         ITarget bestTarget = null;
-        Collider2D bestCollider = null;
         float closestDistanceSqr = float.PositiveInfinity;
 
         for (int i = 0; i < hitsCount; i++)
         {
             Collider2D candidateCollider = _visionResults[i];
             
-            if (IsInBlindZone(candidateCollider.transform.position))
-                continue;
-
             if (candidateCollider.TryGetComponent(out ITarget target))
             {
+                if (filter != null && !filter(target))
+                    continue;
+
                 Vector2 closestPoint = candidateCollider.bounds.ClosestPoint(transform.position);
                 float dSqrToTarget = (closestPoint - (Vector2)transform.position).sqrMagnitude;
 
@@ -81,40 +71,13 @@ internal class TargetScanner : MonoBehaviour
                 {
                     closestDistanceSqr = dSqrToTarget;
                     bestTarget = target;
-                    bestCollider = candidateCollider;
                 }
             }
         }
 
-        
-        if (bestTarget != null)
-        {
-            CurrentTarget = bestTarget;
-            _targetCollider = bestCollider;
-            return;
-        }
-
-        if (CurrentTarget == null || ((Vector2)(CurrentTarget.Position - transform.position)).sqrMagnitude > _loseTargetRadius * _loseTargetRadius)
-        {
-            CurrentTarget = null;
-            _targetCollider = null;
-        }
+        return bestTarget;
     }
-
-    private bool IsInBlindZone(Vector3 targetPosition)
-    {
-        if (_blindZoneHeight <= 0 || _blindZoneWidth <= 0) return false;
-        
-        Vector3 center = transform.position + (Vector3)_blindZoneOffset;
-        float halfWidth = _blindZoneWidth / 2f;
-        float halfHeight = _blindZoneHeight / 2f;
-
-        bool insideX = targetPosition.x >= center.x - halfWidth && targetPosition.x <= center.x + halfWidth;
-        bool insideY = targetPosition.y >= center.y - halfHeight && targetPosition.y <= center.y + halfHeight;
-
-        return insideX && insideY;
-    }
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -122,11 +85,5 @@ internal class TargetScanner : MonoBehaviour
         
         Gizmos.color = Color.orange;
         Gizmos.DrawWireSphere(transform.position, _loseTargetRadius);
-        
-        Vector3 center = transform.position + (Vector3)_blindZoneOffset;
-        Gizmos.color = new Color(1f, 0f, 0f, 0.35f);
-        Gizmos.DrawCube(center, new Vector3(_blindZoneWidth, _blindZoneHeight, 0f));
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(center, new Vector3(_blindZoneWidth, _blindZoneHeight, 0f));
     }
 }

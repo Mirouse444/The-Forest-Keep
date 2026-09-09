@@ -20,10 +20,7 @@ public class ProjectileKnockback : MonoBehaviour
         _collision.OnTargetHit -= DealKnockback;
     }
 
-    private void OnLaunch(LaunchData data)
-    {
-        _knockbackForce = data.KnockbackForce;
-    }
+    private void OnLaunch(LaunchData data) => _knockbackForce = data.KnockbackForce;
 
     private void DealKnockback(Collider2D target)
     {

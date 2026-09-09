@@ -145,12 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 3513560798282028264}
   _projectileSpawner: {fileID: 11400000, guid: cc6188c1d65d52147a761a7c1ee4ea45, type: 2}
-  _minDamage: 30
-  _maxDamage: 40
-  _criticalDamage: 70
-  _criticalChance: 20
-  _shootSpeed: 55
-  _knockbackForce: 11
+  _info: {fileID: 11400000, guid: 2e2b0c3eab418724b96d054a80bbe7dd, type: 2}
 --- !u!114 &8811314336404333738
 MonoBehaviour:
   m_ObjectHideFlags: 0

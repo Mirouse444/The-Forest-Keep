@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de2a373d0414ea0bf914056d0b5cf03, type: 3}
   m_Name: Sniper lvl1
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataUI
-  Category: 2
-  WeaponPrefab: {fileID: 1495326491000930768, guid: fffcb1023711944478b9237fe7047f3f, type: 3}
-  UIIcon: {fileID: 8254510000941939946, guid: bea79c4cec2ea914295f45b404507774, type: 3}
+  _category: 2
+  _weaponPrefab: {fileID: 1495326491000930768, guid: fffcb1023711944478b9237fe7047f3f, type: 3}
+  _uiIcon: {fileID: 8254510000941939946, guid: bea79c4cec2ea914295f45b404507774, type: 3}

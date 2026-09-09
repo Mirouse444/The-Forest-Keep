@@ -11,6 +11,7 @@ public class SkeletonArcherBrain : MonoBehaviour
     [SerializeField] private float _aimDuration = 0.6f;
     [SerializeField] private float _directShootDistance = 4f;
     [SerializeField] private Transform _shootPlace;
+    [SerializeField] private WeaponInfoSo _info;
     [SerializeField] private ProjectileLauncher _launcher;
 
     [Header("Animation")]
@@ -89,7 +90,7 @@ public class SkeletonArcherBrain : MonoBehaviour
         }
 
         float gravity = Mathf.Abs(Physics2D.gravity.y * _gravityScale);
-        return BallisticMath.CalculateLowArc(_shootPlace.position, targetPos, _launcher.ShootSpeed, gravity, out direction);
+        return BallisticMath.CalculateLowArc(_shootPlace.position, targetPos, _info.ShootSpeed, gravity, out direction);
     }
 
     private void HandleIdleState()

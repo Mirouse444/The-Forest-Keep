@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthComponent))]
 public class PlayerHealthSetup : MonoBehaviour
 {
-    [SerializeField] private int _fixedHealth = 100;
+    [SerializeField, Min(0)] private int _fixedHealth = 100;
 
     private HealthComponent _healthComponent;
     

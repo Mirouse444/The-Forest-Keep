@@ -9,7 +9,7 @@ public class PlayerTeleport : MonoBehaviour
     [SerializeField] private Button _teleportButton;
     [SerializeField] private Image _teleportImage;
     [SerializeField] private PlayerInputController _playerInput;
-    [SerializeField] private float _reload;
+    [SerializeField, Min(0)] private float _reload;
     
     private bool _isReloading;
     

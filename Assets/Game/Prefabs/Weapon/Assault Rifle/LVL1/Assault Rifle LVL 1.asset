@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de2a373d0414ea0bf914056d0b5cf03, type: 3}
   m_Name: Assault Rifle LVL 1
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDataUI
-  Category: 1
-  WeaponPrefab: {fileID: 1279169976224511924, guid: 1d33dba73e4825b42b041dbebd4afe13, type: 3}
-  UIIcon: {fileID: -433642558719214155, guid: b0e30d6de46a86d4eb28b77dad4b616a, type: 3}
+  _category: 1
+  _weaponPrefab: {fileID: 1279169976224511924, guid: 1d33dba73e4825b42b041dbebd4afe13, type: 3}
+  _uiIcon: {fileID: -433642558719214155, guid: b0e30d6de46a86d4eb28b77dad4b616a, type: 3}

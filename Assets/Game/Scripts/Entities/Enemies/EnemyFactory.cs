@@ -21,17 +21,12 @@ public class EnemyFactory : MonoBehaviour, IEnemyFactory
     {
         _enemyDictionary = new Dictionary<EnemyCore, EnemyPool>(_poolsConfiguration.Length);
 
-        foreach (var mapping  in _poolsConfiguration)
-            if (!_enemyDictionary.TryAdd(mapping.Prefab , mapping.Pool))
-                Debug.LogWarning($"[EnemyFactory] Пул для префаба {mapping.Prefab.name} уже добавлен!");
+        foreach (var mapping in _poolsConfiguration)
+            _enemyDictionary.Add(mapping.Prefab, mapping.Pool);
     }
 
     public EnemyCore GetEnemy(EnemyCore prefab)
     {
-        if (_enemyDictionary.TryGetValue(prefab, out EnemyPool pool))
-            return pool.GetEnemy;
-        
-        Debug.LogError($"[EnemyFactory] Пул для префаба {prefab.name} не найден в конфигурации!");
-        return null;
+        return _enemyDictionary.TryGetValue(prefab, out EnemyPool pool) ? pool.GetEnemy : null;
     }
 }

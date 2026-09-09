@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Pool/Audio", fileName = "AudioPoolSO", order = 0)]
+[CreateAssetMenu(menuName = "Pool/Audio/ExplosionAudio", fileName = "AudioPoolSO", order = 0)]
 public class ExplosionAudioPoolSO: ScriptableObject
 {
     public ExplosionAudioPool Pool { set; private get; }

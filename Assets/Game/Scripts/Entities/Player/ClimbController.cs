@@ -7,9 +7,6 @@ public class ClimbController : MonoBehaviour
 {
     [SerializeField] private float _climbSpeed = 5f;
 
-    public event Action OnClimbStarted;
-    public event Action OnClimbEnded;
-
     private PlayerInputController _controller;
     private Rigidbody2D _rigidbody;
     
@@ -30,8 +27,6 @@ public class ClimbController : MonoBehaviour
 
     private void Update()
     {
-        // Этот Update вызывается ТОЛЬКО у лестницы. 
-        // Мы ждем, когда игрок нажмет Вверх/Вниз, чтобы начать карабкаться по команде.
         float verticalInput = _controller.MoveVertical;
 
         if (!_isClimbing && Mathf.Abs(verticalInput) > 0.1f)
@@ -47,8 +42,6 @@ public class ClimbController : MonoBehaviour
         _rigidbody.gravityScale = 0f;
         _rigidbody.linearVelocity = Vector2.zero;
         gameObject.layer = _climbingLayer; 
-        
-        OnClimbStarted?.Invoke(); // Сообщаем Мозгу, что мы полезли
     }
 
     public void StopClimbing()
@@ -58,7 +51,5 @@ public class ClimbController : MonoBehaviour
         _isClimbing = false;
         _rigidbody.gravityScale = _defaultGravity;
         gameObject.layer = _playerLayer;
-        
-        OnClimbEnded?.Invoke(); // Сообщаем Мозгу, что мы слезли
     }
 }

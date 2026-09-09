@@ -1,54 +1,52 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;            
+using TMPro;
 
-public class DialogeTyper : MonoBehaviour
+public class DialogueTyper : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _dialogText;
+    [SerializeField] private TextMeshProUGUI _dialogueText;
     [SerializeField] private float _typingSpeed = 0.03f;
 
     private Coroutine _typingCoroutine;
     private WaitForSecondsRealtime _typingWait;
 
+    public bool IsTyping { get; private set; }
+
     private void Awake() => _typingWait = new WaitForSecondsRealtime(_typingSpeed);
 
-    public bool _isTyping {private set; get; }
-
-    public void ShowDialog(string message)
+    public void ShowDialogue(string message)
     {
         if (_typingCoroutine != null) 
             StopCoroutine(_typingCoroutine);
 
-        _typingCoroutine = StartCoroutine(TypeDialogRoutine(message));
+        _typingCoroutine = StartCoroutine(TypeDialogueRoutine(message));
     }
 
-    private IEnumerator TypeDialogRoutine(string message)
+    private IEnumerator TypeDialogueRoutine(string message)
     {
-        _isTyping = true;
-        _dialogText.text = message;
-        _dialogText.maxVisibleCharacters = 0;
-        
-        int totalCharacters = message.Length;
+        IsTyping = true;
+        _dialogueText.text = message;
+        _dialogueText.maxVisibleCharacters = 0;
 
-        for (int i = 0; i <= totalCharacters; i++)
+        for (int i = 0; i <= message.Length; i++)
         {
-            _dialogText.maxVisibleCharacters = i;
+            _dialogueText.maxVisibleCharacters = i;
             yield return _typingWait;
         }
 
-        _isTyping = false;
+        IsTyping = false;
         _typingCoroutine = null;
     }
-    
+
     public void SkipTyping()
     {
-        if (_typingCoroutine != null) 
+        if (_typingCoroutine != null)
         {
             StopCoroutine(_typingCoroutine);
             _typingCoroutine = null;
         }
-        
-        _isTyping = false;
-        _dialogText.maxVisibleCharacters = _dialogText.text.Length;
+
+        IsTyping = false;
+        _dialogueText.maxVisibleCharacters = _dialogueText.text.Length;
     }
 }

@@ -34,5 +34,5 @@ public class DamageTextManager : MonoBehaviour, IDamageTextSpawner
             actionOnRelease: popup => popup.gameObject.SetActive(false),
             actionOnDestroy: popup => Destroy(popup.gameObject),
             defaultCapacity: 20, maxSize: 40
-           );
+            );
 }

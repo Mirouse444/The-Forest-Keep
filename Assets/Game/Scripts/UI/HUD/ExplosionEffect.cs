@@ -21,6 +21,7 @@ public class ExplosionEffect : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime;
+        
         if(_timer >= _timeToDespawn)
             Release.Invoke(this);
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine.Rendering.Universal;
+﻿using UnityEngine.Rendering.Universal;
 using System.Collections;
 using UnityEngine;
 
@@ -41,14 +40,14 @@ public class DayNightSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        _dayStart.OnDayStarted += StartDay;
-        _nightStart.OnNightStarted += StartNight;
+        _dayStart.OnDayStarted.AddListener(StartDay);
+        _nightStart.OnNightStarted.AddListener(StartNight);
     }
     
     private void OnDisable()
     {
-        _dayStart.OnDayStarted -= StartDay;
-        _nightStart.OnNightStarted -= StartNight;
+        _dayStart.OnDayStarted.RemoveListener(StartDay);
+        _nightStart.OnNightStarted.RemoveListener(StartNight);
     }
 
     private void StartDay()

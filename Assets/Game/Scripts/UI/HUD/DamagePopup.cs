@@ -7,6 +7,7 @@ using TMPro;
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] private float _animationDuration = 1.2f; 
+    
     private TextMeshPro _text;
     
     private void Awake() => _text = GetComponent<TextMeshPro>();
@@ -25,7 +26,6 @@ public class DamagePopup : MonoBehaviour
         
         Vector3 peakPosition = transform.position + new Vector3(randomDirX * 0.5f, 1.5f, 0); 
         
-
         Vector3 targetPosition = transform.position + new Vector3(randomDirX, -0.5f, 0);
 
         Sequence sequence = DOTween.Sequence();

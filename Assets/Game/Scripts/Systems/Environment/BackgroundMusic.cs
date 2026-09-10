@@ -33,14 +33,14 @@ public class BackgroundMusic : MonoBehaviour
 
     private void OnEnable()
     {
-        _dayTrigger.OnDayStarted += SwitchToDay;
-        _nightTrigger.OnNightStarted += SwitchToNight;
+        _dayTrigger.OnDayStarted.AddListener(SwitchToDay);
+        _nightTrigger.OnNightStarted.AddListener(SwitchToNight);
     }
     
     private void OnDisable()
     {
-        _dayTrigger.OnDayStarted -= SwitchToDay;
-        _nightTrigger.OnNightStarted -= SwitchToNight;
+        _dayTrigger.OnDayStarted.RemoveListener(SwitchToDay);
+        _nightTrigger.OnNightStarted.RemoveListener(SwitchToNight);
     }
 
     private void Start() => SwitchToDay();

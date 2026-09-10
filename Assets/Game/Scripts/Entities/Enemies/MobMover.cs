@@ -1,6 +1,6 @@
 using UnityEngine;
 
-internal class MobMover : MonoBehaviour
+public class MobMover : MonoBehaviour
 {
     private const float _fault = 0.05f;
     

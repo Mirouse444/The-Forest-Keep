@@ -31,9 +31,13 @@ public class DeathAnimationPool : MonoBehaviour, IAnimationSpawner
     public void SpawnDeathModel(Vector3 position, Quaternion rotation)
     {
         Animator corpseModel = _pool.Get();
-        corpseModel.transform.SetLocalPositionAndRotation(position, rotation);
-
+        corpseModel.transform.SetPositionAndRotation(position, rotation);
+        
         corpseModel.Rebind();
+        corpseModel.ResetTrigger("Death");
+        corpseModel.SetFloat("RandomValue", Random.value);
+        corpseModel.SetTrigger("Death");
+        
         corpseModel.Update(0f);
         
         StartCoroutine(DeathAnimationCoroutine(corpseModel));
@@ -41,12 +45,7 @@ public class DeathAnimationPool : MonoBehaviour, IAnimationSpawner
 
     private IEnumerator DeathAnimationCoroutine(Animator corpseModel)
     {
-        corpseModel.ResetTrigger("Death");
-        corpseModel.SetFloat("RandomValue", Random.value);
-        corpseModel.SetTrigger("Death");
-
         yield return _deathWait;
-
         _pool.Release(corpseModel);
     }
 }

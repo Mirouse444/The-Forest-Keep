@@ -50,9 +50,14 @@ public class TargetScanner : MonoBehaviour
     {
         int hitsCount = Physics2D.OverlapCircle(transform.position, _visionRadius, _contactFilter, _visionResults);
 
-        if (hitsCount == 0) return null;
+        if (hitsCount == 0) 
+        {
+            _targetCollider = null;
+            return null;
+        }
 
         ITarget bestTarget = null;
+        Collider2D bestCollider = null;
         float closestDistanceSqr = float.PositiveInfinity;
 
         for (int i = 0; i < hitsCount; i++)
@@ -71,10 +76,12 @@ public class TargetScanner : MonoBehaviour
                 {
                     closestDistanceSqr = dSqrToTarget;
                     bestTarget = target;
+                    bestCollider = candidateCollider;
                 }
             }
         }
 
+        _targetCollider = bestCollider;
         return bestTarget;
     }
     

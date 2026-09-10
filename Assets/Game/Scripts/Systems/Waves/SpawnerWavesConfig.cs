@@ -10,8 +10,8 @@ public class SpawnerWavesConfig : MonoBehaviour
     
     public event Action<NightConfig> OnEnemyGo;
 
-    private void OnEnable() => _trigger.OnNightStarted += EnemyGo;
-    private void OnDisable() => _trigger.OnNightStarted -= EnemyGo;
+    private void OnEnable() => _trigger.OnNightStarted.AddListener(EnemyGo);
+    private void OnDisable() => _trigger.OnNightStarted.RemoveListener(EnemyGo);
 
     private void EnemyGo()
     {

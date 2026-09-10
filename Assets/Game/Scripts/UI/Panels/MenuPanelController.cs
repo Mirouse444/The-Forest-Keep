@@ -9,7 +9,7 @@ public class MenuPanelController : MonoBehaviour
 
     private void OnDisable() => _inputDetector.CallMenu -= OnCall;
 
-    public void OnCall()
+    private void OnCall()
     {
         if (_panel.activeInHierarchy)
             Close();

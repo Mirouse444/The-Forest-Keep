@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System;
+using UnityEngine.Events;
 
 public class DayTrigger : MonoBehaviour
 {
@@ -7,7 +7,7 @@ public class DayTrigger : MonoBehaviour
     
     private int _currentEnemyCount;
     
-    public event Action OnDayStarted;
+    public UnityEvent OnDayStarted;
 
     private void OnEnable()
     {

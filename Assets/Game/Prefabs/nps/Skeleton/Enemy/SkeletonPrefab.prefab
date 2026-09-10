@@ -989,9 +989,6 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 16768
-  _blindZoneWidth: 0
-  _blindZoneHeight: 0
-  _blindZoneOffset: {x: 0, y: 0}
 --- !u!114 &4086384665068011463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,6 +1005,7 @@ MonoBehaviour:
   _aimDuration: 1
   _directShootDistance: 2.14
   _shootPlace: {fileID: 6706355919069336742}
+  _info: {fileID: 11400000, guid: 2ad401c6cee38454ab29aa2715a0d45c, type: 2}
   _launcher: {fileID: 1075573273304236959}
   _animator: {fileID: 6108156432769439621}
   _gravityScale: 1
@@ -1025,8 +1023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54442d28939c2b9408e7981315aafd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobeMover
-  _defaultSpeed: 7
-  _sprintSpeed: 7
+  _defaultSpeed: 6.5
+  _sprintSpeed: 6.6
   _stopDistance: 16
   _stopHurtTime: 0.45
   _healthComponent: {fileID: 621513304720378386}
@@ -1090,7 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MobAudio
   _source: {fileID: 7983950071853375819}
   _audioClip: {fileID: 8300000, guid: 3b0871f5b37e2b749be97a29011ca522, type: 3}
-  _timeDistance: 0
+  _timeDistance: 3
 --- !u!82 &7983950071853375819
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2766,12 +2764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
   _shootPlace: {fileID: 6706355919069336742}
   _projectileSpawner: {fileID: 11400000, guid: 402415193bf327f4eb68ceab29c959b5, type: 2}
-  _minDamage: 25
-  _maxDamage: 35
-  _criticalDamage: 0
-  _criticalChance: 0
-  _shootSpeed: 14
-  _knockbackForce: 7
+  _info: {fileID: 11400000, guid: 2ad401c6cee38454ab29aa2715a0d45c, type: 2}
 --- !u!114 &3863396129840450319
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject _dialoguePanel;
 
     [Header("Settings")]
+    [SerializeField] private bool _isOneTime;
     [SerializeField] private string[] _messages;
     [SerializeField] private bool _pauseTimeOnStart = true;
 
@@ -17,9 +18,17 @@ public class DialogueController : MonoBehaviour
     public UnityEvent OnDialogueStart;
     public UnityEvent OnDialogueEnd;
 
+    private bool _hasPlayed;
     private int _currentMessageIndex;
 
-    private void OnEnable() => _nextButton.onClick.AddListener(OnNextButtonClicked);
+    private void OnEnable()
+    {
+        _nextButton.onClick.AddListener(OnNextButtonClicked);
+
+        if (!_hasPlayed)
+            StartDialogue();
+    }
+
     private void OnDisable() => _nextButton.onClick.RemoveListener(OnNextButtonClicked);
 
     public void StartDialogue()
@@ -66,9 +75,13 @@ public class DialogueController : MonoBehaviour
         if (_pauseTimeOnStart)
             Time.timeScale = 1f;
 
+        if (_isOneTime)
+            _hasPlayed = true;
+
         _dialoguePanel.SetActive(false);
         gameObject.SetActive(false);
 
         OnDialogueEnd?.Invoke();
+        gameObject.SetActive(false);
     }
 }

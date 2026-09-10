@@ -13,9 +13,6 @@ public class AudioMuter : MonoBehaviour
 
         AudioListener.pause = _isMuted;
 
-        if(_isMuted)
-            _cross.SetActive(true);
-        else
-            _cross.SetActive(false);
+        _cross.SetActive(_isMuted);
     }
 }

@@ -1,6 +1,6 @@
-﻿using System;
-using UnityEngine;
-
+﻿using UnityEngine;
+using UnityEngine.Events;
+    
 public class NightTrigger : MonoBehaviour
 {
     [SerializeField] private DayTrigger _dayTrigger;
@@ -9,18 +9,18 @@ public class NightTrigger : MonoBehaviour
     
     private bool _isDay = true;
     
-    public event Action OnNightStarted;
+    public UnityEvent OnNightStarted;
 
     private void OnEnable()
     {
         _controller.OnInteract += StartNight;
-        _dayTrigger.OnDayStarted += StartDay;
+        _dayTrigger.OnDayStarted.AddListener(StartDay);
     }
 
     private void OnDisable()
     {
         _controller.OnInteract -= StartNight;
-        _dayTrigger.OnDayStarted -= StartDay;
+        _dayTrigger.OnDayStarted.RemoveListener(StartDay);
     }
 
     private void StartDay() => _isDay = true; 

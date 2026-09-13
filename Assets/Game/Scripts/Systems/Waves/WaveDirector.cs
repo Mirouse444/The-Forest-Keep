@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
  [RequireComponent(typeof(IEnemyFactory))]
+ 
  public class WaveDirector : MonoBehaviour
  {
      [SerializeField] private SpawnerWavesConfig _leftSpawnerConfig;
@@ -11,55 +13,62 @@ using UnityEngine;
      [SerializeField] private float _timeRange;
      
      private IEnemyFactory _factory;
-     private WaitForSeconds _rangeTime;
+     private CancellationTokenSource _cts;
      
      public event System.Action<NightConfig> OnWaveSpawn;
      public event System.Action<EnemyCore> OnEnemySpawn;
      
-     private void Awake()
-     {
-         _factory = GetComponent<IEnemyFactory>();
-         _rangeTime = new WaitForSeconds(_timeRange);
-     }
+     private void Awake() => _factory = GetComponent<IEnemyFactory>();
 
      private void OnEnable()
      {
+         _cts = new CancellationTokenSource();
+         
          _leftSpawnerConfig.OnEnemyGo += LeftSpawnerActivate;
          _rightSpawnerConfig.OnEnemyGo += RightSpawnerActivate;
      }
 
      private void OnDisable()
      {
-         _leftSpawnerConfig.OnEnemyGo  -= LeftSpawnerActivate;
+         _cts.Cancel();
+         _cts.Dispose();
+
+         _leftSpawnerConfig.OnEnemyGo -= LeftSpawnerActivate;
          _rightSpawnerConfig.OnEnemyGo -= RightSpawnerActivate;
      }
      
-     private void LeftSpawnerActivate(NightConfig config) => StartCoroutine(SpawnCoroutine(config, _leftSpawner));
+     private void LeftSpawnerActivate(NightConfig config) => SpawnAsync(config, _leftSpawner, _cts.Token).Forget();
 
-     private void RightSpawnerActivate(NightConfig config) => StartCoroutine(SpawnCoroutine(config, _rightSpawner));
+     private void RightSpawnerActivate(NightConfig config) => SpawnAsync(config, _rightSpawner, _cts.Token).Forget();
 
-     private IEnumerator SpawnCoroutine(NightConfig config, EnemySpawner  spawner)
+     private async UniTaskVoid SpawnAsync(NightConfig config, EnemySpawner spawner, CancellationToken token)
      {
-        OnWaveSpawn?.Invoke(config);
-         
-         foreach (var group in config.Waves)
+         int rangeTimeMs = (int)(_timeRange * 1000);
+         try
          {
-             if(group.Count != 0)
+             OnWaveSpawn?.Invoke(config);
+            
+             foreach (var group in config.Waves)
              {
-                 EnemyCore enemy = _factory.GetEnemy(group.EnemyPrefab);
-                 SetEnemy(spawner, enemy);
-
-                 for (int i = 1; i < group.Count; i++)
+                 if (group.Count != 0)
                  {
-                     yield return _rangeTime;
-
-                     enemy = _factory.GetEnemy(group.EnemyPrefab);
+                     EnemyCore enemy = _factory.GetEnemy(group.EnemyPrefab);
                      SetEnemy(spawner, enemy);
-                 }
 
-                 yield return new WaitForSeconds(group.SpawnInterval);
+                     for (int i = 1; i < group.Count; i++)
+                     {
+                         await UniTask.Delay(rangeTimeMs, cancellationToken: token);
+
+                         enemy = _factory.GetEnemy(group.EnemyPrefab);
+                         SetEnemy(spawner, enemy);
+                     }
+
+                     int spawnIntervalMs = (int)(group.SpawnInterval * 1000);
+                     await UniTask.Delay(spawnIntervalMs, cancellationToken: token);
+                 }
              }
          }
+         catch (System.OperationCanceledException) { }
      }
 
      private void SetEnemy(EnemySpawner spawner, EnemyCore enemy)

@@ -1,6 +1,9 @@
+using Random = UnityEngine.Random;
 using System.Collections.Generic;
-using System.Collections;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Collider2D))]
 public class DamageOnPlace : MonoBehaviour
@@ -20,12 +23,12 @@ public class DamageOnPlace : MonoBehaviour
 
     private readonly List<TargetInfo> _targets = new();
     
-    private Coroutine _attackCoroutine;
-    private WaitForSeconds _cooldown;
+    private CancellationTokenSource _cts;
+    private bool _isAttacking;
     
-    public event System.Action OnTakeDamage;
+    public event Action OnTakeDamage;
 
-    private void Awake() => _cooldown = new WaitForSeconds(_attackCooldown);
+    private void OnEnable() => _cts = new CancellationTokenSource();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,7 +49,8 @@ public class DamageOnPlace : MonoBehaviour
             Knockbackable = knockbackable
         });
 
-        _attackCoroutine ??= StartCoroutine(AttackLoop());
+        if (!_isAttacking)
+            AttackLoop(_cts.Token).Forget();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -60,48 +64,54 @@ public class DamageOnPlace : MonoBehaviour
         }
     }
 
-    private IEnumerator AttackLoop()
+    private async UniTaskVoid AttackLoop(CancellationToken token)
     {
-        while (_targets.Count > 0)
+        _isAttacking = true;
+        int attackCooldownMs = (int)(_attackCooldown * 1000);
+
+        try
         {
-            for (int i = _targets.Count - 1; i >= 0; i--)
+            while (_targets.Count > 0)
             {
-                var target = _targets[i];
-
-                if (target.Collider is null)
+                
+                for (int i = _targets.Count - 1; i >= 0; i--)
                 {
-                    _targets.RemoveAt(i);
-                    continue;
+                    var target = _targets[i];
+
+                    if (target.Collider is null)
+                    {
+                        _targets.RemoveAt(i);
+                        continue;
+                    }
+
+                    if (target.Damageable != null)
+                    {
+                        var damage = Random.Range(_minDamage, _maxDamage + 1);
+                        target.Damageable.TakeDamage(new DamageInfo(damage, false));
+                    }
+
+                    if (target.Knockbackable is not null)
+                    {
+                        Vector2 pushDir = ((Vector2)target.Collider.transform.position - (Vector2)transform.position).normalized;
+                        target.Knockbackable.ApplyKnockback(pushDir * _knockbackForce);
+                    }
                 }
 
-                if(target.Damageable != null)
-                {
-                    var damage = Random.Range(_minDamage, _maxDamage + 1);
-                    target.Damageable.TakeDamage(new DamageInfo(damage, false));
-                }
-
-                if (target.Knockbackable is not null)
-                {
-                    Vector2 pushDir = ((Vector2)target.Collider.transform.position - (Vector2)transform.position).normalized;
-                    target.Knockbackable.ApplyKnockback(pushDir * _knockbackForce);
-                }
+                OnTakeDamage?.Invoke();
+                await UniTask.Delay(attackCooldownMs, cancellationToken: token);
             }
-
-            OnTakeDamage?.Invoke();
-            yield return _cooldown;
         }
-
-        _attackCoroutine = null;
+        catch (OperationCanceledException) { }
+        finally
+        {
+            _isAttacking = false;
+        }
     }
 
     private void OnDisable()
     {
-        if (_attackCoroutine != null)
-        {
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
-        }
-
+        _cts.Cancel();
+        _cts.Dispose();
         _targets.Clear();
     }
 }

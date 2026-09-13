@@ -1,4 +1,5 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
@@ -21,6 +22,7 @@ public class BackgroundMusic : MonoBehaviour
     
     private enum TimeState { Day, Night }
     private TimeState _currentState;
+    private CancellationTokenSource _trackCts;
 
     private void Awake()
     {
@@ -41,6 +43,17 @@ public class BackgroundMusic : MonoBehaviour
     {
         _dayTrigger.OnDayStarted.RemoveListener(SwitchToDay);
         _nightTrigger.OnNightStarted.RemoveListener(SwitchToNight);
+
+        CancelCurrentTrack();
+    }
+    
+    private void CancelCurrentTrack()
+    {
+        if(_trackCts == null) return;
+        
+        _trackCts.Cancel();
+        _trackCts.Dispose();
+        _trackCts = null;
     }
 
     private void Start() => SwitchToDay();
@@ -59,7 +72,8 @@ public class BackgroundMusic : MonoBehaviour
 
     private void ChangeTrack()
     {
-        StopAllCoroutines(); 
+        CancelCurrentTrack();
+        _trackCts = new CancellationTokenSource();
         
         SwapSources();
         
@@ -67,8 +81,8 @@ public class BackgroundMusic : MonoBehaviour
         _activeSource.clip = nextClip;
         _activeSource.Play();
 
-        StartCoroutine(CrossfadeRoutine());
-        StartCoroutine(WaitTrackEndRoutine(nextClip.length));
+        CrossfadeRoutine(_trackCts.Token).Forget();
+        WaitTrackEndRoutine(nextClip.length, _trackCts.Token).Forget();
     }
 
     private void SwapSources() => (_activeSource, _idleSource) = (_idleSource, _activeSource);
@@ -89,28 +103,39 @@ public class BackgroundMusic : MonoBehaviour
         }
     }
 
-    private IEnumerator CrossfadeRoutine()
+    private async UniTaskVoid CrossfadeRoutine(CancellationToken token)
     {
         float timer = 0f;
         float startIdleVol = _idleSource.volume;
 
-        while (timer < _fadeTime)
+        try
         {
-            timer += Time.unscaledDeltaTime;
-            _activeSource.volume = Mathf.Lerp(0f, 1f, timer / _fadeTime);
-            _idleSource.volume = Mathf.Lerp(startIdleVol, 0f, timer / _fadeTime);
-            yield return null;
-        }
+            while (timer < _fadeTime)
+            {
+                timer += Time.unscaledDeltaTime;
+                _activeSource.volume = Mathf.Lerp(0f, 1f, timer / _fadeTime);
+                _idleSource.volume = Mathf.Lerp(startIdleVol, 0f, timer / _fadeTime); 
+                await UniTask.Yield(cancellationToken: token);
+            }
 
-        _activeSource.volume = 1f;
-        _idleSource.volume = 0f;
-        _idleSource.Stop();
+            _activeSource.volume = 1f;
+            _idleSource.volume = 0f;
+            _idleSource.Stop();
+        }
+        catch (System.OperationCanceledException) { }
     }
 
-    private IEnumerator WaitTrackEndRoutine(float clipLength)
+    private async UniTaskVoid WaitTrackEndRoutine(float clipLength, CancellationToken token)
     {
-        yield return new WaitForSecondsRealtime(clipLength - _fadeTime);
-        
-        ChangeTrack(); 
+        try
+        {
+            float waitTime = Mathf.Max(0f, clipLength - _fadeTime);
+            int startFadeTimeMs = (int)(waitTime * 1000);
+            
+            await UniTask.Delay(startFadeTimeMs, cancellationToken: token, ignoreTimeScale: true);
+
+            ChangeTrack();
+        }
+        catch (System.OperationCanceledException) { }
     }
 }

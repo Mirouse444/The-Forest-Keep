@@ -1,5 +1,4 @@
-using Cysharp.Threading.Tasks;
-using System.Threading;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(IWeaponLauncher))]
@@ -9,61 +8,45 @@ public class AutomaticWeapon : MonoBehaviour, IWeaponTrigger
 
     private IWeaponLauncher _weaponLauncher;
     private IWeaponMagazine  _magazine;
-    private CancellationTokenSource _fireCts;
+    private WaitForSeconds _fireRateTime;
+    private Coroutine _fireCoroutine;
     private float _timer;
 
     private void Awake()
     {
         _weaponLauncher = GetComponent<IWeaponLauncher>();
         _magazine = GetComponent<IWeaponMagazine>();
+        _fireRateTime = new WaitForSeconds(_fireRate);
     }
 
     public void OnTriggerPressed()
     {
         if (Time.time >= _timer + _fireRate)
+            _fireCoroutine ??= StartCoroutine(FireRoutine());
+    }
+
+    public void OnTriggerReleased()
+    {
+        if (_fireCoroutine != null)
         {
-            CleanupCts();
-            
-            _fireCts = new CancellationTokenSource();
-            FireRoutine(_fireCts.Token).Forget();
+            StopCoroutine(_fireCoroutine);
+            _fireCoroutine = null;
         }
     }
 
-    public void OnTriggerReleased() => CleanupCts();
-
-    private async UniTaskVoid FireRoutine(CancellationToken token)
+    private IEnumerator FireRoutine()
     {
-        int fireWaitMs = (int)(_fireRate * 1000);
-
-        try
+        while (true)
         {
-            while (true)
-            {
-                if (!_magazine.TryConsumeAmmo())
-                {
-                    await UniTask.Yield(cancellationToken: token);
-                    continue;
-                }
-
-                _timer = Time.time;
-
-                Vector2 dir = _weaponLauncher.transform.right;
-                _weaponLauncher.Fire(dir);
-
-                await UniTask.Delay(fireWaitMs, cancellationToken: token);
-            }
-        }
-        catch (System.OperationCanceledException) { }
-    }
-
-    private void OnDisable() => CleanupCts();
-    
-    private void CleanupCts()
-    {
-        if(_fireCts == null) return;
+            if (!_magazine.TryConsumeAmmo()) yield break;
+            _timer =  Time.time;
             
-        _fireCts.Cancel();
-        _fireCts.Dispose();
-        _fireCts = null;
+            Vector2 dir = _weaponLauncher.transform.right;
+            _weaponLauncher.Fire(dir);
+            
+            yield return _fireRateTime;
+        }
     }
+
+    private void OnDisable() => _fireCoroutine = null;
 }

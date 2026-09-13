@@ -1,0 +1,6 @@
+[![Itch.io](https://img.shields.io/badge/Play_on-Itch.io-FA5C5C?style=for-the-badge&logo=itch.io&logoColor=white)](https://mirouse.itch.io/the-forest-keep)
+[![Unity](https://img.shields.io/badge/Unity-6_(6000.0.6f1)-000000?style=for-the-badge&logo=unity&logoColor=white)](https://unity.com/)
+[![C#](https://img.shields.io/badge/C%23-9.0-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![Platform](https://img.shields.io/badge/Platform-WebGL_%7C_Windows-7289DA?style=for-the-badge)](https://mirouse.itch.io/the-forest-keep)
+[![GitHub Stars](https://img.shields.io/github/stars/Mirouse444/The-Forest-Keep?style=for-the-badge&logo=github)](https://github.com/Mirouse444/The-Forest-Keep/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/Mirouse444/The-Forest-Keep?style=for-the-badge&logo=git&logoColor=white)](https://github.com/Mirouse444/The-Forest-Keep/commits/main)

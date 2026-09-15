@@ -77,7 +77,14 @@ public class TowerOperatorAI : MonoBehaviour
         
         bool isAimed = cannon.AimAt(target.Position);
 
-        if (isAimed) cannon.TryFire();
+        if (isAimed)
+        {
+            cannon.TryFire();
+        }
+        else
+        {
+            _currentTarget = null;
+        }
     }
 
     private void OnDrawGizmosSelected()

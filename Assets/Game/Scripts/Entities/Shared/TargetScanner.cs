@@ -11,7 +11,7 @@ public class TargetScanner : MonoBehaviour
     private float _scanTimer;
     private Collider2D _targetCollider;
     private ContactFilter2D _contactFilter;
-    private readonly Collider2D[] _visionResults = new Collider2D[10];
+    private readonly Collider2D[] _visionResults = new Collider2D[25];
     
     public ITarget CurrentTarget { get; private set; }
 

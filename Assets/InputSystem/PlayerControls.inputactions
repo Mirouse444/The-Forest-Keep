@@ -285,6 +285,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0447c6a6-783b-41b6-85d6-89d419555ab4",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "36255f2d-9d2a-4806-a3e8-5a2e621af468",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -296,8 +307,30 @@
                 },
                 {
                     "name": "",
+                    "id": "75bd0372-a9a2-4226-a2a4-479a40696eb7",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2532a09e-094b-4e30-9c6d-7d974425f53a",
-                    "path": "<Pointer>/position",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3752669-c431-4629-a269-46aa0baae172",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

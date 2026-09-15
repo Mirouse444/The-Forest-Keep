@@ -19362,7 +19362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonController
   _info: {fileID: 11400000, guid: e2668e3e07b28a24680478158d6d4193, type: 2}
   _gravityScale: 1
-  _fireRate: 3
+  _fireRate: 2.5
 --- !u!114 &1177988672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19391,7 +19391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonRotator
   _barrelPivot: {fileID: 1378813873}
-  _minAngle: -45
+  _minAngle: -50
   _maxAngle: 30
   _rotationSpeed: 10
   _invertAngle: 1
@@ -19726,7 +19726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.04136857, y: 0.132}
   m_AnchorMax: {x: 0.94600004, y: 0.86500007}
-  m_AnchoredPosition: {x: 2.2540894, y: 1.5078888}
+  m_AnchoredPosition: {x: 2.2541504, y: 1.5078735}
   m_SizeDelta: {x: -8.5085, y: -5.3261995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200856327
@@ -27000,7 +27000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonController
   _info: {fileID: 11400000, guid: e2668e3e07b28a24680478158d6d4193, type: 2}
   _gravityScale: 1
-  _fireRate: 3
+  _fireRate: 2.5
 --- !u!114 &1774080799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27030,7 +27030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonRotator
   _barrelPivot: {fileID: 1124523597}
   _minAngle: -30
-  _maxAngle: 45
+  _maxAngle: 50
   _rotationSpeed: 10
   _invertAngle: 0
 --- !u!1 &1775608551
